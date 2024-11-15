@@ -1,24 +1,19 @@
-import { AddTodo } from "@/components/shared/todos/add-todo"
-import { TodoList } from "@/components/shared/todos/todo-list"
-import { ToggleTheme } from "@/components/shared/toggle-theme"
-import { type Metadata } from "next"
-import Link from "next/link"
+import {type Metadata} from "next"
+import {First} from "@/components/shared/mainPage/sections/First";
+import {Second} from "@/components/shared/mainPage/sections/Second";
+import {Third} from "@/components/shared/mainPage/sections/Third";
 
 export const metadata: Metadata = {
-  title: "Home",
-  description: "hey there, this is a Home Page",
+    title: "Home",
+    description: "hey there, this is a Home Page",
 }
 
 export default async function HomePage() {
-  return (
-    <div className="container mx-auto p-4">
-      <section className="mx-auto max-w-sm space-y-4">
-        <ToggleTheme />
-        <AddTodo />
-        <TodoList />
-      </section>
-
-      <Link href="/auth?type=login">AUTH</Link>
-    </div>
-  )
+    return (
+        <div className={"flex flex-col container"}>
+            <First/>
+            <Second/>
+            <Third/>
+        </div>
+    )
 }
