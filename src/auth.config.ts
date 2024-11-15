@@ -1,9 +1,10 @@
 import { getUserByEmail, getUserById } from "@/lib/data/user";
 import { LoginSchema } from "@/schemas";
-import bcrypt from 'bcryptjs';
 import type { NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import {compareSync} from "bcrypt-edge";
+import NextCrypto from "next-crypto";
+
+const crypto = new NextCrypto(process.env.DATABASE_URL)
 
 export default {
     providers: [Credentials({
@@ -19,10 +20,9 @@ export default {
                     return null
                 }
 
-                const passwordMatch = compareSync(
-                    password,
-                    user.password
-                )
+                const decryptedPassword = await crypto.decrypt(password)
+
+                const passwordMatch = user.password == decryptedPassword
 
                 console.log("Login Successfull")
 

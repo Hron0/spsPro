@@ -7,10 +7,9 @@ import { AuthError } from 'next-auth';
 import { z } from 'zod';
 import { auth, signIn } from "../../auth";
 import { user } from "@/backend/db/schema";
-import {
-    hashSync,
-} from 'bcrypt-edge';
+import NextCrypto from "next-crypto";
 
+const crypto = new NextCrypto(process.env.DATABASE_URL)
 
 export const Login = async (values: z.infer<typeof LoginSchema>) => {
     const validatedField = LoginSchema.safeParse(values)
@@ -45,7 +44,7 @@ export const Register = async (values: z.infer<typeof RegisterSchema>) => {
 
     if (validatedFields.success) {
         const { login, email, password } = validatedFields.data;
-        const hashedPassword = hashSync(password, 10)
+        const hashedPassword = await crypto.encrypt(password)
 
         const existingUser = await db.query.user.findFirst({
             where: eq(user.email, email)
