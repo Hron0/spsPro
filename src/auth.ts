@@ -9,5 +9,6 @@ export const {
   adapter: DrizzleAdapter(db),
   session: { strategy: "jwt" },
   trustHost: true,
+  secret: process.env.NEXTAUTH_SECRET,
   ...authConfig,
 })
