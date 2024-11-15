@@ -1,8 +1,9 @@
 import { getUserByEmail, getUserById } from "@/lib/data/user";
-import { LoginSchema } from "@/schemas/index";
+import { LoginSchema } from "@/schemas";
 import bcrypt from 'bcryptjs';
 import type { NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
+import {compareSync} from "bcrypt-edge";
 
 export default {
     providers: [Credentials({
@@ -18,7 +19,7 @@ export default {
                     return null
                 }
 
-                const passwordMatch = await bcrypt.compare(
+                const passwordMatch = compareSync(
                     password,
                     user.password
                 )

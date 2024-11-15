@@ -2,12 +2,15 @@
 import { db } from "@/backend/db/index";
 import { DEFAUL_LOGIN_REDIRECT } from "../../../routes";
 import { LoginSchema, RegisterSchema } from "@/schemas/index";
-import bcrypt from 'bcryptjs';
 import { eq } from 'drizzle-orm';
 import { AuthError } from 'next-auth';
 import { z } from 'zod';
 import { auth, signIn } from "../../auth";
 import { user } from "@/backend/db/schema";
+import {
+    hashSync,
+} from 'bcrypt-edge';
+
 
 export const Login = async (values: z.infer<typeof LoginSchema>) => {
     const validatedField = LoginSchema.safeParse(values)
@@ -42,7 +45,7 @@ export const Register = async (values: z.infer<typeof RegisterSchema>) => {
 
     if (validatedFields.success) {
         const { login, email, password } = validatedFields.data;
-        const hashedPassword = await bcrypt.hash(password, 10)
+        const hashedPassword = hashSync(password, 10)
 
         const existingUser = await db.query.user.findFirst({
             where: eq(user.email, email)
