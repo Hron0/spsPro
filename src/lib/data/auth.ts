@@ -7,9 +7,7 @@ import { AuthError } from 'next-auth';
 import { z } from 'zod';
 import { auth, signIn } from "../../auth";
 import { user } from "@/backend/db/schema";
-import NextCrypto from "next-crypto";
 
-const crypto = new NextCrypto("Balls123")
 
 export const Login = async (values: z.infer<typeof LoginSchema>) => {
     const validatedField = LoginSchema.safeParse(values)
@@ -44,7 +42,7 @@ export const Register = async (values: z.infer<typeof RegisterSchema>) => {
 
     if (validatedFields.success) {
         const { login, email, password } = validatedFields.data;
-        const hashedPassword = await crypto.encrypt(password)
+        const hashedPassword = await bcrypt.hash(password, 10)
 
         const existingUser = await db.query.user.findFirst({
             where: eq(user.email, email)
