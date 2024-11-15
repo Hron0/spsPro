@@ -2,8 +2,7 @@
 import * as React from 'react';
 import Image from "next/image";
 
-type Props = {};
-export const Third = (props: Props) => {
+export const Third = () => {
     return (
         <section
             className="mx-auto w-full bg-secondary relative grid grid-rows-3 justify-items-start items-center gap-16 px-16 py-8 text-wite aspect-video">
