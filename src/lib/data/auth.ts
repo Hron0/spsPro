@@ -7,6 +7,7 @@ import { AuthError } from 'next-auth';
 import { z } from 'zod';
 import { auth, signIn } from "../../auth";
 import { user } from "@/backend/db/schema";
+import bcrypt from "bcryptjs";
 
 
 export const Login = async (values: z.infer<typeof LoginSchema>) => {
