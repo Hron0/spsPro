@@ -1,20 +1,13 @@
 'use server'
 import * as React from 'react';
 import Image from "next/image";
+import TitleHeader from "@/components/shared/TitleHeader";
 
 export const Third = () => {
     return (
         <section
             className="mx-auto w-full bg-secondary relative grid grid-rows-3 justify-items-start items-center gap-16 px-16 py-8 text-wite aspect-video">
-            <div className={"bg-black/40 z-10 relative h-[100px] w-[480px]"}>
-                <Image src={'/img/mainPage/columnn.png'}
-                       alt={'Pic'}
-                       width={84}
-                       height={101}
-                       className={"relative right-11 bottom-3"}/>
-
-                <h1 className={"text-white text-4xl font-light relative -top-28 -right-8"}>Чем мы можем помочь?</h1>
-            </div>
+            <TitleHeader title={'Чем мы можем помочь?'} color={''}/>
 
 
             {/* Lol */}

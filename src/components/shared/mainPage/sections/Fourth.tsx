@@ -4,8 +4,8 @@ import Image from "next/image";
 function Fourth() {
     return (
         <section
-            className="mx-auto w-full bg-background relative grid grid-cols-3 justify-items-start gap-2">
-            <div className={"relative flex items-start justify-start col-span-2"}>
+            className="mx-auto w-full bg-background relative flex flex-row justify-center gap-2">
+            <div className={"relative flex items-start justify-start"}>
                 <ul className={"text-black text-3xl font-light px-24 py-12 text-start"}>
                     <li>- Строительно-техническая экспертиза;</li>
                     <li>- Почерковедческая экспертиза;</li>
@@ -26,12 +26,11 @@ function Fourth() {
                        fill={true}/>
             </div>
 
-            <div className={"relative w-full"}>
-                <Image src={"/img/mainPage/img2.png"}
-                       alt={'Pic'}
-                       fill={true}
-                       className={"py-11 px-10 mr-10"}/>
-            </div>
+            <Image src={"/img/mainPage/img2.png"}
+                   alt={'Pic'}
+                   width={330}
+                   height={434}
+                   className={"py-11 px-10 mr-10"}/>
 
 
         </section>
