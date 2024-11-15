@@ -20,7 +20,7 @@ export default auth((req) => {
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname)
   const isAuthRoute = authRoutes.includes(nextUrl.pathname)
 
-/*  if (isApiAuthRoute) {
+  if (isApiAuthRoute) {
     return NextResponse.next()
   }
 
@@ -40,7 +40,7 @@ export default auth((req) => {
 
   if (!isLoggedIn && !isPublicRoute) {
     return Response.redirect(new URL("/auth", nextUrl))
-  }*/
+  }
 
 
   return NextResponse.next()
