@@ -2,6 +2,7 @@ import {type Metadata} from "next"
 import {First} from "@/components/shared/mainPage/sections/First";
 import {Second} from "@/components/shared/mainPage/sections/Second";
 import {Third} from "@/components/shared/mainPage/sections/Third";
+import Fourth from "@/components/shared/mainPage/sections/Fourth";
 
 export const metadata: Metadata = {
     title: "Home",
@@ -14,6 +15,7 @@ export default async function HomePage() {
             <First/>
             <Second/>
             <Third/>
+            <Fourth/>
         </div>
     )
 }
