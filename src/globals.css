@@ -12,7 +12,7 @@
     --popover-foreground: 240 10% 3.9%;
     --primary: 240 5.9% 10%;
     --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
+    --secondary: 201 29.9% 38.6%;
     --secondary-foreground: 240 5.9% 10%;
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
@@ -23,7 +23,7 @@
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
     --ring: 240 5.9% 10%;
-    --radius: 0.5rem;
+    --radius: 10px;
   }
 
   .dark {
@@ -56,6 +56,14 @@
 
   body {
     @apply antialiased text-foreground dark:bg-background bg-zinc-50;
+  }
+
+  @font-face {
+    font-family: "Times New Roman";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/app/fonts/TimesNewRoman.ttf");
   }
 }
 

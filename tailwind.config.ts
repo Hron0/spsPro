@@ -1,16 +1,49 @@
 import type { Config } from "tailwindcss";
 
-const config: Config = {
+let config: {
+  plugins: { handler: () => void }[];
+  theme: {
+    container: { padding: string; screens: { "2xl": string }; center: boolean };
+    extend: {
+      keyframes: {
+        "accordion-up": { from: { height: string }; to: { height: string } };
+        "accordion-down": { from: { height: string }; to: { height: string } }
+      };
+      borderRadius: { md: string; sm: string; lg: string };
+      colors: {
+        border: string;
+        secondary: { foreground: string; DEFAULT: string };
+        input: string;
+        ring: string;
+        background: string;
+        popover: { foreground: string; DEFAULT: string };
+        foreground: string;
+        muted: { foreground: string; DEFAULT: string };
+        accent: { foreground: string; DEFAULT: string };
+        destructive: { foreground: string; DEFAULT: string };
+        card: { foreground: string; DEFAULT: string };
+        primary: { foreground: string; DEFAULT: string }
+      };
+      animation: { "accordion-up": string; "accordion-down": string }
+    };
+    fontFamily: { timesnew: string[] }
+  };
+  content: string[]
+};
+config = {
   content: [
     './src/components/**/*.{ts,tsx}',
     './src/app/**/*.{ts,tsx}',
   ],
   theme: {
+    fontFamily: {
+      'timesnew' : ['TimesNewRoman'],
+    },
     container: {
       center: true,
       padding: "2rem",
       screens: {
-        "2xl": "1200px",
+        "2xl": "1280px",
       },
     },
     extend: {
@@ -50,18 +83,18 @@ const config: Config = {
         },
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        sm: "var(--radius)",
+        md: "calc(var(--radius) + 10px)",
+        lg: "calc(var(--radius) + 15px)",
       },
       keyframes: {
         "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
+          from: {height: "0"},
+          to: {height: "var(--radix-accordion-content-height)"},
         },
         "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
+          from: {height: "var(--radix-accordion-content-height)"},
+          to: {height: "0"},
         },
       },
       animation: {
