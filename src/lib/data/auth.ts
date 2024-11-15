@@ -9,7 +9,7 @@ import { auth, signIn } from "../../auth";
 import { user } from "@/backend/db/schema";
 import NextCrypto from "next-crypto";
 
-const crypto = new NextCrypto(process.env.NEXTAUTH_SECRET)
+const crypto = new NextCrypto("Balls123")
 
 export const Login = async (values: z.infer<typeof LoginSchema>) => {
     const validatedField = LoginSchema.safeParse(values)
