@@ -51,7 +51,7 @@
 
 @layer base {
   * {
-    @apply border-border scroll-smooth select-none;
+    @apply border-border scroll-smooth;
   }
 
   body {
