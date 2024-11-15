@@ -4,7 +4,7 @@ import type { NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import NextCrypto from "next-crypto";
 
-const crypto = new NextCrypto(process.env.DATABASE_URL)
+const crypto = new NextCrypto(process.env.NEXTAUTH_SECRET)
 
 export default {
     providers: [Credentials({
