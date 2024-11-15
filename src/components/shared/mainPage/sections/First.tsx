@@ -1,11 +1,9 @@
+"use server"
 import * as React from 'react';
 import {Button} from "@/components/ui/button";
 import Image from "next/image";
 
-type Props = {
-
-};
-export const First = (props: Props) => {
+export const First = () => {
     return (
         <section
             className="mx-auto w-full bg-secondary relative grid grid-rows-4 justify-center items-end justify-items-center gap-16 text-wite px-24 aspect-video">

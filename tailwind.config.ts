@@ -1,5 +1,3 @@
-import type {Config} from "tailwindcss";
-
 let config: {
     plugins: { handler: () => void }[];
     theme: {
@@ -28,6 +26,7 @@ let config: {
         };
         fontFamily: { timesnew: string[] }
     };
+    important: boolean;
     content: string[]
 };
 config = {

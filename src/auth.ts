@@ -1,8 +1,6 @@
-/*
 import NextAuth from "next-auth"
 import { DrizzleAdapter } from "@auth/drizzle-adapter"
-import { db } from "@/backend/db/index"
-import { getUserById } from "@/lib/data/user";
+import { db } from "@/backend/db"
 import authConfig from "./auth.config"
 
 export const {
@@ -12,4 +10,4 @@ export const {
   session: { strategy: "jwt" },
   trustHost: true,
   ...authConfig,
-})*/
+})

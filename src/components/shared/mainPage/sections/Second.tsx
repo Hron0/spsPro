@@ -1,9 +1,8 @@
-// @flow
+'use server'
 import * as React from 'react';
 import Image from "next/image";
 
-type Props = {};
-export const Second = (props: Props) => {
+export const Second = () => {
     return (
         <section className="mx-auto w-full bg-background relative grid grid-cols-2 items-start gap-12 px-24 py-12">
             <Image src={"/img/mainPage/img1.png"}
