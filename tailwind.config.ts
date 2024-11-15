@@ -26,7 +26,7 @@ let config: {
         };
         fontFamily: { timesnew: string[] }
     };
-    important: boolean;
+    important?: boolean;
     content: string[]
 };
 config = {
@@ -101,7 +101,7 @@ config = {
             },
         },
     },
-    important: true,
+    // important: true,
     plugins: [require("tailwindcss-animate")],
 };
 export default config;
