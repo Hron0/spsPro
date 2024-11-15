@@ -3,7 +3,7 @@ import type { Config } from "tailwindcss";
 let config: {
   plugins: { handler: () => void }[];
   theme: {
-    container: { padding: string; screens: { "2xl": string }; center: boolean };
+    container: { screens: { "2xl": string }; center: boolean };
     extend: {
       keyframes: {
         "accordion-up": { from: { height: string }; to: { height: string } };
@@ -41,7 +41,6 @@ config = {
     },
     container: {
       center: true,
-      padding: "2rem",
       screens: {
         "2xl": "1280px",
       },
