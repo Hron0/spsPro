@@ -8,12 +8,12 @@ import {
     SidebarGroupLabel,
     SidebarMenu,
     SidebarMenuButton,
-    SidebarMenuItem,
+    SidebarMenuItem, SidebarSeparator,
 } from "@/components/ui/sidebar"
 import * as React from "react";
 
 // Menu items.
-const items = [
+const itemsMain = [
     {
         title: "Главная",
         url: "#",
@@ -23,7 +23,11 @@ const items = [
         title: "Навигация",
         url: "#",
         icon: Inbox,
-    },
+    }
+
+]
+
+const itemsSecond = [
     {
         title: "Страница1",
         url: "#",
@@ -52,9 +56,24 @@ export function AppSidebar() {
             <SidebarContent>
                 <SidebarGroup>
                     <SidebarGroupLabel>Меню</SidebarGroupLabel>
+                    <SidebarSeparator />
                     <SidebarGroupContent>
                         <SidebarMenu>
-                            {items.map((item) => (
+                            {itemsMain.map((item) => (
+                                <SidebarMenuItem key={item.title}>
+                                    <SidebarMenuButton asChild>
+                                        <a href={item.url}>
+                                            <span>{item.title}</span>
+                                        </a>
+                                    </SidebarMenuButton>
+                                </SidebarMenuItem>
+                            ))}
+                        </SidebarMenu>
+                    </SidebarGroupContent>
+                    <SidebarSeparator className={"my-2"}/>
+                    <SidebarGroupContent>
+                        <SidebarMenu>
+                            {itemsSecond.map((item) => (
                                 <SidebarMenuItem key={item.title}>
                                     <SidebarMenuButton asChild>
                                         <a href={item.url}>

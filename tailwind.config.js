@@ -18,6 +18,9 @@ module.exports  = {
             },
         },
         extend: {
+            backgroundImage: {
+                'romb': 'url(/img/mainPage/rectangle.png)'
+            },
             colors: {
                 border: "hsl(var(--border))",
                 input: "hsl(var(--input))",
