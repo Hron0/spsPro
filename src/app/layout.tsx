@@ -7,6 +7,8 @@ import "@/globals.css"
 import {Navbar} from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 import {SpeedInsights} from "@vercel/speed-insights/next"
+import {SidebarInset, SidebarProvider, SidebarTrigger} from "@/components/ui/sidebar";
+import {AppSidebar} from "@/components/shared/AppSidebar";
 
 
 const font = Inter({
@@ -24,11 +26,11 @@ export const metadata: Metadata = {
         title: siteConfig.title,
         description: siteConfig.description,
     },
-        icons: {
-            icon: "/favicon.ico",
-            shortcut: "/favicon-16x16.png",
-            apple: "/apple-touch-icon.png",
-        },
+    icons: {
+        icon: "/favicon.ico",
+        shortcut: "/favicon-16x16.png",
+        apple: "/apple-touch-icon.png",
+    },
 }
 
 export default function RootLayout({children, modal}: {
@@ -41,14 +43,20 @@ export default function RootLayout({children, modal}: {
         </head>
         <body className={"bg-background container flex flex-col items-center"}>
         <QueryProvider>
-            <Navbar/>
-            {children}
-            {modal}
-            <Footer/>
-            <Toaster/>
-            <SpeedInsights/>
+            <SidebarProvider defaultOpen={true}>
+                <AppSidebar/>
+                <main className={"flex flex-col items-center"}>
+                    <Navbar/>
+                    <SidebarTrigger/>
+                    {children}
+                    {modal}
+                    <Footer/>
+                    <Toaster/>
+                </main>
+            </SidebarProvider>
         </QueryProvider>
 
+        <SpeedInsights/>
         </body>
         </html>
     )
