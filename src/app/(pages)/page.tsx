@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default async function HomePage() {
     return (
-        <div className={"flex flex-col container"}>
+        <div className={"flex flex-col container overflow-hidden"}>
             <First/>
             <Second/>
             <Third/>
