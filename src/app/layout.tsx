@@ -24,11 +24,11 @@ export const metadata: Metadata = {
         title: siteConfig.title,
         description: siteConfig.description,
     },
-    /*    icons: {
+        icons: {
             icon: "/favicon.ico",
             shortcut: "/favicon-16x16.png",
             apple: "/apple-touch-icon.png",
-        },*/
+        },
 }
 
 export default function RootLayout({children, modal}: {
@@ -38,10 +38,6 @@ export default function RootLayout({children, modal}: {
     return (
         <html lang="en" className={font.className} suppressHydrationWarning>
         <head>
-            <title>dog</title>
-            <link rel="manifest" href="/manifest.json"/>
-            <link rel="apple-touch-icon" href="/icon.png"/>
-            <link rel="theme-color" href="#14B8A6"/>
         </head>
         <body className={"bg-background container flex flex-col items-center"}>
         <QueryProvider>
@@ -50,8 +46,9 @@ export default function RootLayout({children, modal}: {
             {modal}
             <Footer/>
             <Toaster/>
+            <SpeedInsights/>
         </QueryProvider>
-        <SpeedInsights/>
+
         </body>
         </html>
     )
