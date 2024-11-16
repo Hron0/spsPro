@@ -8,8 +8,8 @@ import Sixth from "@/components/shared/mainPage/sections/Sixth";
 import Seventh from "@/components/shared/mainPage/sections/Seventh";
 
 export const metadata: Metadata = {
-    title: "Home",
-    description: "hey there, this is a Home Page",
+    title: "Гланвая",
+    description: "Центр независимых исследований",
 }
 
 export default async function HomePage() {
