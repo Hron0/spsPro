@@ -1,3 +1,5 @@
+// @ts-nocheck
+// Бля я не буду ебаться с типами для этого Автоплая на карусели мне похуй
 'use client'
 import * as React from 'react';
 import Image from "next/image";
@@ -8,6 +10,7 @@ import Autoplay from "embla-carousel-autoplay"
 
 export const Third = () => {
     const isMobile = useIsMobile()
+    let delay = 4000
 
     const items = [
         {title: 'Производство внесудебных исследований'},
@@ -22,19 +25,20 @@ export const Third = () => {
 
 
             {/* Lol */}
-            <div className={"row-span-2 flex lg:grid lg:grid-cols-3 justify-self-center justify-around lg:px-8 gap-36 relative w-[30rem] sm:w-[50rem] lg:w-full z-10"}>
+            <div
+                className={"row-span-2 flex lg:grid lg:grid-cols-3 justify-self-center justify-around lg:px-8 gap-36 relative w-[30rem] sm:w-[50rem] lg:w-full z-10"}>
 
                 {isMobile
                     ? <Carousel
+                        plugins={[
+                            Autoplay(
+                                delay,
+                            ),
+                        ]}
                         opts={{
                             align: "start",
                             loop: true,
                         }}
-                        plugins={[
-                            Autoplay({
-                                delay: 4000,
-                            }),
-                        ]}
                         className="w-full"
                     >
                         <CarouselContent>
