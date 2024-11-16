@@ -6,6 +6,8 @@ import {Inter} from "next/font/google"
 import "@/globals.css"
 import {Navbar} from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
+import {SpeedInsights} from "@vercel/speed-insights/next"
+
 
 const font = Inter({
     weight: ["300", "400", "500", "600", "700", "800", "900"],
@@ -22,11 +24,11 @@ export const metadata: Metadata = {
         title: siteConfig.title,
         description: siteConfig.description,
     },
-    icons: {
-        icon: "/favicon.ico",
-        shortcut: "/favicon-16x16.png",
-        apple: "/apple-touch-icon.png",
-    },
+    /*    icons: {
+            icon: "/favicon.ico",
+            shortcut: "/favicon-16x16.png",
+            apple: "/apple-touch-icon.png",
+        },*/
 }
 
 export default function RootLayout({children, modal}: {
@@ -46,9 +48,10 @@ export default function RootLayout({children, modal}: {
             <Navbar/>
             {children}
             {modal}
-            <Footer />
+            <Footer/>
             <Toaster/>
         </QueryProvider>
+        <SpeedInsights/>
         </body>
         </html>
     )
