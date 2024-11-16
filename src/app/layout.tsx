@@ -4,7 +4,6 @@ import {Toaster} from "@/components/ui/sonner"
 import type {Metadata} from "next"
 import {Inter} from "next/font/google"
 import "@/globals.css"
-import Footer from "@/components/shared/Footer";
 import {SpeedInsights} from "@vercel/speed-insights/next"
 import {AppSidebar} from "@/components/shared/AppSidebar";
 import Menu from "@/components/shared/Menu";
@@ -41,15 +40,14 @@ export default function RootLayout({children, modal}: {
         <html lang="en" className={font.className} suppressHydrationWarning>
         <head>
         </head>
-        <body className={"bg-background container flex flex-col items-center"}>
+        <body className={"bg-background w-full container flex flex-col items-center"}>
         <QueryProvider>
             <SidebarProvider defaultOpen={false}>
                 <AppSidebar/>
-                <main className={"flex flex-col items-center"}>
+                <main className={"flex flex-col items-center justify-center w-full"}>
                     <Menu/>
                     {children}
                     {modal}
-                    <Footer/>
                     <Toaster/>
                 </main>
             </SidebarProvider>
