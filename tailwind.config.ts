@@ -1,6 +1,7 @@
 let config: {
     plugins: { handler: () => void }[];
     theme: {
+        screens: { lg: string };
         container: { screens: { "2xl": string }; center: boolean };
         extend: {
             keyframes: {
@@ -45,6 +46,9 @@ config = {
         './src/app/**/*.{ts,tsx}',
     ],
     theme: {
+        screens: {
+            lg: '1160px'
+        },
         fontFamily: {
             'timesnew': ['TimesNewRoman'],
         },
