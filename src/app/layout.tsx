@@ -4,11 +4,11 @@ import {Toaster} from "@/components/ui/sonner"
 import type {Metadata} from "next"
 import {Inter} from "next/font/google"
 import "@/globals.css"
-import {Navbar} from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 import {SpeedInsights} from "@vercel/speed-insights/next"
-import {SidebarInset, SidebarProvider, SidebarTrigger} from "@/components/ui/sidebar";
 import {AppSidebar} from "@/components/shared/AppSidebar";
+import Menu from "@/components/shared/Menu";
+import {SidebarProvider} from "@/components/ui/sidebar";
 
 
 const font = Inter({
@@ -43,11 +43,10 @@ export default function RootLayout({children, modal}: {
         </head>
         <body className={"bg-background container flex flex-col items-center"}>
         <QueryProvider>
-            <SidebarProvider defaultOpen={true}>
+            <SidebarProvider defaultOpen={false}>
                 <AppSidebar/>
                 <main className={"flex flex-col items-center"}>
-                    <Navbar/>
-                    <SidebarTrigger/>
+                    <Menu/>
                     {children}
                     {modal}
                     <Footer/>

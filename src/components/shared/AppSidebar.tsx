@@ -1,5 +1,4 @@
-'use client'
-import {Calendar, Home, Inbox, Search, Settings} from "lucide-react"
+import {Home, Inbox, Settings} from "lucide-react"
 
 import {
     Sidebar,
@@ -11,7 +10,6 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import {useIsMobile} from "@/lib/hooks/use-mobile";
 import * as React from "react";
 
 // Menu items.
@@ -40,7 +38,7 @@ const items = [
         title: "Страница3",
         url: "#",
         icon: Settings,
-    },{
+    }, {
         title: "Страница4",
         url: "#",
         icon: Settings,
@@ -48,31 +46,27 @@ const items = [
 ]
 
 export function AppSidebar() {
-    const isMobile = useIsMobile()
 
     return (
-        {isMobile} ?
-            <div className={"hidden"}></div>
-            :
-            <Sidebar variant={"sidebar"}>
-                <SidebarContent>
-                    <SidebarGroup>
-                        <SidebarGroupLabel>Меню</SidebarGroupLabel>
-                        <SidebarGroupContent>
-                            <SidebarMenu>
-                                {items.map((item) => (
-                                    <SidebarMenuItem key={item.title}>
-                                        <SidebarMenuButton asChild>
-                                            <a href={item.url}>
-                                                <span>{item.title}</span>
-                                            </a>
-                                        </SidebarMenuButton>
-                                    </SidebarMenuItem>
-                                ))}
-                            </SidebarMenu>
-                        </SidebarGroupContent>
-                    </SidebarGroup>
-                </SidebarContent>
-            </Sidebar>
+        <Sidebar variant={"sidebar"}>
+            <SidebarContent>
+                <SidebarGroup>
+                    <SidebarGroupLabel>Меню</SidebarGroupLabel>
+                    <SidebarGroupContent>
+                        <SidebarMenu>
+                            {items.map((item) => (
+                                <SidebarMenuItem key={item.title}>
+                                    <SidebarMenuButton asChild>
+                                        <a href={item.url}>
+                                            <span>{item.title}</span>
+                                        </a>
+                                    </SidebarMenuButton>
+                                </SidebarMenuItem>
+                            ))}
+                        </SidebarMenu>
+                    </SidebarGroupContent>
+                </SidebarGroup>
+            </SidebarContent>
+        </Sidebar>
     )
 }
