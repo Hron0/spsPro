@@ -1,46 +1,5 @@
-let config: {
-    plugins: { handler: () => void }[];
-    theme: {
-        screens: { lg: string };
-        container: { screens: { "2xl": string }; center: boolean };
-        extend: {
-            keyframes: {
-                "accordion-up": { from: { height: string }; to: { height: string } };
-                "accordion-down": { from: { height: string }; to: { height: string } }
-            };
-            borderRadius: { md: string; sm: string; lg: string };
-            colors: {
-                border: string;
-                secondary: { foreground: string; DEFAULT: string };
-                input: string;
-                ring: string;
-                background: string;
-                popover: { foreground: string; DEFAULT: string };
-                foreground: string;
-                muted: { foreground: string; DEFAULT: string };
-                accent: { foreground: string; DEFAULT: string };
-                destructive: { foreground: string; DEFAULT: string };
-                card: { foreground: string; DEFAULT: string };
-                primary: { foreground: string; DEFAULT: string };
-                sidebar: {
-                    DEFAULT: string
-                    foreground: string
-                    primary: string
-                    "primary-foreground": string
-                    accent: string
-                    "accent-foreground": string
-                    border: string
-                    ring: string
-                };
-            };
-            animation: { "accordion-up": string; "accordion-down": string }
-        };
-        fontFamily: { timesnew: string[] }
-    };
-    important?: boolean;
-    content: string[]
-};
-config = {
+/** @type {import('tailwindcss').Config} */
+module.exports  = {
     content: [
         './src/components/**/*.{ts,tsx}',
         './src/app/**/*.{ts,tsx}',
@@ -128,4 +87,3 @@ config = {
     // important: true,
     plugins: [require("tailwindcss-animate")],
 };
-export default config;

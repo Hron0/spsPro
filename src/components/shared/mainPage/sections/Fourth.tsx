@@ -4,7 +4,7 @@ import Image from "next/image";
 function Fourth() {
     return (
         <section
-            className="mx-auto w-full bg-background relative flex flex-row justify-center gap-2">
+            className="mx-auto w-full relative flex flex-row justify-center gap-2">
             <div className={"relative flex items-start justify-start"}>
                 <ul className={"text-black text-3xl font-light px-24 py-12 text-start"}>
                     <li>- Строительно-техническая экспертиза;</li>

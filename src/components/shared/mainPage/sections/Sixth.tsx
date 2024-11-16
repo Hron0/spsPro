@@ -27,7 +27,7 @@ export default async function Sixth() {
 
 
     return (
-        <section className="mx-auto w-full bg-background relative flex flex-col items-start gap-2 pt-8 px-24">
+        <section className="mx-auto w-full relative flex flex-col items-start gap-2 pt-8 px-24">
             <TitleHeader title={'Официальные документы'} color={'orange'}/>
             <div className={"relative w-full"}>
 

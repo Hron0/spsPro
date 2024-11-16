@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export const Second = () => {
     return (
-        <section className="mx-auto w-full bg-background relative grid grid-cols-2 items-start gap-12 px-24 py-12">
+        <section className="mx-auto w-full relative grid grid-cols-2 items-start gap-12 px-24 py-12">
             <Image src={"/img/mainPage/img1.png"}
                    alt={'Pic'}
                    width={578}
