@@ -8,7 +8,6 @@ import Sixth from "@/components/shared/mainPage/sections/Sixth";
 import Seventh from "@/components/shared/mainPage/sections/Seventh";
 
 export const metadata: Metadata = {
-    title: "Гланвая",
     description: "Центр независимых исследований",
 }
 
