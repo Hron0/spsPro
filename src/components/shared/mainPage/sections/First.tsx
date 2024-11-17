@@ -6,7 +6,7 @@ import Image from "next/image";
 export const First = () => {
     return (
         <section
-            className="mx-auto w-full bg-secondary relative grid grid-rows-3 lg:grid-rows-4 justify-center items-end justify-items-center gap-16 px-4 text-white lg:px-24 aspect-video">
+            className="mx-auto w-full bg-secondary relative flex flex-col lg:grid lg:grid-rows-4 justify-center items-center justify-items-center pt-16 pb-8 gap-16 px-2 text-white lg:px-24 lg:aspect-video">
             <h1 className={"text-3xl lg:text-5xl font-bold z-10 lg:row-span-2 text-center"}>Честная судебная экспертиза</h1>
             <h3 className={"text-2xl text-center font-light z-10 whitespace-pre-line break-words self-center"}>
                 АНО «Межрегиональный центр независимых исследований, экспертиз и права «Лучшее решение» предлагает
