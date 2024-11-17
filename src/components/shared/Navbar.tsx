@@ -27,7 +27,7 @@ type Props = {};
 export const Navbar = (props: Props) => {
     return (
         <NavigationMenu
-            className={"bg-background drop-shadow rounded-sm absolute top-0 h-20 flex flex-row items-center justify-between mt-4 px-10 container w-full z-10"}>
+            className={"hidden lg:flex bg-background drop-shadow rounded-sm absolute top-0 h-20 flex-row items-center justify-between mt-4 px-10 container w-full z-10"}>
             <div className={"flex flex-row items-center gap-4 w-[40%] list-none"}>
                 {mainLinks.map((link, index) => (
                     <NavigationMenuItem key={index}>
