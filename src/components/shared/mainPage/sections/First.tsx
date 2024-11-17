@@ -2,6 +2,8 @@
 import * as React from 'react';
 import {Button} from "@/components/ui/button";
 import Image from "next/image";
+import {HoverCard, HoverCardContent, HoverCardTrigger} from "@/components/ui/hover-card";
+import {Separator} from "@/components/ui/separator";
 
 export const First = () => {
     return (
@@ -18,20 +20,37 @@ export const First = () => {
                 />
             </div>
 
+            <div className={"flex flex-col gap-2 lg:gap-16 lg:row-span-3 lg:self-end"}>
+                <h1 className={"text-3xl lg:text-5xl font-bold z-10 text-center"}>Честная
+                    судебная
+                    экспертиза</h1>
+                <h3 className={"md:text-xl lg:text-2xl text-center font-light z-10 whitespace-pre-line break-words self-center"}>
+                    АНО «Межрегиональный центр независимых исследований, экспертиз и права «Лучшее решение» предлагает
+                    услуги по проведению внесудебных исследований,
+                    судебных экспертиз и рецензированию судебных экспертиз.</h3>
+            </div>
 
-            <h1 className={"text-3xl lg:text-5xl font-bold z-10 lg:row-span-2 text-center lg:self-end"}>Честная судебная
-                экспертиза</h1>
-            <h3 className={"md:text-xl lg:text-2xl text-center font-light z-10 whitespace-pre-line break-words self-center"}>
-                АНО «Межрегиональный центр независимых исследований, экспертиз и права «Лучшее решение» предлагает
-                услуги по проведению внесудебных исследований,
-                судебных экспертиз и рецензированию судебных экспертиз.</h3>
+            <HoverCard>
+                <HoverCardTrigger className={"justify-self-start self-start relative mt-10 flex"}>
+                    <Button
+                        className={"text-2xl z-10 font-light"}
+                        variant={"default"}
+                        size={"lg"}
+                    >
+                        Связаться с нами
+                    </Button>
+                </HoverCardTrigger>
+                <HoverCardContent className={""}>
+                    +7-991-037-43-17 - отдел финансово-экономической (бухгалтерской) экспертизы;
+                    <Separator className={"my-1 bg-black/25"}/>
+                    +7-905-481-20-82- отдел землеустройства, кадастра и мониторинга земель;
+                    <Separator className={"my-1 bg-black/25"}/>
+                    e-mail: anosudex-bestsolution@mail.ru;
+                    <Separator className={"my-1 bg-black/25"}/>
+                    тел. +7-926-388-80-70(общий);
+                </HoverCardContent>
+            </HoverCard>
 
-            <Button className={"text-2xl z-10 font-light justify-self-start self-start relative mt-10 hidden lg:flex"}
-                    variant={"default"}
-                    size={"lg"}
-            >
-                Связаться с нами
-            </Button>
 
             {/* Background image Fill */}
             <Image
