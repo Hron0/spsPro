@@ -1,5 +1,5 @@
 // @ts-nocheck
-// Бля я не буду ебаться с типами для этого Автоплая на карусели мне похуй
+// Я не буду ебаться с типами для этого Автоплея на карусели мне похуй
 'use client'
 import * as React from 'react';
 import Image from "next/image";
