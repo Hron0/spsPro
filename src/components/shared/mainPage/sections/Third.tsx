@@ -20,54 +20,42 @@ export const Third = () => {
 
     return (
         <section
-            className="mx-auto w-full bg-secondary relative grid grid-rows-3 justify-items-start items-center gap-16 px-16 py-8 text-wite aspect-video">
-            <TitleHeader title={'Чем мы можем помочь?'} color={''}/>
+            className="w-full bg-secondary relative flex flex-col items-center gap-16 px-6 lg:px-16 py-4 lg:py-8 text-wite aspect-video">
+            <TitleHeader title={'Чем мы можем помочь?'} color={''} className={"self-start"}/>
 
 
             {/* Lol */}
             <div
-                className={"row-span-2 flex lg:grid lg:grid-cols-3 justify-self-center justify-around lg:px-8 gap-36 relative w-[30rem] sm:w-[50rem] lg:w-full z-10"}>
+                className={"flex lg:px-8 gap-36 relative w-full z-10"}>
 
-                {isMobile
-                    ? <Carousel
-                        plugins={[
-                            Autoplay(
-                                delay,
-                            ),
-                        ]}
-                        opts={{
-                            align: "start",
-                            loop: true,
-                        }}
-                        className="w-full"
-                    >
-                        <CarouselContent>
-                            {items.map((item, index) => (
-                                <CarouselItem key={index} className="">
-                                    <div
-                                        className={"bg-black/40 w-min border-accent border-2 px-6 py-10 flex flex-col items-center gap-12 lg:justify-evenly"}>
-                                        <div className={"bg-accent aspect-square w-1/2"}></div>
-                                        <h1 className={"text-white font-light text-3xl text-center w-min"}>
-                                            {item.title}
-                                        </h1>
-                                    </div>
-                                </CarouselItem>
-                            ))}
-                        </CarouselContent>
-                    </Carousel>
-                    :
-                    <>
+                <Carousel
+                    plugins={[
+                        Autoplay(
+                            delay,
+                        ),
+                    ]}
+                    opts={{
+                        align: "start",
+                        loop: true,
+                    }}
+                    className="w-full"
+                >
+                    <CarouselContent>
                         {items.map((item, index) => (
-                            <div key={index}
-                                 className={"bg-black/40 border-accent border-2 px-6 py-10 flex flex-col items-center gap-12 justify-evenly"}>
-                                <div className={"bg-accent aspect-square w-1/2"}></div>
-                                <h1 className={"text-white font-light text-3xl text-center w-min"}>
-                                    {item.title}
-                                </h1>
-                            </div>
+                            <CarouselItem key={index} className=" lg:basis-1/3">
+                                <div
+                                    className={"bg-black/40 w-min border-accent border-2 px-4 lg:px-6 py-6 lg:py-10 flex flex-col items-center gap-6 lg:gap-12 lg:justify-evenly"}>
+                                    <div className={"bg-accent aspect-square w-2/3 lg:w-1/2"}></div>
+                                    <h1 className={"text-white font-light text-lg lg:text-3xl text-center w-min"}>
+                                        {item.title}
+                                    </h1>
+                                </div>
+                            </CarouselItem>
                         ))}
-                    </>
-                }
+                    </CarouselContent>
+                </Carousel>
+
+
             </div>
 
 
