@@ -13,14 +13,14 @@ export const Third = () => {
     let delay = 4000
 
     const items = [
-        {title: 'Производство внесудебных исследований'},
-        {title: 'Производство судебных экспертиз'},
-        {title: 'Консультация и подготовка к процессу'},
+        {title: 'Производство внесудебных исследований', img: '/img/mainPage/group.svg'},
+        {title: 'Производство судебных экспертиз', img: '/img/mainPage/suitcase.svg'},
+        {title: 'Консультация и подготовка к процессу', img: '/img/mainPage/files.svg'},
     ]
 
     return (
         <section
-            className="w-full bg-secondary relative flex flex-col items-center gap-16 px-6 lg:px-16 py-4 lg:py-8 text-wite aspect-video">
+            className="w-full bg-secondary relative flex flex-col items-center gap-6 md:gap-16 px-6 lg:px-16 py-4 lg:py-8 text-wite aspect-video">
             <TitleHeader title={'Чем мы можем помочь?'} color={''} className={"self-start"}/>
 
 
@@ -42,11 +42,15 @@ export const Third = () => {
                 >
                     <CarouselContent>
                         {items.map((item, index) => (
-                            <CarouselItem key={index} className=" lg:basis-1/3">
+                            <CarouselItem key={index} className="md:basis-1/3">
                                 <div
-                                    className={"bg-black/40 w-min border-accent border-2 px-4 lg:px-6 py-6 lg:py-10 flex flex-col items-center gap-6 lg:gap-12 lg:justify-evenly"}>
-                                    <div className={"bg-accent aspect-square w-2/3 lg:w-1/2"}></div>
-                                    <h1 className={"text-white font-light text-lg lg:text-3xl text-center w-min"}>
+                                    className={"bg-black/40 w-min border-accent border-2 px-4 lg:px-6 py-6 lg:py-10 flex flex-col items-center gap-6 lg:gap-12 md:justify-evenly"}>
+                                    <div className={"relative aspect-square w-[72%] md:w-1/2"}>
+                                        <Image src={item.img}
+                                               alt={'Pic'}
+                                               fill={true}/>
+                                    </div>
+                                    <h1 className={"text-white font-light text-xl md:text-2xl lg:text-3xl text-center w-min"}>
                                         {item.title}
                                     </h1>
                                 </div>

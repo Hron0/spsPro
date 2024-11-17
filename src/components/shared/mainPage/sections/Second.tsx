@@ -11,9 +11,9 @@ export const Second = () => {
                    height={334}
                    className={"hidden lg:block"}/>
 
-            <div className={"relative flex items-start justify-start h-full lg:pl-20 bg-romb bg-contain bg-center bg-repeat-x"}>
+            <div className={"relative flex items-start justify-start h-full lg:pl-20 bg-romb bg-contain md:px-24 lg:px-0 bg-center bg-repeat-x"}>
 
-                <h3 className={"text-black text-lg sm:text-2xl font-light bg-repeat-x text-center px-6 sm:px-36 lg:px-0"}>Мы профессионально выполняем свою работу и с
+                <h3 className={"text-black text-lg md:text-2xl font-light bg-repeat-x text-center px-6 lg:px-0"}>Мы профессионально выполняем свою работу и с
                     уверенностью можем отстоять свою
                     экспертную позицию в суде!
                     Кроме того, мы готовы представлять ваши интересы в суде в качестве
