@@ -13,7 +13,7 @@ function TitleHeader({title, color, className}: { title: string, color?: string,
                        />
             </div>
 
-            <h1 className={"text-white text-xl lg:text-4xl font-extralight"}>{title}</h1>
+            <h1 className={"text-white text-xl md:text-3xl font-extralight"}>{title}</h1>
         </div>
     );
 }

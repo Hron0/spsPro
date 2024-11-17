@@ -1,3 +1,4 @@
+'use client'
 import {Home, Inbox, Settings} from "lucide-react"
 
 import {
@@ -8,9 +9,13 @@ import {
     SidebarGroupLabel,
     SidebarMenu,
     SidebarMenuButton,
-    SidebarMenuItem, SidebarSeparator,
+    SidebarMenuItem, SidebarSeparator, useSidebar,
 } from "@/components/ui/sidebar"
 import * as React from "react";
+import Link from "next/link";
+import {cn} from "@/lib/utils";
+import {ViewVerticalIcon} from "@radix-ui/react-icons";
+import {Button} from "@/components/ui/button";
 
 // Menu items.
 const itemsMain = [
@@ -50,21 +55,38 @@ const itemsSecond = [
 ]
 
 export function AppSidebar() {
+    const {toggleSidebar} = useSidebar()
 
     return (
         <Sidebar variant={"sidebar"}>
             <SidebarContent>
                 <SidebarGroup>
-                    <SidebarGroupLabel>Меню</SidebarGroupLabel>
-                    <SidebarSeparator />
+                    <SidebarGroupLabel>
+                        <div className={"w-full flex flex-row items-center justify-between"}>
+                            Меню
+                            <Button
+                                data-sidebar="trigger"
+                                variant="ghost"
+                                size="icon"
+                                className={cn("bg-secondary text-white p-1 w-7 h-7")}
+                                onClick={() => {
+                                    toggleSidebar()
+                                }}
+                            >
+                                <ViewVerticalIcon/>
+                                <span className="sr-only">Toggle Sidebar</span>
+                            </Button>
+                        </div>
+                    </SidebarGroupLabel>
+                    <SidebarSeparator/>
                     <SidebarGroupContent>
                         <SidebarMenu>
                             {itemsMain.map((item) => (
                                 <SidebarMenuItem key={item.title}>
                                     <SidebarMenuButton asChild>
-                                        <a href={item.url}>
+                                        <Link href={item.url}>
                                             <span>{item.title}</span>
-                                        </a>
+                                        </Link>
                                     </SidebarMenuButton>
                                 </SidebarMenuItem>
                             ))}
@@ -76,9 +98,9 @@ export function AppSidebar() {
                             {itemsSecond.map((item) => (
                                 <SidebarMenuItem key={item.title}>
                                     <SidebarMenuButton asChild>
-                                        <a href={item.url}>
+                                        <Link href={item.url}>
                                             <span>{item.title}</span>
-                                        </a>
+                                        </Link>
                                     </SidebarMenuButton>
                                 </SidebarMenuItem>
                             ))}
