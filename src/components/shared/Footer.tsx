@@ -3,7 +3,7 @@ import React from 'react';
 function Footer() {
     return (
         <section
-            className="mx-auto w-full bg-[#545454] relative flex flex-row items-start gap-20 text-white px-6 pt-6 pb-16">
+            className="mx-auto hidden w-full bg-[#545454] relative lg:flex flex-row items-start gap-20 text-white px-6 pt-6 pb-16">
             <h2 className={"text-start text-sm font-extralight w-1/3"}>
                 141508,Московская область, г. Солнечногорск, мкр. Рекинцо-2, д.3 п.54
                 <br/><br/>
