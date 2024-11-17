@@ -38,12 +38,12 @@ function Fourth() {
 
             </div>
 
-            <div className={"relative w-[330px] h-[434px] hidden md:block"}>
-                <AspectRatio ratio={33 / 43} className={"mr-10 relative "}>
+            <div className={"relative w-[330px] hidden md:block"}>
+                <AspectRatio ratio={33 / 43} className={"mr-10 relative"}>
                     <Image src={"/img/mainPage/img2.png"}
                            alt={'Pic'}
                            fill={true}
-                           className={""}
+                           className={"object-cover"}
                     />
                 </AspectRatio>
             </div>

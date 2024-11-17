@@ -1,7 +1,6 @@
 "use server"
 import React from 'react';
 import Image from "next/image";
-import Link from "next/link";
 import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/carousel";
 import {getAllFilesSync} from "get-all-files";
 import TitleHeader from "@/components/shared/TitleHeader";
@@ -27,9 +26,9 @@ export default async function Sixth() {
 
 
     return (
-        <section className="mx-auto w-full relative flex flex-col items-start gap-2 pt-8 px-24">
+        <section className="mx-auto w-full relative flex flex-col items-start gap-2 px-6 md:px-10 py-4 md:py-8">
             <TitleHeader title={'Официальные документы'} color={'orange'}/>
-            <div className={"relative w-full"}>
+            <div className={"relative w-full px-12"}>
 
                 <Carousel
                     opts={{
@@ -37,7 +36,7 @@ export default async function Sixth() {
                     }}
                     className="w-full"
                 >
-                    <CarouselContent className={"pl-10"}>
+                    <CarouselContent className={""}>
                         {docsImg.map((doc, index) => (
                             <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
                                 <div className="p-1">

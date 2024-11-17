@@ -4,12 +4,10 @@
 import * as React from 'react';
 import Image from "next/image";
 import TitleHeader from "@/components/shared/TitleHeader";
-import {useIsMobile} from "@/lib/hooks/use-mobile";
 import {Carousel, CarouselContent, CarouselItem} from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay"
 
 export const Third = () => {
-    const isMobile = useIsMobile()
     let delay = 4000
 
     const items = [
