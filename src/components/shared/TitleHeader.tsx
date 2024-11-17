@@ -2,16 +2,18 @@ import React from 'react';
 import Image from "next/image";
 import {cn} from "@/lib/utils";
 
-function TitleHeader({title, color}: {title: string, color?: string}) {
+function TitleHeader({title, color, className}: { title: string, color?: string, className?: string }) {
     return (
-        <div className={cn(color=='orange' ? 'bg-black/20' : 'bg-black/40', "z-10 relative h-[100px] w-[480px]")}>
-            <Image src={'/img/mainPage/columnn.png'}
-                   alt={'Pic'}
-                   width={84}
-                   height={101}
-                   className={"relative right-11 bottom-3"}/>
+        <div
+            className={cn(color == 'orange' ? 'bg-black/20' : 'bg-black/40', "flex flex-row items-center justify-start z-10 relative h-16 lg:h-[100px] w-full lg:w-[480px]", className)}>
+            <div className={"relative h-full w-[35px] lg:w-[50px] z-20 right-4 lg:right-6"}>
+                <Image src={'/img/mainPage/column.png'}
+                       alt={'Pic'}
+                       fill={true}
+                       />
+            </div>
 
-            <h1 className={"text-white text-4xl font-extralight relative -top-28 -right-8"}>{title}</h1>
+            <h1 className={"text-white text-xl lg:text-4xl font-extralight"}>{title}</h1>
         </div>
     );
 }
