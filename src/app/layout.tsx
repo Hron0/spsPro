@@ -40,7 +40,7 @@ export default function RootLayout({children, modal}: {
         <html lang="en" className={font.className} suppressHydrationWarning>
         <head>
         </head>
-        <body className={"bg-background w-full container flex flex-col items-center "}>
+        <body className={"bg-background w-full flex flex-col items-center "}>
         <QueryProvider>
             <SidebarProvider defaultOpen={false}>
                 <AppSidebar/>

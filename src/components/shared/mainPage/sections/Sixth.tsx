@@ -5,7 +5,7 @@ import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious}
 import {getAllFilesSync} from "get-all-files";
 import TitleHeader from "@/components/shared/TitleHeader";
 
-// TODO: Закиунть хуйню в GenerateStaticParams
+// TODO: Я в ахуе
 
 export default async function Sixth() {
     const docs = getAllFilesSync(`public/Docs/mainPage/`).toArray();
@@ -26,7 +26,7 @@ export default async function Sixth() {
 
 
     return (
-        <section className="mx-auto w-full relative flex flex-col items-start gap-2 px-6 md:px-10 py-4 md:py-8">
+        <section className="mx-auto w-full container relative flex flex-col items-start gap-2 px-6 md:px-10 py-4 md:py-8">
             <TitleHeader title={'Официальные документы'} color={'orange'}/>
             <div className={"relative w-full px-12"}>
 

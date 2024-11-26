@@ -21,7 +21,7 @@ function Fourth() {
 
     return (
         <section
-            className="mx-auto w-full relative flex flex-row justify-start md:justify-center items-start gap-2 py-5 md:py-11 px-3 md:px-10">
+            className="mx-auto w-full container relative flex flex-row justify-start md:justify-center items-start gap-2 py-5 md:py-11 px-3 md:px-10">
             <div className={"relative flex items-start justify-start bg-romb bg-center bg-cover w-full md:w-auto"}>
 
                 <ScrollArea className={"text-black text-2xl lg:text-3xl font-light md:px-6 text-start w-full h-[434px]"}>
