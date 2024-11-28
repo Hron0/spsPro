@@ -1,10 +1,10 @@
 'use client'
-import React from 'react';
-import Image from "next/image";
+import React, {Suspense} from 'react';
 import TitleHeader from "@/components/shared/TitleHeader";
 import {Separator} from "@/components/ui/separator";
 import {AspectRatio} from "@/components/ui/aspect-ratio";
-import {YMaps, Map, Placemark} from "@pbe/react-yandex-maps";
+import YMapComp from "@/components/extras/YMapComp";
+import MapSkeleton from "@/components/shared/skeletons/MapSkeleton";
 
 function Fifth() {
     return (
@@ -33,15 +33,9 @@ function Fifth() {
                         </div>
                         <div className={"w-full md:w-1/2 block lg:hidden"}>
                             <AspectRatio ratio={79 / 59}>
-                                <AspectRatio ratio={79 / 59}>
-                                    <YMaps>
-                                        <div className={'w-full h-full'}>
-                                            <Map defaultState={{center: [59.961161, 30.331355], zoom: 17}} className="w-full h-full">
-                                                <Placemark geometry={[59.961161, 30.331355]} />
-                                            </Map>
-                                        </div>
-                                    </YMaps>
-                                </AspectRatio>
+                                <Suspense fallback={<MapSkeleton />}>
+                                    <YMapComp />
+                                </Suspense>
                             </AspectRatio>
                         </div>
 
@@ -53,13 +47,9 @@ function Fifth() {
 
                 <div className={"w-full hidden lg:block"}>
                     <AspectRatio ratio={79 / 59}>
-                        <YMaps>
-                            <div className={'w-full h-full'}>
-                                <Map defaultState={{center: [59.961161, 30.331355], zoom: 17}} className="w-full h-full">
-                                    <Placemark geometry={[59.961161, 30.331355]} />
-                                </Map>
-                            </div>
-                        </YMaps>
+                        <Suspense fallback={<MapSkeleton />}>
+                            <YMapComp />
+                        </Suspense>
                     </AspectRatio>
                 </div>
             </div>
