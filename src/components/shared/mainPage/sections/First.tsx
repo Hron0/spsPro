@@ -5,11 +5,12 @@ import Image from "next/image";
 import {HoverCard, HoverCardContent, HoverCardTrigger} from "@/components/ui/hover-card";
 import {Separator} from "@/components/ui/separator";
 
-export const First = () => {
+export const First = async () => {
     return (
         <section
             className="mx-auto w-full bg-secondary relative">
-            <div className={'container relative flex flex-col lg:grid lg:grid-rows-4 md:justify-start lg:justify-center items-center justify-items-center text-white aspect-video gap-2 lg:gap-16 pt-4 pb-8 px-4 md:px-24'}>
+            <div
+                className={'container relative flex flex-col lg:grid lg:grid-rows-4 md:justify-start lg:justify-center items-center justify-items-center text-white aspect-video gap-2 lg:gap-16 pt-4 pb-8 px-4 md:px-24'}>
 
                 <div className={"aspect-square w-1/3 relative z-40 bg-background rounded-full lg:hidden mb-2 md:mb-6"}>
                     <Image
@@ -55,13 +56,13 @@ export const First = () => {
 
 
             </div>
-                {/* Background image Fill */}
-                <Image
-                    src="/img/mainPage/bg1.png"
-                    fill
-                    alt="Picture of the author"
-                    className={"opacity-80 z-0 object-cover"}
-                />
+            {/* Background image Fill */}
+            <Image
+                src="/img/mainPage/bg1.png"
+                fill
+                alt="Picture of the author"
+                className={"opacity-80 z-0 object-cover"}
+            />
         </section>
     );
 };

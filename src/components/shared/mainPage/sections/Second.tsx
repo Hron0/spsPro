@@ -2,7 +2,7 @@
 import * as React from 'react';
 import Image from "next/image";
 
-export const Second = () => {
+export const Second = async () => {
     return (
         <section className="mx-auto container w-full relative grid lg:grid-cols-2 items-start gap-12 lg:px-24 py-12">
             <Image src={"/img/mainPage/img1.png"}
