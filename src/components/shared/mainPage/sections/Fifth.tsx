@@ -33,11 +33,15 @@ function Fifth() {
                         </div>
                         <div className={"w-full md:w-1/2 block lg:hidden"}>
                             <AspectRatio ratio={79 / 59}>
-                                <Image
-                                    src={'/img/mainPage/img_map.png'}
-                                    alt={'Map'}
-                                    fill={true}
-                                    className={"block lg:block"}/>
+                                <AspectRatio ratio={79 / 59}>
+                                    <YMaps>
+                                        <div className={'w-full h-full'}>
+                                            <Map defaultState={{center: [59.961161, 30.331355], zoom: 17}} className="w-full h-full">
+                                                <Placemark geometry={[59.961161, 30.331355]} />
+                                            </Map>
+                                        </div>
+                                    </YMaps>
+                                </AspectRatio>
                             </AspectRatio>
                         </div>
 
