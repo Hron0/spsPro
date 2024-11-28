@@ -1,8 +1,10 @@
+'use client'
 import React from 'react';
 import Image from "next/image";
 import TitleHeader from "@/components/shared/TitleHeader";
 import {Separator} from "@/components/ui/separator";
 import {AspectRatio} from "@/components/ui/aspect-ratio";
+import {YMaps, Map, Placemark} from "@pbe/react-yandex-maps";
 
 function Fifth() {
     return (
@@ -47,11 +49,13 @@ function Fifth() {
 
                 <div className={"w-full hidden lg:block"}>
                     <AspectRatio ratio={79 / 59}>
-                        <Image
-                            src={'/img/mainPage/img_map.png'}
-                            alt={'Map'}
-                            fill={true}
-                            className={"hidden md:block"}/>
+                        <YMaps>
+                            <div className={'w-full h-full'}>
+                                <Map defaultState={{center: [59.961161, 30.331355], zoom: 17}} className="w-full h-full">
+                                    <Placemark geometry={[59.961161, 30.331355]} />
+                                </Map>
+                            </div>
+                        </YMaps>
                     </AspectRatio>
                 </div>
             </div>
