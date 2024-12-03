@@ -38,7 +38,7 @@ export default {
             }
 
             if (token.role && session.user) {
-                session.user.role = token.role as "User" | "Admin";
+                session.user.role = token.role as "USER" | "ADMIN";
             }
 
             return session
