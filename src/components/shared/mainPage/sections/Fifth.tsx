@@ -10,7 +10,7 @@ function Fifth() {
     return (
         <section
             className="mx-auto w-full bg-secondary relative ">
-            <div className={'container relative flex flex-row items-start gap-8 text-wite px-6 md:px-10 py-4 md:py-8'}>
+            <div className={'container relative flex flex-row items-start gap-8 text-white px-6 md:px-10 py-4 md:py-8'}>
                 <div className={"flex flex-col items-start gap-6 lg:gap-12 md:py-6 w-full lg:w-auto"}>
                     <TitleHeader title={'Нас легко найти'} color={''} className={"self-start"}/>
                     <div className={"flex flex-col-reverse gap-3 md:gap-0 md:flex-row items-center w-full relative"}>
