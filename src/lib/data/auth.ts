@@ -1,11 +1,11 @@
 'use server'
-import { db } from "@/backend/db/index";
-import { DEFAUL_LOGIN_REDIRECT } from "../../../routes";
-import { LoginSchema, RegisterSchema } from "@/schemas/index";
+import { db } from "@/backend/db";
+import { DEFAULT_LOGIN_REDIRECT } from "../../../routes";
+import { LoginSchema, RegisterSchema } from "@/schemas";
 import { eq } from 'drizzle-orm';
 import { AuthError } from 'next-auth';
 import { z } from 'zod';
-import { auth, signIn } from "../../auth";
+import { auth, signIn } from "@/auth";
 import { user } from "@/backend/db/schema";
 import bcrypt from "bcryptjs";
 
@@ -19,7 +19,7 @@ export const Login = async (values: z.infer<typeof LoginSchema>) => {
             await signIn("credentials", {
                 email,
                 password,
-                redirectTo: DEFAUL_LOGIN_REDIRECT
+                redirectTo: DEFAULT_LOGIN_REDIRECT
             })
         } catch (error) {
             if (error instanceof AuthError) {
