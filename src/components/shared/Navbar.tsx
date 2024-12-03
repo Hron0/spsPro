@@ -8,7 +8,6 @@ import {
     navigationMenuTriggerStyle
 } from "@/components/ui/navigation-menu";
 import Image from 'next/image'
-import logo from "/img/logo.jpg"
 import {cn} from "@/lib/utils";
 
 const mainLinks = [
@@ -17,14 +16,13 @@ const mainLinks = [
 ]
 
 const rightLinks = [
-    {name: "Страница1", href: "#"},
+    {name: "Экспертизы", href: "/expertises/"},
     {name: "Страница2", href: "#"},
     {name: "Страница3", href: "#"},
     {name: "Страница4", href: "#"},
 ]
 
-type Props = {};
-export const Navbar = (props: Props) => {
+export const Navbar = () => {
     return (
         <NavigationMenu
             className={"hidden lg:flex bg-background drop-shadow rounded-sm absolute top-0 h-20 flex-row items-center justify-between mt-4 px-10 container w-full z-10"}>
