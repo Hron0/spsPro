@@ -42,7 +42,7 @@ export default function Modal({ children }: { children: ReactNode }) {
         >
             <div
                 ref={wrapper}
-                className="absolute w-full h-full flex justify-center items-center p-6"
+                className="absolute w-full h-full flex flex-col items-center justify-center overflow-hidden p-6"
             >
                 {children}
             </div>

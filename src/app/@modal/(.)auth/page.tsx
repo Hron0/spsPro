@@ -15,7 +15,7 @@ const Page: NextPage<Props> = ({ searchParams }) => {
 
     return (
         <Modal>
-            <div className="w-full h-full flex flex-col items-center justify-center overflow-hidden my-8">
+            <div className="my-8">
                 {type == 'registration' && <RegisterPage />}
                 {type == 'login' && <LoginPage />}
             </div>
