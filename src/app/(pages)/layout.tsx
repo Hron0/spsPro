@@ -1,10 +1,11 @@
 import React from 'react';
 import Footer from "@/components/shared/Footer";
 
-function Layout({children}: { children: React.ReactNode }) {
+function Layout({children, modal}: { children: React.ReactNode, modal: React.ReactNode, }) {
     return (
         <>
             {children}
+            {modal}
             <Footer/>
         </>
     );

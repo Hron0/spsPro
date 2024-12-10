@@ -8,7 +8,7 @@ import {SpeedInsights} from "@vercel/speed-insights/next"
 import {AppSidebar} from "@/components/shared/AppSidebar";
 import Menu from "@/components/shared/Menu";
 import {SidebarProvider} from "@/components/ui/sidebar";
-
+import React from "react";
 
 const font = Inter({
     weight: ["300", "400", "500", "600", "700", "800", "900"],

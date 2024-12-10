@@ -19,7 +19,7 @@ const rightLinks = [
     {name: "Экспертизы", href: "/expertises/"},
     {name: "Страница2", href: "#"},
     {name: "Страница3", href: "#"},
-    {name: "Страница4", href: "#"},
+    {name: "login", href: "/auth"},
 ]
 
 export const Navbar = () => {

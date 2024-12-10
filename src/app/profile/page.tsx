@@ -1,6 +1,6 @@
 'use server'
 import { getServerSession } from "@/lib/data/auth"
-import { signOut } from "../../auth"
+import { signOut } from "@/auth"
 import { Button } from '@/components/ui/button';
 
 

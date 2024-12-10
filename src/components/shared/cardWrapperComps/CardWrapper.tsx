@@ -6,6 +6,7 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 import BackButton from "./BackButton"
+import React from "react";
   
   interface CardWrapperProps {
     children: React.ReactNode,
