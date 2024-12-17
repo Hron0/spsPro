@@ -32,9 +32,8 @@ export const metadata: Metadata = {
     },
 }
 
-export default function RootLayout({children, modal}: {
+export default function RootLayout({children}: {
     children: React.ReactNode,
-    modal: React.ReactNode,
 }) {
     return (
         <html lang="en" className={font.className} suppressHydrationWarning>
@@ -47,7 +46,6 @@ export default function RootLayout({children, modal}: {
                 <main className={"flex flex-col items-center justify-between w-full min-h-full"}>
                     <Menu/>
                     {children}
-                    {modal}
                     <Toaster/>
                 </main>
             </SidebarProvider>
