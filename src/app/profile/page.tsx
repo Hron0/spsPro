@@ -7,12 +7,12 @@ import { Button } from '@/components/ui/button';
 const page = async () => {
   const session = await getServerSession()
 
-  console.log(session?.user)
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 absolute top-1/3">
         <h1 className='white text-3xl'>
             {session?.user.email}
+            {session?.user.role}
             ball
         </h1>
         <form 

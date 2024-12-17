@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation'
 
 const BackButton = () => {
     const searchParams = useSearchParams();
-    const isLogin = searchParams.get('type') == "login"
+    const isLogin = searchParams?.get('type') == "login"
 
     return (
         <Button

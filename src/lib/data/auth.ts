@@ -1,33 +1,35 @@
 'use server'
-import { db } from "@/backend/db";
-import { DEFAULT_LOGIN_REDIRECT } from "../../../routes";
-import { LoginSchema, RegisterSchema } from "@/schemas";
-import { eq } from 'drizzle-orm';
-import { AuthError } from 'next-auth';
-import { z } from 'zod';
-import { auth, signIn } from "@/auth";
-import { user } from "@/backend/db/schema";
+import {db} from "@/backend/db";
+import {DEFAULT_LOGIN_REDIRECT} from "../../../routes";
+import {LoginSchema, RegisterSchema} from "@/schemas";
+import {eq} from 'drizzle-orm';
+import {AuthError} from 'next-auth';
+import {z} from 'zod';
+import {auth, signIn} from "@/auth";
+import {user} from "@/backend/db/schema";
 import bcrypt from "bcryptjs";
+import {redirect} from "next/navigation";
 
 
 export const Login = async (values: z.infer<typeof LoginSchema>) => {
     const validatedField = LoginSchema.safeParse(values)
 
     if (validatedField.success) {
-        const { email, password } = validatedField.data;
+        const {email, password} = validatedField.data;
         try {
             await signIn("credentials", {
                 email,
                 password,
-                redirectTo: DEFAULT_LOGIN_REDIRECT
-            })
+                redirect: true,
+                redirectTo: DEFAULT_LOGIN_REDIRECT,
+            }).then((val) => {console.log("DOOOOOOOOOOOOOOOOOG")});
         } catch (error) {
             if (error instanceof AuthError) {
                 switch (error.type) {
                     case "CredentialsSignin":
-                        return { error: "Bad credentials" }
+                        return {error: "Bad credentials"}
                     default:
-                        return { error: "Something went wrong" }
+                        return {error: "Something went wrong"}
                 }
             }
 
@@ -35,14 +37,14 @@ export const Login = async (values: z.infer<typeof LoginSchema>) => {
         }
     }
 
-    return { error: "Invalid data" }
+    return {error: "Invalid data"}
 }
 
 export const Register = async (values: z.infer<typeof RegisterSchema>) => {
     const validatedFields = RegisterSchema.safeParse(values)
 
     if (validatedFields.success) {
-        const { login, email, password } = validatedFields.data;
+        const {login, email, password} = validatedFields.data;
         const hashedPassword = await bcrypt.hash(password, 10)
 
         const existingUser = await db.query.user.findFirst({
@@ -50,7 +52,7 @@ export const Register = async (values: z.infer<typeof RegisterSchema>) => {
         })
 
         if (existingUser) {
-            return { error: "Email is already taken. Try different one or Login into your account." }
+            return {error: "Email is already taken. Try different one or Login into your account."}
         }
 
         type NewUser = typeof user.$inferInsert
@@ -62,9 +64,9 @@ export const Register = async (values: z.infer<typeof RegisterSchema>) => {
         })
 
 
-        return { success: "User created successfully, now Log into your account, you will be redirected in a second." }
+        return {success: "User created successfully, now Log into your account, you will be redirected in a second."}
     }
-    return { error: "Invalid data" }
+    return {error: "Invalid data"}
 }
 
 export const getAllPosts = async () => {

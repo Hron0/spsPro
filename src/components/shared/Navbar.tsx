@@ -19,7 +19,7 @@ const rightLinks = [
     {name: "Экспертизы", href: "/expertises/"},
     {name: "Страница2", href: "#"},
     {name: "Страница3", href: "#"},
-    {name: "login", href: "/auth"},
+    {name: "login", href: { pathname: "/auth", query: { type: 'login' } }},
 ]
 
 export const Navbar = () => {
@@ -49,7 +49,7 @@ export const Navbar = () => {
                     <h3 className={"text-center text-base font-extralight"}>Центр независимых исследований.</h3>
                 </div>
             </div>
-            <div className={"flex flex-row items-center gap-2 w-[40%] list-none"}>
+            <div className={"flex flex-row items-center justify-between gap-2 w-[40%] list-none"}>
                 {rightLinks.map((link, index) => (
                     <NavigationMenuItem key={index}>
                         <Link href={link.href} legacyBehavior passHref>
