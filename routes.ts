@@ -1,8 +1,7 @@
 export const privateRoutes = [
     "/Docs",
-    "/products",
-    "/products/{productId}",
-    "/blog",
+    "/profile",
+    // "/expertises/create",
 ]
 
 export const authRoutes = [
@@ -13,4 +12,4 @@ export const adminRoutes = "/admin"
 
 export const apiAuthPrefix = '/api/auth'
 
-export const DEFAULT_LOGIN_REDIRECT = "/profile"
+export const DEFAULT_LOGIN_REDIRECT = "/expertises"
