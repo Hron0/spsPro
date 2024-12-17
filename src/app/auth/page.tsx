@@ -12,8 +12,6 @@ interface Props {
 const Page: NextPage<Props> = ({ searchParams }) => {
     const type = searchParams?.type || 'login'
 
-    console.log(type)
-
     return (
         <div className="w-full h-full flex flex-col items-center justify-center overflow-hidden my-8">
             {type == 'registration' && <RegisterPage />}

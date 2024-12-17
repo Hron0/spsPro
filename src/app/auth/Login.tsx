@@ -1,12 +1,12 @@
 'use client'
-import { LoginSchema } from '@/schemas/index'
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useState, useTransition } from "react"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
+import {LoginSchema} from '@/schemas/index'
+import {zodResolver} from "@hookform/resolvers/zod"
+import {useState, useTransition} from "react"
+import {useForm} from "react-hook-form"
+import {z} from "zod"
 
 import CardWrapper from "@/components/shared/cardWrapperComps/CardWrapper"
-import { Button } from "@/components/ui/button"
+import {Button} from "@/components/ui/button"
 import {
     Form,
     FormControl,
@@ -16,8 +16,8 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { Login } from "@/lib/data/auth"
+import {Input} from "@/components/ui/input"
+import {Login} from "@/lib/data/auth"
 
 
 export const LoginPage = () => {
@@ -37,9 +37,9 @@ export const LoginPage = () => {
 
         startTransition(() => {
             Login(values)
-            .then((data) => { 
-                setError(data?.error)
-             })
+                .then((data) => {
+                    setError(data?.error)
+                })
         })
     }
 
@@ -53,7 +53,7 @@ export const LoginPage = () => {
                         <FormField
                             control={form.control}
                             name="email"
-                            render={({ field }) => (
+                            render={({field}) => (
                                 <FormItem>
                                     <FormLabel>Email</FormLabel>
                                     <FormControl>
@@ -64,7 +64,7 @@ export const LoginPage = () => {
                                             disabled={isPending}
                                         />
                                     </FormControl>
-                                    <FormMessage />
+                                    <FormMessage/>
                                 </FormItem>
                             )}
                         />
@@ -72,7 +72,7 @@ export const LoginPage = () => {
                         <FormField
                             control={form.control}
                             name="password"
-                            render={({ field }) => (
+                            render={({field}) => (
                                 <FormItem>
                                     <FormLabel>Password</FormLabel>
                                     <FormControl>
@@ -83,12 +83,12 @@ export const LoginPage = () => {
                                             disabled={isPending}
                                         />
                                     </FormControl>
-                                    <FormMessage />
+                                    <FormMessage/>
                                 </FormItem>
                             )}
                         />
                     </div>
-                    <FormError message={error} />
+                    <FormError message={error}/>
                     <Button type="submit" className="w-full" disabled={isPending}>
                         Login
                     </Button>
