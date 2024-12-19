@@ -9,6 +9,7 @@ import {AppSidebar} from "@/components/shared/AppSidebar";
 import Menu from "@/components/shared/Menu";
 import {SidebarProvider} from "@/components/ui/sidebar";
 import React from "react";
+import {SessionProvider} from "next-auth/react";
 
 const font = Inter({
     weight: ["300", "400", "500", "600", "700", "800", "900"],
@@ -38,17 +39,18 @@ export default function RootLayout({children}: {
         <head>
         </head>
         <body className={"bg-background w-full flex flex-col items-center"}>
-        <QueryProvider>
-            <SidebarProvider defaultOpen={false}>
-                <AppSidebar/>
-                <main className={"flex flex-col items-center justify-between w-full min-h-full"}>
-                    <Menu/>
-                    {children}
-                    <Toaster/>
-                </main>
-            </SidebarProvider>
-        </QueryProvider>
-
+        <SessionProvider>
+            <QueryProvider>
+                <SidebarProvider defaultOpen={false}>
+                    <AppSidebar/>
+                    <main className={"flex flex-col items-center justify-between w-full min-h-full"}>
+                        <Menu/>
+                        {children}
+                        <Toaster/>
+                    </main>
+                </SidebarProvider>
+            </QueryProvider>
+        </SessionProvider>
         <SpeedInsights/>
         </body>
         </html>

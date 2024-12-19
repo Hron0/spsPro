@@ -21,9 +21,8 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
-import Image from "next/image";
+import {useSession} from "next-auth/react";
 import Link from "next/link";
-import CreateBtn from "@/components/shared/expertiseDetailed/DataTableComps/CreateBtn";
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
@@ -34,6 +33,8 @@ export function DataTable<TData, TValue>({columns, data,}: DataTableProps<TData,
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
         []
     )
+
+    const {data: session} = useSession()
 
     const table = useReactTable({
         data,
@@ -61,7 +62,13 @@ export function DataTable<TData, TValue>({columns, data,}: DataTableProps<TData,
                         className="max-w-sm text-lg"
                     />
                 </div>
-                <CreateBtn />
+                {/*<CreateBtn />*/}
+                {session?.user?.role === "ADMIN"
+                    &&
+                    <Link href={'/expertises/create'} className={'pr-3 text-lg font-black'}>
+                        Создать
+                    </Link>
+                }
             </div>
             <div className="rounded-md border">
                 <Table className={'max-h-[615]'}>
