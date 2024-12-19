@@ -49,7 +49,7 @@ export const RegisterPage = () => {
     }
 
     return (
-        <CardWrapper label="Регистрация">
+        <CardWrapper label="Регистрация" backBtn={true}>
             <Form {...form}>
                 <form
                     onSubmit={form.handleSubmit(handleRegister)}

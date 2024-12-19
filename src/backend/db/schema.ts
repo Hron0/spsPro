@@ -29,7 +29,7 @@ export const TodoTable = pgTable("todos", {
     createdAt: timestamp("createdAt").defaultNow(),
 })
 
-export const Expertise = pgTable('expertise', {
+export const Expertise = pgTable('expertises', {
     id: serial('id').primaryKey(),
     title: text('title'),
     name: text('name'),

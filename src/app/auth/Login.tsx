@@ -44,7 +44,7 @@ export const LoginPage = () => {
     }
 
     return (
-        <CardWrapper label="Вход в аккаунт">
+        <CardWrapper label="Вход в аккаунт" backBtn={true}>
             <Form {...form}>
                 <form
                     onSubmit={form.handleSubmit(handleLogin)}
