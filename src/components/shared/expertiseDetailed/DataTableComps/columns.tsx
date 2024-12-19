@@ -7,6 +7,7 @@ import * as React from "react";
 export type Expertise = {
     id: number
     title: string
+    date: string
 }
 
 export const columns: ColumnDef<Expertise>[] = [
@@ -24,6 +25,8 @@ export const columns: ColumnDef<Expertise>[] = [
             )
         }
     },
-
-
+    {
+        accessorKey: "date",
+        header: "Дата"
+    },
 ]

@@ -23,6 +23,8 @@ import {
 } from "@/components/ui/table"
 import {useSession} from "next-auth/react";
 import Link from "next/link";
+import DataPickerExpertise from "@/components/shared/expertiseDetailed/DataTableComps/DataPickerExpertise";
+import {format} from "date-fns";
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
@@ -30,11 +32,16 @@ interface DataTableProps<TData, TValue> {
 }
 
 export function DataTable<TData, TValue>({columns, data,}: DataTableProps<TData, TValue>) {
+    const {data: session} = useSession()
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
         []
     )
+    const [date, setDate] = React.useState<any>()
 
-    const {data: session} = useSession()
+    const handleDateFilter = (date:any) => {
+        table.getColumn("date")?.setFilterValue(format(date, "dd-MM-yyyy"))
+        setDate(date)
+    }
 
     const table = useReactTable({
         data,
@@ -51,8 +58,8 @@ export function DataTable<TData, TValue>({columns, data,}: DataTableProps<TData,
 
     return (
         <div className={'w-full'}>
-            <div className={'flex flex-row items-center justify-between'}>
-                <div className="flex items-center py-4">
+            <div className={'grid grid-cols-3 items-center'}>
+                <div className="flex items-center py-4 justify-self-start">
                     <Input
                         placeholder="Поиск по названию"
                         value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
@@ -62,10 +69,15 @@ export function DataTable<TData, TValue>({columns, data,}: DataTableProps<TData,
                         className="max-w-sm text-lg"
                     />
                 </div>
+
+                <div className={'justify-self-center'}>
+                    <DataPickerExpertise date={date} setDate={handleDateFilter}/>
+                </div>
+
                 {/*<CreateBtn />*/}
                 {session?.user?.role === "ADMIN"
                     &&
-                    <Link href={'/expertises/create'} className={'pr-3 text-lg font-black'}>
+                    <Link href={'/expertises/create'} className={'pr-3 text-lg font-black justify-self-end'}>
                         Создать
                     </Link>
                 }
