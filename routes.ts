@@ -1,7 +1,7 @@
 export const privateRoutes = [
     "/Docs",
     "/profile",
-    // "/expertises/create",
+    "/expertises/create",
 ]
 
 export const authRoutes = [

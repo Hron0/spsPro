@@ -25,8 +25,8 @@ const itemsMain = [
         icon: Home,
     },
     {
-        title: "Навигация",
-        url: "#",
+        title: "Профиль",
+        url: "/profile",
         icon: Inbox,
     }
 
@@ -34,8 +34,8 @@ const itemsMain = [
 
 const itemsSecond = [
     {
-        title: "Страница1",
-        url: "#",
+        title: "Экспертизы",
+        url: "/expertises/",
         icon: Settings,
     },
     {
@@ -48,8 +48,8 @@ const itemsSecond = [
         url: "#",
         icon: Settings,
     }, {
-        title: "Страница4",
-        url: "#",
+        title: "login",
+        url: {pathname: "/auth", query: {type: 'login'}},
         icon: Settings,
     },
 ]

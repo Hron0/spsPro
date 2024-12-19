@@ -12,7 +12,7 @@ import {cn} from "@/lib/utils";
 
 const mainLinks = [
     {name: "Главная", href: "/"},
-    {name: "Навигация", href: "#"},
+    {name: "Профиль", href: "/profile"},
 ]
 
 const rightLinks = [

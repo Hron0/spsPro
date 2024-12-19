@@ -69,21 +69,6 @@ export const Register = async (values: z.infer<typeof RegisterSchema>) => {
     return {error: "Invalid data"}
 }
 
-export const getAllPosts = async () => {
-    const res = await fetch("https://jsonplaceholder.typicode.com/posts")
-
-    if (!res.ok) throw new Error("Error while fetching all posts")
-
-    return res.json()
-}
-
-export const getPostById = async (id: string) => {
-    const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
-
-    if (!res.ok) throw new Error("Error while fetching all posts")
-
-    return res.json()
-}
 
 export const getServerSession = async () => {
     const session = await auth()

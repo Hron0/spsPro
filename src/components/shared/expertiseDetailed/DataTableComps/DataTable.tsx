@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/table"
 import Image from "next/image";
 import Link from "next/link";
+import {CreateBtn} from "@/components/shared/expertiseDetailed/DataTableComps/CreateBtn";
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
@@ -60,9 +61,7 @@ export function DataTable<TData, TValue>({columns, data,}: DataTableProps<TData,
                         className="max-w-sm text-lg"
                     />
                 </div>
-                <Link href={'/expertises/create'} className={'pr-3 text-lg font-black'}>
-                    Создать
-                </Link>
+                <CreateBtn />
             </div>
             <div className="rounded-md border">
                 <Table className={'max-h-[615]'}>
