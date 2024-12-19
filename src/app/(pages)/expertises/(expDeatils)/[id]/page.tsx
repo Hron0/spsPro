@@ -5,37 +5,14 @@ import {AspectRatio} from "@/components/ui/aspect-ratio";
 import {ExpertiseType} from "@/lib/types/expertises";
 import {ExpertiseDetailed} from "@/components/shared/expertiseDetailed/ExpertiseDetailed";
 import {ExpertisesTable} from "@/components/shared/expertiseDetailed/ExpertisesTable";
+import {ExpertiseSkel} from "@/components/shared/expertiseDetailed/ExpertiseSkel";
+import {useExpertisesById} from "@/lib/hooks/useExpertises";
 
 function Page({params}: { params: { id: string } }) {
     const id = params.id
-    const Items: ExpertiseType[] = [
-        {
-            id: 1,
-            title: 'Землеустроительная экспертиза',
-            name: 'Михаил Павлович Иванов',
-            against: 'АО ТБанк',
-            case: '000000010000-1111000202',
-            city: 'Москва',
-            address: 'Московская область. Московский район. Город москва, ул. Московская, д. 10',
-            questions: ['Вопрос вопрос текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст', 'Вопрос вопрос текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст'],
-            types: 'Вид экспертизы Вид Вииид',
-            img: ''
-        }
-    ]
 
-/*    const useTodos = (id: string) => {
-        return useQuery({
-            queryKey: ["todos", id],
-            queryFn: async () => {
-                const res = await fetch(`/api/expertise/${id}`)
-                const expertise = await res.json()
-                return expertise
-            },
-        })
-    }
-
-    const {data, isLoading} = useTodos(id)*/
-
+    const {data, isLoading} = useExpertisesById(id)
+    console.log(data)
     return (
         <div className={"flex flex-col w-full relative overflow-hidden"}>
             <section className="mx-auto w-full bg-secondary relative">
@@ -53,7 +30,11 @@ function Page({params}: { params: { id: string } }) {
                 </div>
 
                 <div className={'flex flex-col w-full h-full relative'}>
-                    <ExpertiseDetailed expertise={Items[0]}/>
+                    {isLoading
+                        ? <ExpertiseSkel/>
+                        : <ExpertiseDetailed expertise={data}/>
+                    }
+
 
                     {/* Кнопка разворота */}
                     <div className={'absolute bottom-2 right-1/2'}>
@@ -62,14 +43,14 @@ function Page({params}: { params: { id: string } }) {
                 </div>
             </section>
 
-            <section className={'mx-auto w-full bg-secondary relative'}>
+            {/*            <section className={'mx-auto w-full bg-secondary relative'}>
                 <div className={'container flex items-center py-16'}>
-                    <TitleHeader title={'Экспертизы'} color={''} className={"row-start-2"}/>
+                    <TitleHeader title={'Все файлы'} color={''} className={"row-start-2"}/>
                 </div>
             </section>
             <section className={'relative'}>
-                <ExpertisesTable />
-            </section>
+                <ExpertisesTable/>
+            </section>*/}
         </div>
     )
 }

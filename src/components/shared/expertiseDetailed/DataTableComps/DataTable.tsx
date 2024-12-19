@@ -22,6 +22,7 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import Image from "next/image";
+import Link from "next/link";
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
@@ -48,18 +49,23 @@ export function DataTable<TData, TValue>({columns, data,}: DataTableProps<TData,
 
     return (
         <div className={'w-full'}>
-            <div className="flex items-center py-4">
-                <Input
-                    placeholder="Поиск по названию"
-                    value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
-                    onChange={(event) =>
-                        table.getColumn("title")?.setFilterValue(event.target.value)
-                    }
-                    className="max-w-sm"
-                />
+            <div className={'flex flex-row items-center justify-between'}>
+                <div className="flex items-center py-4">
+                    <Input
+                        placeholder="Поиск по названию"
+                        value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
+                        onChange={(event) =>
+                            table.getColumn("title")?.setFilterValue(event.target.value)
+                        }
+                        className="max-w-sm text-lg"
+                    />
+                </div>
+                <Link href={'/expertises/create'} className={'pr-3 text-lg font-black'}>
+                    Создать
+                </Link>
             </div>
             <div className="rounded-md border">
-                <Table className={'h-[615]'}>
+                <Table className={'max-h-[615]'}>
                     <TableHeader>
                         {table.getHeaderGroups().map((headerGroup) => (
                             <TableRow key={headerGroup.id}>
@@ -87,8 +93,7 @@ export function DataTable<TData, TValue>({columns, data,}: DataTableProps<TData,
                                 >
                                     {row.getVisibleCells().map((cell) => (
                                         <TableCell key={cell.id}>
-                                            <Image src={'/img/folder.svg'} alt={'.'} width={40} height={40}
-                                                   className={'text-black'}/>{flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                         </TableCell>
                                     ))}
                                 </TableRow>

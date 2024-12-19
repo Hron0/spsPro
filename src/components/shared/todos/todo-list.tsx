@@ -38,7 +38,7 @@ export const TodoList = () => {
         <FilterTodo />
       </div>
       <div className="space-y-4 pt-4">
-        {data?.map((todo) => <TodoItem key={todo.id} {...todo} />)}
+        {data?.map((todo, index) => <TodoItem key={todo.id} {...todo} />)}
       </div>
     </section>
   )
