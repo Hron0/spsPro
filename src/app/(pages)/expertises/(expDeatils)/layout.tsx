@@ -2,7 +2,7 @@ import React from 'react';
 import TitleHeader from "@/components/shared/TitleHeader";
 import {ExpertisesTable} from "@/components/shared/expertiseDetailed/ExpertisesTable";
 
-function Layout({children, modal}: { children: React.ReactNode, modal: React.ReactNode, }) {
+export default function Layout({children}: { children: React.ReactNode}) {
     return (
         <>
             {children}
@@ -19,5 +19,3 @@ function Layout({children, modal}: { children: React.ReactNode, modal: React.Rea
         </>
     );
 }
-
-export default Layout;
