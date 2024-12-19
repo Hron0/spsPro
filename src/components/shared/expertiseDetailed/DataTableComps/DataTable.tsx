@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/table"
 import Image from "next/image";
 import Link from "next/link";
-import {CreateBtn} from "@/components/shared/expertiseDetailed/DataTableComps/CreateBtn";
+import CreateBtn from "@/components/shared/expertiseDetailed/DataTableComps/CreateBtn";
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
