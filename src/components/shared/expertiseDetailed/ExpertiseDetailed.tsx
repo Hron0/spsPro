@@ -16,7 +16,7 @@ export const ExpertiseDetailed = ({expertise}: Props) => {
                 <AspectRatio ratio={9 / 16} className={""}>
                     <Skeleton className={'h-full w-full'}/>
                 </AspectRatio>
-                <h1 className={'text-lg font-extralight text-center break-words absolute top-20 px-20'}>{expertise?.title}</h1>
+                <h1 className={'text-xl font-extralight text-center break-words absolute top-20 w-full px-5'}>{expertise?.title}</h1>
             </div>
 
             <div className={'flex flex-col w-full h-full relative'}>
