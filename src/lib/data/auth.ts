@@ -15,10 +15,10 @@ export const Login = async (values: z.infer<typeof LoginSchema>) => {
     const validatedField = LoginSchema.safeParse(values)
 
     if (validatedField.success) {
-        const {email, password} = validatedField.data;
+        const {login, password} = validatedField.data;
         try {
             await signIn("credentials", {
-                email,
+                login,
                 password,
                 redirect: true,
                 redirectTo: DEFAULT_LOGIN_REDIRECT,
@@ -27,7 +27,7 @@ export const Login = async (values: z.infer<typeof LoginSchema>) => {
             if (error instanceof AuthError) {
                 switch (error.type) {
                     case "CredentialsSignin":
-                        return {error: "Bad credentials"}
+                        return {error: "Неверные данные"}
                     default:
                         return {error: "Something went wrong"}
                 }

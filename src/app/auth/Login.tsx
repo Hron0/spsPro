@@ -27,7 +27,7 @@ export const LoginPage = () => {
     const form = useForm<z.infer<typeof LoginSchema>>({
         resolver: zodResolver(LoginSchema),
         defaultValues: {
-            email: "",
+            login: "",
             password: "",
         }
     })
@@ -52,15 +52,15 @@ export const LoginPage = () => {
                     <div className="space-y-4">
                         <FormField
                             control={form.control}
-                            name="email"
+                            name="login"
                             render={({field}) => (
                                 <FormItem>
-                                    <FormLabel>Email</FormLabel>
+                                    <FormLabel>Ваш логин</FormLabel>
                                     <FormControl>
                                         <Input
                                             {...field}
-                                            placeholder="Your email here"
-                                            type="email"
+                                            placeholder="Login123"
+                                            type="text"
                                             disabled={isPending}
                                         />
                                     </FormControl>

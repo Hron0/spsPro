@@ -1,4 +1,4 @@
-import { getUserByEmail, getUserById } from "@/lib/data/user";
+import {getUserByEmail, getUserById, getUserByLogin} from "@/lib/data/user";
 import { LoginSchema } from "@/schemas";
 import bcrypt from 'bcryptjs';
 import type { NextAuthConfig } from "next-auth";
@@ -10,9 +10,9 @@ export default {
             const validatedFields = LoginSchema.safeParse(credentials);
 
             if (validatedFields.success) {
-                const { email, password } = validatedFields.data;
+                const { login, password } = validatedFields.data;
 
-                const user = await getUserByEmail(email)
+                const user = await getUserByLogin(login)
                 if (!user || !user.password) {
                     console.log("NO user LoL!!")
                     return null
@@ -22,8 +22,6 @@ export default {
                     password,
                     user.password
                 )
-
-                console.log("Login Successfull")
 
                 if (passwordMatch) return user
             }

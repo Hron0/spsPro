@@ -60,11 +60,11 @@ export const RegisterPage = () => {
                             control={form.control}
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>FIO</FormLabel>
+                                    <FormLabel>Ваш Логин</FormLabel>
                                     <FormControl>
                                         <Input
                                             {...field}
-                                            placeholder="Фамилия Имя Отчество"
+                                            placeholder="Login123"
                                             type="text"
                                         />
                                     </FormControl>
