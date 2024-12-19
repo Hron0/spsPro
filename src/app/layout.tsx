@@ -2,19 +2,15 @@ import {QueryProvider} from "@/components/providers/query-provider"
 import {siteConfig} from "../../config/site"
 import {Toaster} from "@/components/ui/sonner"
 import type {Metadata} from "next"
-import {Inter} from "next/font/google"
 import "@/globals.css"
 import {SpeedInsights} from "@vercel/speed-insights/next"
-import {AppSidebar} from "@/components/shared/AppSidebar";
-import Menu from "@/components/shared/Menu";
+import {AppSidebar} from "@/components/shared/Nav/AppSidebar";
+import Menu from "@/components/shared/Nav/Menu";
 import {SidebarProvider} from "@/components/ui/sidebar";
 import React from "react";
 import {SessionProvider} from "next-auth/react";
-
-const font = Inter({
-    weight: ["300", "400", "500", "600", "700", "800", "900"],
-    subsets: ["latin-ext"],
-})
+import {cn} from "@/lib/utils";
+import {Inter} from "@/components/fonts/fonts";
 
 export const metadata: Metadata = {
     title: {
@@ -35,10 +31,10 @@ export default function RootLayout({children}: {
     children: React.ReactNode,
 }) {
     return (
-        <html lang="en" className={font.className} suppressHydrationWarning>
+        <html lang="en" suppressHydrationWarning>
         <head>
         </head>
-        <body className={"bg-background w-full flex flex-col items-center"}>
+        <body className={cn("bg-background w-full flex flex-col items-center", Inter.className)}>
         <SessionProvider>
             <QueryProvider>
                 <SidebarProvider defaultOpen={false}>
