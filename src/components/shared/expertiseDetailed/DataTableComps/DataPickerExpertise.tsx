@@ -28,7 +28,7 @@ export default function DataPickerExpertise({date, setDate}: {date: any, setDate
                     )}
                 >
                     <CalendarIcon />
-                    {date ? format(date, "PPP", {locale: ru}) : <span>Выберет дату</span>}
+                    {date ? format(date, "PPP", {locale: ru}) : <span>Выберете дату</span>}
                 </Button>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0" align="start">
