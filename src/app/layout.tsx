@@ -12,6 +12,7 @@ import {SessionProvider} from "next-auth/react";
 import {cn} from "@/lib/utils";
 import {Inter} from "../../public/fonts/fonts";
 
+
 export const metadata: Metadata = {
     title: {
         default: siteConfig.title,
