@@ -18,7 +18,7 @@ import {
 import {Input} from "@/components/ui/input"
 import {CreateExpertise} from "@/lib/data/expertises";
 import CardWrapper from "../cardWrapperComps/CardWrapper";
-import {useRouter} from 'next/navigation'
+import {redirect, useRouter} from 'next/navigation'
 
 export default function ExpertiseForm() {
     const [error, setError] = useState<string | undefined>("")
@@ -50,8 +50,12 @@ export default function ExpertiseForm() {
                 .then((data) => {
                     setError(data?.error)
                     setSuccess(data?.success)
-                })
-
+                    setTimeout(() => {
+                        router.replace('/expertises')
+                    }, 1200)
+                }).then((data) => {
+                    router.refresh()
+            })
         })
     }
 

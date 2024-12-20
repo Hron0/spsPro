@@ -79,7 +79,7 @@
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url("/src/components/fonts/TimesNewRoman.ttf");
+    src: url("/public/fonts/TimesNewRoman.ttf");
   }
 }
 

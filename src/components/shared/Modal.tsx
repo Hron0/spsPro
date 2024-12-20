@@ -11,6 +11,7 @@ export default function Modal({ children }: { children: ReactNode }) {
         router.back()
     }, [router])
 
+
     const onClick: MouseEventHandler = useCallback(
         (e) => {
             if (e.target === overlay.current || e.target === wrapper.current) {
