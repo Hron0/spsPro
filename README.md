@@ -1,4 +1,4 @@
-[Next.js](https://nextjs.org) - [ShadCN-UI](https://ui.shadcn.com/docs/components/form) - [TanStack Query](https://tanstack.com/query/latest/docs/framework/react/guides/queries) - [Zustand](https://zustand.docs.pmnd.rs/getting-started/introduction) - [Auth.JS (Next-Auth V5)](https://authjs.dev/getting-started/authentication/credentials) - [Drizzle ORM](https://orm.drizzle.team/docs/schemas).
+[Next.js (v4)](https://nextjs.org) - [ShadCN-UI](https://ui.shadcn.com/docs/components/form) - [TanStack Query](https://tanstack.com/query/latest/docs/framework/react/guides/queries) - [Zustand](https://zustand.docs.pmnd.rs/getting-started/introduction) - [Auth.JS (Next-Auth V5)](https://authjs.dev/getting-started/authentication/credentials) - [Drizzle ORM](https://orm.drizzle.team/docs/schemas).
 
 ## Getting Started
 
