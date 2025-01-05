@@ -21,7 +21,7 @@ import {Button} from "@/components/ui/button";
 const itemsMain = [
     {
         title: "Главная",
-        url: "#",
+        url: "/",
         icon: Home,
     },
     {
@@ -39,8 +39,8 @@ const itemsSecond = [
         icon: Settings,
     },
     {
-        title: "Страница2",
-        url: "#",
+        title: "Проф",
+        url: "/community",
         icon: Settings,
     },
     {

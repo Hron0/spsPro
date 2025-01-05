@@ -40,7 +40,7 @@ export default function RootLayout({children}: {
             <QueryProvider>
                 <SidebarProvider defaultOpen={false}>
                     <AppSidebar/>
-                    <main className={"flex flex-col items-center justify-between w-full min-h-full"}>
+                    <main className={"flex flex-col justify-between items-center w-full min-h-full"}>
                         <Menu/>
                         {children}
                         <Toaster/>

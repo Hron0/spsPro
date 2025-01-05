@@ -1,11 +1,11 @@
 import {type Metadata} from "next"
-import {First} from "@/components/shared/mainPage/sections/First";
-import {Second} from "@/components/shared/mainPage/sections/Second";
-import {Third} from "@/components/shared/mainPage/sections/Third";
-import Fourth from "@/components/shared/mainPage/sections/Fourth";
-import Fifth from "@/components/shared/mainPage/sections/Fifth";
-import Sixth from "@/components/shared/mainPage/sections/Sixth";
-import Seventh from "@/components/shared/mainPage/sections/Seventh";
+import {First} from "@/components/shared/staticSections/mainPage/First";
+import {Second} from "@/components/shared/staticSections/mainPage/Second";
+import {Third} from "@/components/shared/staticSections/mainPage/Third";
+import Fourth from "@/components/shared/staticSections/mainPage/Fourth";
+import Fifth from "@/components/shared/staticSections/mainPage/Fifth";
+import Sixth from "@/components/shared/staticSections/mainPage/Sixth";
+import Seventh from "@/components/shared/staticSections/mainPage/Seventh";
 
 export const metadata: Metadata = {
     description: "Центр независимых исследований",

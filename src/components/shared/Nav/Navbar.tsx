@@ -12,7 +12,7 @@ import {useSession} from "next-auth/react";
 
 const rightLinks = [
     {name: "Экспертизы", href: "/expertises/"},
-    {name: "Страница2", href: "#"},
+    {name: "Проф", href: "/community"},
     {name: "Страница3", href: "#"},
 ]
 

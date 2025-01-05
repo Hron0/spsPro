@@ -19,6 +19,7 @@ import {Input} from "@/components/ui/input"
 import {CreateExpertise} from "@/lib/data/expertises";
 import CardWrapper from "../cardWrapperComps/CardWrapper";
 import {useRouter} from 'next/navigation'
+import { toast } from "sonner"
 
 export default function ExpertiseForm() {
     const [error, setError] = useState<string | undefined>("")
@@ -43,13 +44,12 @@ export default function ExpertiseForm() {
 
     const handleCreateExpertise = (values: z.infer<typeof ExpertiseSchema>) => {
         setError("")
-        setSuccess("")
 
         startTransition(() => {
             CreateExpertise(values)
                 .then((data) => {
                     setError(data?.error)
-                    setSuccess(data?.success)
+                    toast.success(data?.success)
                     setTimeout(() => {
                         router.push('/expertises')
                     }, 1200)
