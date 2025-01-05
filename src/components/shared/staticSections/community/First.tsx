@@ -7,7 +7,7 @@ export const First = async () => {
         <section
             className="mx-auto w-full bg-secondary relative">
             <div
-                className={'container relative flex flex-col lg:grid lg:grid-rows-4 md:justify-start lg:justify-center items-center justify-items-center text-white aspect-video gap-2 lg:gap-16 pt-24 pb-8 px-4 md:px-24'}>
+                className={"container relative flex flex-col lg:grid lg:grid-rows-4 md:justify-start lg:justify-center items-center justify-items-center text-white aspect-video gap-2 lg:gap-16 pt-24 pb-8 px-4 md:px-24"}>
 
                 <div className={"aspect-square w-1/3 relative z-40 bg-background rounded-full lg:hidden mb-2 md:mb-6"}>
                     <Image
