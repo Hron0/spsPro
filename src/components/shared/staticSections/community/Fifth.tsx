@@ -9,10 +9,10 @@ export const Fifth = async () => {
             <div
                 className={"container px-6 lg:px-16 py-4 lg:py-8 text-white h-min aspect-video flex flex-col items-start gap-6 md:gap-32 relative w-full"}>
                 <TitleHeader title={'Повышение личной компетенции и уровня профессиональной деятельности'}
-                             color={'orange'} cClass={'md:w-[700px]'}/>
+                             color={'orange'} cClass={'md:w-[700px]'} isHidden/>
 
                 <div
-                    className={"relative flex flex-col gap-24 md:pr-24 lg:pr-[22%] items-start justify-start text-4xl font-extralight"}>
+                    className={"relative flex flex-col gap-8 lg:gap-24 md:pr-24 lg:pr-[22%] items-start justify-start text-xl lg:text-4xl font-extralight"}>
                     <h1>
                         Неформальное общение и обмен
                         опытом между участниками

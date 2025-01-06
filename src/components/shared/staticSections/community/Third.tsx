@@ -20,7 +20,7 @@ export const Third = () => {
         <section
             className="w-full bg-secondary relative ">
             <div className={'container relative flex flex-col items-start gap-6 md:gap-16 px-6 lg:px-16 py-4 lg:py-8 text-wite aspect-video'}>
-                <TitleHeader title={'ЧТО МЫ ПРЕДЛАГАЕМ:'} color={''} className={"self-start"}/>
+                <TitleHeader title={'ЧТО МЫ ПРЕДЛАГАЕМ:'} color={''} cClass={"self-start"}/>
 
                 {/* Lol */}
                 <div
