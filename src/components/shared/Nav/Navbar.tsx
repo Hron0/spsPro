@@ -1,3 +1,4 @@
+"use client"
 import * as React from 'react';
 import Link from "next/link";
 import {
@@ -67,7 +68,7 @@ export const Navbar = () => {
                 {!session
                     &&
                     <NavigationMenuItem>
-                        <Link href={{pathname: "/auth", query: {type: 'login'}}} legacyBehavior passHref>
+                        <Link href={"/auth"} legacyBehavior passHref>
                             <NavigationMenuLink
                                 className={cn(navigationMenuTriggerStyle(), "text-xl font-light px-0.5  text-nowrap")}>
                                 Авторизация

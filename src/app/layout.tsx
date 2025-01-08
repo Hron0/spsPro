@@ -4,13 +4,12 @@ import {Toaster} from "@/components/ui/sonner"
 import type {Metadata} from "next"
 import "@/globals.css"
 import {SpeedInsights} from "@vercel/speed-insights/next"
-import {AppSidebar} from "@/components/shared/Nav/AppSidebar";
-import Menu from "@/components/shared/Nav/Menu";
-import {SidebarProvider} from "@/components/ui/sidebar";
 import React from "react";
 import {SessionProvider} from "next-auth/react";
 import {cn} from "@/lib/utils";
 import {Inter} from "../../public/fonts/fonts";
+import {MobileDrawer} from "@/components/shared/Nav/MobileDrawer";
+import {Navbar} from "@/components/shared/Nav/Navbar";
 
 
 export const metadata: Metadata = {
@@ -38,14 +37,12 @@ export default function RootLayout({children}: {
         <body className={cn("bg-background w-full flex flex-col items-center", Inter.className)}>
         <SessionProvider>
             <QueryProvider>
-                <SidebarProvider defaultOpen={false}>
-                    <AppSidebar/>
                     <main className={"flex flex-col justify-between items-center w-full min-h-full overflow-x-hidden"}>
-                        <Menu/>
+                        <MobileDrawer />
+                        <Navbar />
                         {children}
                         <Toaster/>
                     </main>
-                </SidebarProvider>
             </QueryProvider>
         </SessionProvider>
         <SpeedInsights/>
