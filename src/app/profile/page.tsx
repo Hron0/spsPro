@@ -1,10 +1,10 @@
 'use client'
-import { getServerSession } from "@/lib/data/auth"
+import {  } from "@/lib/data/auth"
 import { Button } from '@/components/ui/button';
 import {signOut} from "next-auth/react";
 import {useUpdatedSession} from "@/lib/hooks/useUpdateSession";
 
-const page = () => {
+const Page = () => {
   const {session, status} = useUpdatedSession()
 
   return (
@@ -19,4 +19,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
