@@ -8,8 +8,8 @@ import {
 } from "@/components/ui/navigation-menu";
 import Image from 'next/image'
 import {cn} from "@/lib/utils";
-import {useSession} from "next-auth/react";
-
+import {useUpdatedSession} from "@/lib/hooks/useUpdateSession";
+// TODO: Переделать этот ебаный сайдбар под Sheet
 const rightLinks = [
     {name: "Экспертизы", href: "/expertises/"},
     {name: "Проф", href: "/community"},
@@ -17,8 +17,7 @@ const rightLinks = [
 ]
 
 export const Navbar = () => {
-    const {data: session} = useSession()
-
+    const {session, status} = useUpdatedSession()
     return (
         <NavigationMenu
             className={"hidden lg:flex bg-background drop-shadow rounded-sm absolute top-0 h-20 flex-row items-center justify-between mt-4 px-10 container w-full z-10"}>

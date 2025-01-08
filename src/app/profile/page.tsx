@@ -1,12 +1,11 @@
-'use server'
+'use client'
 import { getServerSession } from "@/lib/data/auth"
-import { signOut } from "@/auth"
 import { Button } from '@/components/ui/button';
+import {signOut} from "next-auth/react";
+import {useUpdatedSession} from "@/lib/hooks/useUpdateSession";
 
-
-const page = async () => {
-  const session = await getServerSession()
-
+const page = () => {
+  const {session, status} = useUpdatedSession()
 
   return (
     <div className="flex flex-col gap-4 absolute top-1/3">
@@ -15,13 +14,7 @@ const page = async () => {
             {session?.user.role}
             ball
         </h1>
-        <form 
-        action={async () => {
-          "use server"
-          await signOut()
-        }}>
-          <Button variant="secondary">Sign Out</Button>
-        </form>
+          <Button variant="secondary" onClick={() => signOut()}>Sign Out</Button>
     </div>
   )
 }

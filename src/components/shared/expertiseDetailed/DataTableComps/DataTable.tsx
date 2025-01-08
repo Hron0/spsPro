@@ -21,24 +21,23 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
-import {useSession} from "next-auth/react";
 import Link from "next/link";
 import DataPickerExpertise from "@/components/shared/expertiseDetailed/DataTableComps/DataPickerExpertise";
 import {format} from "date-fns";
+import {useUpdatedSession} from "@/lib/hooks/useUpdateSession";
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
     data: TData[]
 }
 
-export function DataTable<TData, TValue>({columns, data,}: DataTableProps<TData, TValue>) {
-    const {data: session} = useSession()
+export function DataTable<TData, TValue>({columns, data}: DataTableProps<TData, TValue>) {
+    const {session, status} = useUpdatedSession()
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
         []
     )
     const [date, setDate] = React.useState<any>()
-
-    const handleDateFilter = (date:any) => {
+    const handleDateFilter = (date: any) => {
         table.getColumn("date")?.setFilterValue(format(date, "dd-MM-yyyy"))
         setDate(date)
     }

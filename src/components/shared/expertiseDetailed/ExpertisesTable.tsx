@@ -9,9 +9,6 @@ import {ExpertisesTableSkeleton} from "@/components/shared/skeletons/ExpertisesT
 export function ExpertisesTable() {
     const {data, isLoading} = useExpertisesList()
 
-
-    console.log(data)
-
     return (
         <div className="container h-full py-10">
             {isLoading
