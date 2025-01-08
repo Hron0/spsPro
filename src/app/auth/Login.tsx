@@ -1,5 +1,5 @@
 'use client'
-import {LoginSchema} from '@/schemas/index'
+import {LoginSchema} from '@/schemas'
 import {zodResolver} from "@hookform/resolvers/zod"
 import {useState, useTransition} from "react"
 import {useForm} from "react-hook-form"
@@ -44,56 +44,54 @@ export const LoginPage = () => {
     }
 
     return (
-        <CardWrapper label="Вход в аккаунт" backBtn={true}>
-            <Form {...form}>
-                <form
-                    onSubmit={form.handleSubmit(handleLogin)}
-                    className="space-y-6">
-                    <div className="space-y-4">
-                        <FormField
-                            control={form.control}
-                            name="login"
-                            render={({field}) => (
-                                <FormItem>
-                                    <FormLabel>Ваш логин</FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            {...field}
-                                            placeholder="Login123"
-                                            type="text"
-                                            disabled={isPending}
-                                        />
-                                    </FormControl>
-                                    <FormMessage/>
-                                </FormItem>
-                            )}
-                        />
+        <Form {...form}>
+            <form
+                onSubmit={form.handleSubmit(handleLogin)}
+                className="space-y-6">
+                <div className="space-y-4">
+                    <FormField
+                        control={form.control}
+                        name="login"
+                        render={({field}) => (
+                            <FormItem>
+                                <FormLabel>Ваш логин</FormLabel>
+                                <FormControl>
+                                    <Input
+                                        {...field}
+                                        placeholder="Login123"
+                                        type="text"
+                                        disabled={isPending}
+                                    />
+                                </FormControl>
+                                <FormMessage/>
+                            </FormItem>
+                        )}
+                    />
 
-                        <FormField
-                            control={form.control}
-                            name="password"
-                            render={({field}) => (
-                                <FormItem>
-                                    <FormLabel>Password</FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            {...field}
-                                            placeholder="******"
-                                            type="password"
-                                            disabled={isPending}
-                                        />
-                                    </FormControl>
-                                    <FormMessage/>
-                                </FormItem>
-                            )}
-                        />
-                    </div>
-                    <FormError message={error}/>
-                    <Button type="submit" className="w-full" disabled={isPending}>
-                        Login
-                    </Button>
-                </form>
-            </Form>
-        </CardWrapper>
+                    <FormField
+                        control={form.control}
+                        name="password"
+                        render={({field}) => (
+                            <FormItem>
+                                <FormLabel>Пароль</FormLabel>
+                                <FormControl>
+                                    <Input
+                                        {...field}
+                                        placeholder="******"
+                                        type="password"
+                                        disabled={isPending}
+                                    />
+                                </FormControl>
+                                <FormMessage/>
+                            </FormItem>
+                        )}
+                    />
+                </div>
+                <FormError message={error}/>
+                <Button type="submit" className="w-full" disabled={isPending}>
+                    Войти в аккаунт
+                </Button>
+            </form>
+        </Form>
     )
 }
