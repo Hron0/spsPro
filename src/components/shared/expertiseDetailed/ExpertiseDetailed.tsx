@@ -1,6 +1,5 @@
 import {ExpertiseType} from "@/lib/types/expertises";
 import {AspectRatio} from "@/components/ui/aspect-ratio";
-import {ExpertiseSkel} from "@/components/shared/expertiseDetailed/ExpertiseSkel";
 import React from "react";
 import {Skeleton} from "@/components/ui/skeleton";
 

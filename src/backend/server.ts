@@ -7,6 +7,7 @@ import {formatDate} from "@/lib/functions/data-format";
 // init app
 export const app = new Hono().basePath("/api")
 
+// ПОхуй?
 app.get("/expertise/:id", async ({req, json}) => {
     const id = parseInt(req.param('id'))
 
@@ -17,7 +18,8 @@ app.get("/expertise/:id", async ({req, json}) => {
     )
 })
 
-app.get("/expertises/all", async ({req, json}) => {
+// Для навигации
+app.get("/expertises/short", async ({req, json}) => {
       const data = await db.select({
             id: Expertise.id,
             title: Expertise.title,
@@ -30,4 +32,11 @@ app.get("/expertises/all", async ({req, json}) => {
     }))
 
     return json(formattedExpertises)
+})
+
+// Для SSG генерации всех Экспертиз
+app.get("/expertises/all", async ({req, json}) => {
+    const data = await db.select().from(Expertise)
+
+    return json(data)
 })
