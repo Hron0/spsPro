@@ -5,17 +5,17 @@ import {ExpertiseDetailed} from "@/components/shared/expertiseDetailed/Expertise
 
 
 export async function generateStaticParams() {
-    const expertises = await fetch('https://sps-pro-git-ssg-hronos-projects.vercel.app/api/expertises/all', {method: "GET"}).then((res) => res.json())
+    const expertises = await fetch(process.env["NEXT_PUBLIC_URL"] + '/api/expertises/all', {method: "GET"}).then((res) => res.json())
 
     return expertises.map((item: any) => ({
-        id: item.id
+        id: item.id.toString()
     }))
 }
 
 async function Page({params}: { params: { id: any } }) {
     const id = params.id
 
-    const data = await fetch(`https://sps-pro-git-ssg-hronos-projects.vercel.app/api/expertise/${id}`, {method: "GET"}).then((res) => res.json())
+    const data = await fetch(process.env["NEXT_PUBLIC_URL"] + `/api/expertise/${id}`, {method: "GET"}).then((res) => res.json())
 
     return (
         <div className={"flex flex-col w-full relative overflow-hidden"}>
