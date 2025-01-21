@@ -2,6 +2,7 @@
 import React from 'react';
 import TitleHeader from "@/components/shared/TitleHeader";
 import {ExpertiseDetailed} from "@/components/shared/expertiseDetailed/ExpertiseDetailed";
+import {notFound} from "next/navigation";
 
 
 export async function generateStaticParams() {
@@ -14,8 +15,12 @@ export async function generateStaticParams() {
 
 async function Page({params}: { params: { id: any } }) {
     const id = params.id
+    const response = await fetch(process.env["NEXT_PUBLIC_URL"] + `/api/expertise/${id}`, {method: "GET"})
+    if (!response.ok) {
+        notFound()
+    }
 
-    const data = await fetch(process.env["NEXT_PUBLIC_URL"] + `/api/expertise/${id}`, {method: "GET"}).then((res) => res.json())
+    const data = await response.json()
 
     return (
         <div className={"flex flex-col w-full relative overflow-hidden"}>
