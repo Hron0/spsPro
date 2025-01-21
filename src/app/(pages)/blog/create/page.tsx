@@ -34,11 +34,18 @@ export default function Page() {
         }
     })
 
-    const handleLogin = (values: z.infer<typeof postSchema>) => {
+    const handleLogin = (values: any) => {
         setError("")
+        const formData = new FormData()
+
+        formData.append("heading", values.heading)
+        formData.append("text", values.text)
+        formData.append("image", values.image)
+
+        values.files.forEach((file: File) => formData.append("files", file))
 
         startTransition(() => {
-            CreatePost(values).then((data) => console.log(data))
+            CreatePost(formData).then((data) => console.log(data))
         })
     }
 

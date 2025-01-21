@@ -51,7 +51,3 @@ app.get("/expertises/all", async ({req, json}) => {
 app.get("blog/all", async ({req, json}) => {
 
 })
-
-app.post("blog/post", async ({req, json}) => {
-    
-})
