@@ -1,5 +1,5 @@
 import {
-    boolean, date, jsonb,
+    boolean, date, integer, jsonb,
     pgEnum,
     pgTable,
     serial,
@@ -41,4 +41,19 @@ export const Expertise = pgTable('expertises', {
     types: text('types'),
     date: date('date', {mode: "date"}).default(sql`now()`),
     img: text('img'),
+})
+
+export const Posts = pgTable('posts', {
+    id: serial('id').primaryKey(),
+    heading: text('heading'),
+    text: text('text'),
+    imgUrl: text('imgUrl'),
+    createdAt: timestamp("created_at").defaultNow(),
+})
+
+export const Files = pgTable("files", {
+    id: serial("id").primaryKey(),
+    postId: integer("postId").references(() => Posts.id),
+    fileUrl: text("file_url"),
+    fileName: text("file_name"),
 })

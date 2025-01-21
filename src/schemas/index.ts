@@ -49,6 +49,13 @@ export const ExpertiseSchema = z.object({
     }),
 })
 
+export const postSchema = z.object({
+    heading: z.string().min(1, "Укажите заголовок поста"),
+    text: z.string().min(1, "Введите описание поста.").max(500, "Слишком длинное содержание поста."),
+    image: z.instanceof(File).optional(),
+    files: z.array(z.instanceof(File)).optional(),
+})
+
 const MAX_FILE_SIZE = 1024 * 1024 * 5;
 const ACCEPTED_IMAGE_MIME_TYPES = [
     "image/jpeg",
