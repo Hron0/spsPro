@@ -57,7 +57,7 @@ export function DataTable<TData, TValue>({columns, data}: DataTableProps<TData, 
 
     return (
         <div className={'w-full'}>
-            <div className={'grid grid-cols-3 items-center'}>
+            <div className={'grid grid-rows-2 lg:grid-rows-1 grid-cols-1 lg:grid-cols-3 items-start lg:items-center px-2'}>
                 <div className="flex items-center py-4 justify-self-start">
                     <Input
                         placeholder="Поиск по названию"
@@ -69,7 +69,7 @@ export function DataTable<TData, TValue>({columns, data}: DataTableProps<TData, 
                     />
                 </div>
 
-                <div className={'justify-self-center'}>
+                <div className={'lg:justify-self-center'}>
                     <DataPickerExpertise date={date} setDate={handleDateFilter}/>
                 </div>
 

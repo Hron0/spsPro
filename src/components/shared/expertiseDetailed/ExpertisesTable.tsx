@@ -10,7 +10,7 @@ export function ExpertisesTable() {
     const {data, isLoading} = useExpertisesList()
 
     return (
-        <div className="container h-full py-10">
+        <div className="container h-full py-4 lg:py-10">
             {isLoading
                 ? <ExpertisesTableSkeleton/>
                 : <DataTable columns={columns} data={data}/>

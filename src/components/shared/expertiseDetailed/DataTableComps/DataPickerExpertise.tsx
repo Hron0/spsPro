@@ -23,7 +23,7 @@ export default function DataPickerExpertise({date, setDate}: {date: any, setDate
                 <Button
                     variant={"outline"}
                     className={cn(
-                        "w-[240px] justify-start text-left font-normal items-center text-base gap-1",
+                        "w-[240px] justify-start text-left font-normal items-center text-base gap-1 w-full lg:w-auto",
                         !date && "text-muted-foreground"
                     )}
                 >

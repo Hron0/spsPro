@@ -17,8 +17,8 @@ export const columns: ColumnDef<Expertise>[] = [
         cell: ({row}) => {
             const id = row.original.id
             return (
-                <Link href={`/expertises/${id}`} className={'flex flex-row items-center gap-2'}>
-                    <Image src={'/img/folder.svg'} alt={'.'} width={40} height={40}
+                <Link href={`/expertises/${id}`} className={'flex flex-row items-center gap-2 text-sm lg:text-lg'}>
+                    <Image src={'/img/folder.svg'} alt={'.'} width={30} height={30}
                            className={'text-black'}/>
                     {row.getValue('title')}
                 </Link>
@@ -27,6 +27,6 @@ export const columns: ColumnDef<Expertise>[] = [
     },
     {
         accessorKey: "date",
-        header: "Дата"
+        header: "Дата",
     },
 ]

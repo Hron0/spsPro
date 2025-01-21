@@ -3,6 +3,7 @@ import {AspectRatio} from "@/components/ui/aspect-ratio";
 import React from "react";
 import {Skeleton} from "@/components/ui/skeleton";
 
+
 type Props = {
     expertise?: ExpertiseType
 };

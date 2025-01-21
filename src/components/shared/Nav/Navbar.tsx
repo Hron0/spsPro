@@ -10,7 +10,6 @@ import {
 import Image from 'next/image'
 import {cn} from "@/lib/utils";
 import {useUpdatedSession} from "@/lib/hooks/useUpdateSession";
-// TODO: Переделать этот ебаный сайдбар под Sheet
 const rightLinks = [
     {name: "Экспертизы", href: "/expertises/"},
     {name: "Проф", href: "/community"},

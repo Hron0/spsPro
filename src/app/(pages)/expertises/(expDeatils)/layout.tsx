@@ -8,7 +8,7 @@ export default function Layout({children}: { children: React.ReactNode}) {
             {children}
             <div className={"flex flex-col w-full relative overflow-hidden"}>
                 <section className="mx-auto w-full bg-secondary relative">
-                    <div className={'container grid grid-rows-2 pt-16 pb-6'}>
+                    <div className={'lg:container grid grid-rows-2 lg:pt-16 pb-6 px-6'}>
                         <TitleHeader title={'Все файлы'} color={''} cClass={"row-start-2"}/>
                     </div>
                 </section>
