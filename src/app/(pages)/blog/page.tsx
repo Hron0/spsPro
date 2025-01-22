@@ -18,8 +18,8 @@ export default function Page() {
                 {isLoading
                     ? <p>Загрузка...</p>
                     :
-                    data.map((item: any) => (
-                        <div className={"flex flex-col items-center w-full min-h-32 bg-secondary"}>
+                    data.map((item: any, index: any) => (
+                        <div className={"flex flex-col items-center w-full min-h-32 bg-secondary"} key={index}>
                             <h1 className={"font-black"}>{item.posts.heading}</h1>
                             <h6>{item.posts.text}</h6>
                             {item.posts.imgUrl &&
