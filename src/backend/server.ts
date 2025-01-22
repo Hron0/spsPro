@@ -1,7 +1,7 @@
-import {eq} from 'drizzle-orm';
+import {desc, eq, sql} from 'drizzle-orm';
 import {Hono} from "hono"
 import {db} from "./db"
-import {Expertise} from "./db/schema"
+import {Expertise, Files, Posts} from "./db/schema"
 import {formatDate} from "@/lib/functions/data-format";
 
 // init app
@@ -48,6 +48,21 @@ app.get("/expertises/all", async ({req, json}) => {
     return json(data)
 })
 
-app.get("blog/all", async ({req, json}) => {
+const POSTS_PER_PAGE = 10
 
+app.get("blog/posts", async ({req, json}) => {
+    const page = Number(req.query("page") || "0");
+    const limit = 10;
+
+    const offset = (page - 1) * limit;
+
+    const data = await db
+        .select()
+        .from(Posts)
+        .orderBy(desc(Posts.createdAt))
+        .limit(limit + 1)
+        .offset(offset)
+        .leftJoin(Files, eq(Posts.id, Files.postId))
+
+    return json(data)
 })
