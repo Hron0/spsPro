@@ -52,7 +52,8 @@ export default function Page() {
             CreatePost(formData)
                 .then((data) => {
                     setError(data?.error)
-                    toast.success(data?.success)
+                    if (data.success) toast.success(data?.success)
+                    if (data.error) toast.error(data?.error)
                     setTimeout(() => {
                         router.push('/blog')
                     }, 1200)
