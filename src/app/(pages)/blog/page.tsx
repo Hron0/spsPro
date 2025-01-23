@@ -39,8 +39,8 @@ export default function Page() {
                                     alt={"None"} width={100} height={100}/>
                             }
                             {item.files &&
-                                item.files.map((file: any) => (
-                                    <Link href={file.fileUrl}>Ссылка на {file.fileName}</Link>
+                                item.files.map((file: any, index: number) => (
+                                    <Link href={file.fileUrl} key={index}>Ссылка на {file.fileName}</Link>
                                 ))
                             }
                         </div>
