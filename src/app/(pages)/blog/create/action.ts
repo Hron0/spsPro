@@ -14,7 +14,6 @@ export const CreatePost = async (values: FormData) => {
     const files = values.getAll("files") as File[]
 
     const validatedFields = postSchema.safeParse({heading, text, image, files})
-
     if (validatedFields.success) {
         try {
             let imgUrl = ""

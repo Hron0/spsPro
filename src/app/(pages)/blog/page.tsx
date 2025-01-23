@@ -7,8 +7,6 @@ import Link from "next/link";
 // TODO Типизировать это + useBlog.ts
 export default function Page() {
     const {data, isLoading, isError} = useGetBlogs(1)
-    console.log(data)
-
 
     return (
         <div className={"w-full h-full flex flex-col items-center justify-center mt-64"}>
@@ -20,15 +18,17 @@ export default function Page() {
                     :
                     data.map((item: any, index: any) => (
                         <div className={"flex flex-col items-center w-full min-h-32 bg-secondary"} key={index}>
-                            <h1 className={"font-black"}>{item.posts.heading}</h1>
-                            <h6>{item.posts.text}</h6>
-                            {item.posts.imgUrl &&
+                            <h1 className={"font-black"}>{item.heading}</h1>
+                            <h6>{item.text}</h6>
+                            {item.imgUrl &&
                                 <Image
-                                    src={"https://swbxrvsh7sbt6vxx.public.blob.vercel-storage.com/HronoLis-13UO5k6ioLDF0XIHtHyGNzfW3c6lIC.png"}
+                                    src={item.imgUrl}
                                     alt={"None"} width={100} height={100}/>
                             }
                             {item.files &&
-                                <Link href={item.files.fileUrl}>Ссылка на {item.files.fileName}</Link>
+                                item.files.map((file: any) => (
+                                    <Link href={file.fileUrl}>Ссылка на {file.fileName}</Link>
+                                ))
                             }
                         </div>
                     ))

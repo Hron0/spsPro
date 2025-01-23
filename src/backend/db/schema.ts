@@ -6,7 +6,7 @@ import {
     text,
     timestamp
 } from "drizzle-orm/pg-core"
-import { sql } from "drizzle-orm";
+import {relations, sql} from "drizzle-orm";
 export const roles = pgEnum('roles', ["USER", "ADMIN"])
 
 export const user = pgTable("user", {
@@ -57,3 +57,14 @@ export const Files = pgTable("files", {
     fileUrl: text("file_url"),
     fileName: text("file_name"),
 })
+
+export const postsRelations = relations(Posts, ({ many }) => ({
+    files: many(Files),
+}))
+
+export const filesRelations = relations(Files, ({ one }) => ({
+    post: one(Posts, {
+        fields: [Files.postId],
+        references: [Posts.id],
+    }),
+}))

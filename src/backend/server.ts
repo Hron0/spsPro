@@ -17,8 +17,8 @@ app.get("/expertise/:id", async ({req, json}) => {
 
     if (!expertise) {
         return json(
-            { error: "Expertise not found" },
-            { status: 404 }
+            {error: "Expertise not found"},
+            {status: 404}
         )
     }
 
@@ -56,13 +56,15 @@ app.get("blog/posts", async ({req, json}) => {
 
     const offset = (page - 1) * limit;
 
-    const data = await db
-        .select()
-        .from(Posts)
-        .orderBy(desc(Posts.createdAt))
-        .limit(limit + 1)
-        .offset(offset)
-        .leftJoin(Files, eq(Posts.id, Files.postId))
+    const data = await db.query.Posts.findMany({
+        with: {
+            files: true,
+        },
+        orderBy: desc(Posts.createdAt),
+        limit: limit + 1,
+        offset: offset,
+    })
+
 
     return json(data)
 })
