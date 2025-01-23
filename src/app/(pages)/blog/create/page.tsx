@@ -18,10 +18,14 @@ import {Input} from "@/components/ui/input";
 import {CreatePost} from "@/app/(pages)/blog/create/action";
 import {Button} from "@/components/ui/button";
 import {TextFieldArea} from "@/components/extras/text-area";
+import {toast} from "sonner";
+import {useRouter} from "next/navigation";
 
 export default function Page() {
     const [error, setError] = useState<string | undefined>("")
     const [isPending, startTransition] = useTransition()
+
+    const router = useRouter()
 
     // @ts-ignore
     const form = useForm<z.infer<typeof postSchema>>({
@@ -45,7 +49,15 @@ export default function Page() {
         values.files.forEach((file: File) => formData.append("files", file))
 
         startTransition(() => {
-            CreatePost(formData).then((data) => console.log(data))
+            CreatePost(formData)
+                .then((data) => {
+                    setError(data?.error)
+                    toast.success(data?.success)
+                    setTimeout(() => {
+                        router.push('/blog')
+                    }, 1200)
+                })
+
         })
     }
 
