@@ -36,6 +36,7 @@ export const CreatePost = async (values: FormData) => {
 
             await Promise.all(filePromises)
             revalidatePath("/blog")
+            console.log(Post)
             return {success: "Пост успешно создан, вы будете перенаправлены на страницу постов через секунду..."}
         } catch (e) {
             const currentTime = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
