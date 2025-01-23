@@ -13,6 +13,11 @@ export const CreatePost = async (values: FormData) => {
     const image = values.get("image") as File | null
     const files = values.getAll("files") as File[]
 
+    console.log('Heading:', heading);
+console.log('Text:', text);
+console.log('Image:', image);
+console.log('Files:', files);
+
     const validatedFields = postSchema.safeParse({heading, text, image: image || undefined, files})
     console.log(validatedFields)
     if (validatedFields.success) {
