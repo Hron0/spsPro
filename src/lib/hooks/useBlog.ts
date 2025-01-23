@@ -3,35 +3,29 @@ import {useState} from "react";
 
 interface Post {
     id: number
+    heading: string
     text: string
-    imageUrl: string | null
+    imgUrl?: string
     createdAt: string
-}
-
-interface Files {
-    id: number
-    postId: number
-    fileName: string
-    fileUrl: string
-}
-
-interface FeedQueryResult {
-    posts?: Post[]
-    files?: Files[] | null
+    files?: Array<{
+        id: number
+        fileUrl: string
+        fileName: string
+    }>
 }
 
 const POSTS_PER_PAGE = 10
 
 //TODO Типизировать хуйню
 
-const fetchPosts = async (page: number) => {
+const fetchPosts = async (page: number): Promise<Post[]> => {
     const res = await fetch(`/api/blog/posts?page=${page}`)
     if (!res.ok) throw new Error("Failed to fetch posts")
     return res.json()
 }
 
 export const useGetBlogs = (page: number) => {
-    return useQuery({
+    return useQuery<Post[]>({
         queryKey: ["Posts", page],
         queryFn: async () => await fetchPosts(page)
     })
