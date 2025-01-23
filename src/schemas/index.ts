@@ -52,14 +52,15 @@ export const ExpertiseSchema = z.object({
 export const postSchema = z.object({
     heading: z.string().min(1, "Укажите заголовок поста"),
     text: z.string().min(1, "Введите описание поста.").max(500, "Слишком длинное содержание поста."),
-    image: z
-        .instanceof(File)
-        .refine((file) => file.size <= MAX_FILE_SIZE, `Max image size is 5MB.`)
-        .refine(
-            (file) => ACCEPTED_IMAGE_TYPES.includes(file.type),
-            "Only .jpg, .jpeg, .png and .webp formats are supported.",
-        )
-        .optional(),
+image: z.union([
+    z.instanceof(File)
+      .refine((file) => file.size <= MAX_FILE_SIZE, `Max image size is 5MB.`)
+      .refine(
+        (file) => ACCEPTED_IMAGE_TYPES.includes(file.type),
+        "Only .jpg, .jpeg, .png and .webp formats are supported.",
+      ),
+    z.undefined()
+  ]).optional(),
     files: z
         .array(z.instanceof(File))
         .refine((files) => files.every((file) => file.size <= MAX_FILE_SIZE), `Max file size is 5MB.`)
