@@ -23,7 +23,6 @@ import { toast } from "sonner"
 
 export default function ExpertiseForm() {
     const [error, setError] = useState<string | undefined>("")
-    const [success, setSuccess] = useState<string | undefined>("")
     const [isPending, startTransition] = useTransition()
 
     const router = useRouter()
@@ -194,7 +193,6 @@ export default function ExpertiseForm() {
                             )}/>
                     </div>
                     <FormError message={error}/>
-                    <FormSuccess message={success}/>
                     <Button type="submit" className="w-full" disabled={isPending}>
                         Создать экспертизу
                     </Button>
