@@ -10,10 +10,10 @@ import {revalidatePath} from "next/cache";
 export const CreatePost = async (values: FormData) => {
     const heading = values.get("heading") as string
     const text = values.get("text") as string
-    const image = values.get("image") as File || undefined
-    const files = values.getAll("files") as File[] || undefined
+    const image = values.get("image") as File | null
+    const files = values.getAll("files") as File[]
 
-    const validatedFields = postSchema.safeParse({heading, text, image, files})
+    const validatedFields = postSchema.safeParse({heading, text, image: image || undefined, files})
     console.log(validatedFields)
     if (validatedFields.success) {
         try {
