@@ -16,6 +16,11 @@ export const CreatePost = async (values: FormData) => {
 
     const validatedFields = postSchema.safeParse({heading, text, image: image === null ? undefined : image, files})
     console.log(validatedFields)
+    console.log(validatedFields.error)
+    console.log('Heading:', heading);
+console.log('Text:', text);
+console.log('Image:', image);
+console.log('Files:', files);
     if (validatedFields.success) {
         try {
             let imgUrl = ""
