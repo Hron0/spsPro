@@ -3,23 +3,36 @@ import {useGetBlogs} from "@/lib/hooks/useBlog";
 import Image from "next/image";
 import {list} from "@vercel/blob";
 import Link from "next/link";
+import {SearchBar} from "@/app/(pages)/blog/create/SearchBar";
+import {useState} from "react";
+
+
 
 // TODO Типизировать это + useBlog.ts
 export default function Page() {
-    const {data, isLoading, isError} = useGetBlogs(1)
+    const {data: posts, isLoading, isError} = useGetBlogs(1)
+    const [searchQuery, setSearchQuery] = useState("")
+
+    const filteredPosts =
+        posts?.filter(
+            (post) =>
+                post.heading.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                post.text.toLowerCase().includes(searchQuery.toLowerCase()),
+        ) || []
 
     return (
-        <div className={"w-full h-full flex flex-col items-center justify-center mt-64"}>
+        <div className={"w-full h-full flex flex-col items-center justify-center mt-64 mb-10"}>
             <h1>ТЕСТ</h1>
+            <SearchBar onSearch={setSearchQuery}/>
 
             <div className={"flex flex-col items-center gap-8 text-white w-1/2"}>
                 {isLoading
-                    ? <p>Загрузка...</p>
+                    ? <p className={'text-black'}>Загрузка...</p>
                     :
-                    data.map((item: any, index: any) => (
-                        <div className={"flex flex-col items-center w-full min-h-32 bg-secondary"} key={index}>
+                    filteredPosts.map((item: any, index: any) => (
+                        <div className={"flex flex-col items-center w-full min-h-32 bg-secondary px-6 py-3"} key={index}>
                             <h1 className={"font-black"}>{item.heading}</h1>
-                            <h6>{item.text}</h6>
+                            <h6 className={'break-all'}>{item.text}</h6>
                             {item.imgUrl &&
                                 <Image
                                     src={item.imgUrl}
