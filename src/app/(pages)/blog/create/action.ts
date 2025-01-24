@@ -23,7 +23,7 @@ export const CreatePost = async (values: FormData) => {
                 const {url} = await put(encodedFilename, image, {
                             access: "public",
                             metadata: {
-                              originalFilename: filename,
+                              originalFilename: image.name,
                             },
                             })
                 imgUrl = url
