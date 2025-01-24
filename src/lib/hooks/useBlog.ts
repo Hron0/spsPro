@@ -27,6 +27,15 @@ const fetchPosts = async (page: number): Promise<Post[]> => {
 export const useGetBlogs = (page: number) => {
     return useQuery<Post[]>({
         queryKey: ["Posts", page],
-        queryFn: async () => await fetchPosts(page)
+        queryFn: async () => await fetchPosts(page),
+        select: (data) => {
+            return data.map((post) => ({
+                ...post,
+                files: post.files?.map((file) => ({
+                    ...file,
+                    fileName: decodeURI(file.fileName)
+                }))
+            }))
+        }
     })
 }
