@@ -20,6 +20,7 @@ import {Button} from "@/components/ui/button";
 import {TextFieldArea} from "@/components/extras/text-area";
 import {toast} from "sonner";
 import {useRouter} from "next/navigation";
+import {InteractiveImageInput} from "@/app/(pages)/blog/create/InputWithPreview";
 
 export default function Page() {
     const [error, setError] = useState<string | undefined>("")
@@ -102,12 +103,7 @@ export default function Page() {
                                     render={({field: {value, onChange, ...field}}) => (
                                         <FormItem>
                                             <FormControl>
-                                                <Input
-                                                    accept="image/*"
-                                                    onChange={(e) => onChange(e.target.files?.[0])}
-                                                    {...field}
-                                                    type="file"
-                                                />
+                                                <InteractiveImageInput onImageChange={(file) => onChange(file)} {...field} />
                                             </FormControl>
                                             <FormMessage/>
                                         </FormItem>
