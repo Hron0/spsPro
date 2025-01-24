@@ -63,7 +63,7 @@ export const postSchema = z.object({
     text: z.string().min(1, "Введите описание поста.").max(500, "Слишком длинное содержание поста."),
     files: z
         .array(z.instanceof(File))
-        .refine((files) => files.every((file) => file.size <= MAX_FILE_SIZE), `Максимальный размер файла - 5МБ.`)
+        .refine((files) => files.every((file) => file.size <= MAX_FILE_SIZE), `Максимальный размер одного файла - 5МБ.`)
         .optional(),
 })
 
