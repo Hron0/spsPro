@@ -19,7 +19,13 @@ export const CreatePost = async (values: FormData) => {
         try {
             let imgUrl = ""
             if (image && image.size > 0) {
-                const {url} = await put(image.name, image, {access: "public"})
+                const encodedFilename = encodeURIComponent(filename)
+                const {url} = await put(encodedFilename, image, {
+                            access: "public",
+                            metadata: {
+                              originalFilename: filename,
+                            },
+                            })
                 imgUrl = url
             }
             const [Post] = await db.insert(Posts).values({heading, text, imgUrl}).returning()
