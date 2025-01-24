@@ -12,17 +12,19 @@ export const CreatePost = async (values: FormData) => {
     const text = values.get("text") as string
     const files = values.getAll("files") as File[]
 
+    const validatedFields = postSchema.safeParse({
+        heading,
+        image: image instanceof File ? image : undefined,
+        text,
+        files: files instanceof File ? files : undefined
+    })
 
-    const validatedFields = postSchema.safeParse({heading, image: image instanceof File ? image : undefined, text, files: files instanceof File ? files : undefined})
 
     if (validatedFields.success) {
         try {
             let imgUrl = ""
             if (image && image.size > 0) {
-                const encodedFilename = encodeURIComponent(image.name)
-                const {url} = await put(encodedFilename, image, {
-                                access: "public"
-                            })
+                const {url} = await put(image.name, image, {access: "public"})
                 imgUrl = url
             }
             const [Post] = await db.insert(Posts).values({heading, text, imgUrl}).returning()
@@ -40,7 +42,6 @@ export const CreatePost = async (values: FormData) => {
 
             await Promise.all(filePromises)
             revalidatePath("/blog")
-            console.log(Post)
             return {success: "Пост успешно создан, вы будете перенаправлены на страницу постов через секунду..."}
         } catch (e) {
             const currentTime = new Date().toJSON().slice(0, 10).replace(/-/g, '/');

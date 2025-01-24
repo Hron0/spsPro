@@ -47,7 +47,7 @@ export default function Page() {
         formData.append("text", values.text)
         formData.append("image", values.image)
 
-        values.files.forEach((file: File) => formData.append("files", file))
+        values.files.forEach((file: File) => formData.append("files", file, encodeURI(file.name)))
 
         startTransition(() => {
             CreatePost(formData)
@@ -103,7 +103,8 @@ export default function Page() {
                                     render={({field: {value, onChange, ...field}}) => (
                                         <FormItem>
                                             <FormControl>
-                                                <InteractiveImageInput onImageChange={(file) => onChange(file)} {...field} />
+                                                <InteractiveImageInput
+                                                    onImageChange={(file) => onChange(file)} {...field} />
                                             </FormControl>
                                             <FormMessage/>
                                         </FormItem>
@@ -155,5 +156,5 @@ export default function Page() {
                 </CardContent>
             </Card>
         </div>
-    );
+    )
 }
