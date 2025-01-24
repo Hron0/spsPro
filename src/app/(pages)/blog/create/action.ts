@@ -1,11 +1,10 @@
 "use server"
 
-import {postSchema, testSchema} from "@/schemas";
+import {postSchema} from "@/schemas";
 import {put} from "@vercel/blob";
 import {db} from "@/backend/db";
 import {Files, Posts} from "@/backend/db/schema";
 import {revalidatePath} from "next/cache";
-import * as z from "zod";
 
 export const CreatePost = async (values: FormData) => {
     const heading = values.get("heading") as string
