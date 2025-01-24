@@ -32,8 +32,8 @@ export default function Page() {
         resolver: zodResolver(postSchema),
         defaultValues: {
             heading: "",
-            text: "",
             image: undefined,
+            text: "",
             files: [],
         }
     })
@@ -98,23 +98,6 @@ export default function Page() {
 
                                 <FormField
                                     control={form.control}
-                                    name="text"
-                                    render={({field}) => (
-                                        <FormItem>
-                                            <FormControl>
-                                                <TextFieldArea
-                                                    {...field}
-                                                    placeholder="Содержание"
-                                                    disabled={isPending}
-                                                />
-                                            </FormControl>
-                                            <FormMessage/>
-                                        </FormItem>
-                                    )}
-                                />
-
-                                <FormField
-                                    control={form.control}
                                     name="image"
                                     render={({field: {value, onChange, ...field}}) => (
                                         <FormItem>
@@ -124,6 +107,23 @@ export default function Page() {
                                                     onChange={(e) => onChange(e.target.files?.[0])}
                                                     {...field}
                                                     type="file"
+                                                />
+                                            </FormControl>
+                                            <FormMessage/>
+                                        </FormItem>
+                                    )}
+                                />
+
+                                <FormField
+                                    control={form.control}
+                                    name="text"
+                                    render={({field}) => (
+                                        <FormItem>
+                                            <FormControl>
+                                                <TextFieldArea
+                                                    {...field}
+                                                    placeholder="Содержание"
+                                                    disabled={isPending}
                                                 />
                                             </FormControl>
                                             <FormMessage/>
