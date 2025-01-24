@@ -1,26 +1,21 @@
 "use server"
 
-import {z} from "zod";
-import {postSchema} from "@/schemas";
+import {postSchema, testSchema} from "@/schemas";
 import {put} from "@vercel/blob";
 import {db} from "@/backend/db";
 import {Files, Posts} from "@/backend/db/schema";
 import {revalidatePath} from "next/cache";
+import * as z from "zod";
 
 export const CreatePost = async (values: FormData) => {
     const heading = values.get("heading") as string
     const text = values.get("text") as string
-    const image = values.get("image") as File | undefined
+    const image = values.get("image") as File
     const files = values.getAll("files") as File[]
 
 
-    const validatedFields = postSchema.safeParse({heading, text, image: image === null ? undefined : image, files})
-    console.log(validatedFields)
-    console.log(validatedFields.error)
-    console.log('Heading:', heading);
-console.log('Text:', text);
-console.log('Image:', image);
-console.log('Files:', files);
+    const validatedFields = postSchema.safeParse({heading, text, image: image instanceof File ? image : undefined, files: files instanceof File ? files : undefined})
+
     if (validatedFields.success) {
         try {
             let imgUrl = ""

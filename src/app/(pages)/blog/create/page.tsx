@@ -52,11 +52,13 @@ export default function Page() {
             CreatePost(formData)
                 .then((data) => {
                     setError(data?.error)
-                    if (data.success) toast.success(data?.success)
+                    if (data.success) {
+                        toast.success(data?.success)
+                        setTimeout(() => {
+                            router.push('/blog')
+                        }, 1200)
+                    }
                     if (data.error) toast.error(data?.error)
-                    setTimeout(() => {
-                        router.push('/blog')
-                    }, 1200)
                 })
 
         })
@@ -114,7 +116,7 @@ export default function Page() {
                                 <FormField
                                     control={form.control}
                                     name="image"
-                                    render={({ field: { value, onChange, ...field } }) => (
+                                    render={({field: {value, onChange, ...field}}) => (
                                         <FormItem>
                                             <FormControl>
                                                 <Input
@@ -132,7 +134,7 @@ export default function Page() {
                                 <FormField
                                     control={form.control}
                                     name="files"
-                                    render={({ field: { value, onChange, ...field } }) => (
+                                    render={({field: {value, onChange, ...field}}) => (
                                         <FormItem>
                                             <FormLabel>Файлы</FormLabel>
                                             <FormControl>
@@ -143,7 +145,7 @@ export default function Page() {
                                                     {...field}
                                                 />
                                             </FormControl>
-                                            <FormMessage />
+                                            <FormMessage/>
                                         </FormItem>
                                     )}
                                 />
