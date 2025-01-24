@@ -8,12 +8,12 @@ import {revalidatePath} from "next/cache";
 
 export const CreatePost = async (values: FormData) => {
     const heading = values.get("heading") as string
-    const text = values.get("text") as string
     const image = values.get("image") as File
+    const text = values.get("text") as string
     const files = values.getAll("files") as File[]
 
 
-    const validatedFields = postSchema.safeParse({heading, text, image: image instanceof File ? image : undefined, files: files instanceof File ? files : undefined})
+    const validatedFields = postSchema.safeParse({heading, image: image instanceof File ? image : undefined, text, files: files instanceof File ? files : undefined})
 
     if (validatedFields.success) {
         try {
