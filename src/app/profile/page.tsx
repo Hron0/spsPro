@@ -11,8 +11,8 @@ const Page = () => {
     <div className="flex flex-col gap-4 absolute top-1/3">
         <h1 className='white text-3xl'>
             {session?.user.email}
+            <br />
             {session?.user.role}
-            ball
         </h1>
           <Button variant="secondary" onClick={() => signOut()}>Sign Out</Button>
     </div>

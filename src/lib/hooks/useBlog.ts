@@ -27,7 +27,10 @@ const fetchPosts = async (page: number): Promise<Post[]> => {
 export const useGetBlogs = (page: number) => {
     return useQuery<Post[]>({
         queryKey: ["Posts", page],
-        queryFn: async () => await fetchPosts(page),
+        queryFn: async () => {
+            const res = await fetch(`/api/blog/posts?page=${page}`)
+            return res.json()
+        },
         select: (data) => {
             return data.map((post) => ({
                 ...post,
