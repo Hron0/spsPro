@@ -10,7 +10,6 @@ import {cn} from "@/lib/utils";
 import {Inter} from "../../public/fonts/fonts";
 import {MobileDrawer} from "@/components/shared/Nav/MobileDrawer";
 import {Navbar} from "@/components/shared/Nav/Navbar";
-import {initializeAuthStore} from "@/lib/store/authStore";
 
 
 export const metadata: Metadata = {
