@@ -66,7 +66,7 @@ export default function Page() {
     }
 
     return (
-        <div className={"absolute top-1/4 flex flex-col items-center gap-2 w-full"}>
+        <div className={"mt-11 mb-6 flex flex-col items-center gap-2 w-full"}>
             <Card className="w-[95%] lg:w-[600px] shadow-md p-1">
                 <CardHeader>
                     <CardTitle>

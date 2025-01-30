@@ -21,9 +21,8 @@ export default function Page() {
 
 
     return (
-        <div className={"w-full h-full flex flex-col items-center justify-center lg:mt-64 mt-8 lg:mb-10"}>
-            <h1>ТЕСТ</h1>
-            <div className={'relative flex flex-row items-center w-full justify-evenly'}>
+        <div className={"w-full h-full flex flex-col items-center justify-center lg:mt-64 mt-8 lg:mb-10 container"}>
+            <div className={'relative flex flex-row items-center w-full justify-center gap-2 md:gap-3 lg:gap-6'}>
                 <SearchBar onSearch={setSearchQuery}/>
                 {session?.user?.role === "ADMIN"
                     &&

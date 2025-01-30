@@ -37,7 +37,7 @@ const InteractiveImageInput = React.forwardRef<HTMLInputElement, InteractiveImag
         return (
             <div className="relative">
                 <div
-                    className="relative h-64 w-full cursor-pointer overflow-hidden rounded-lg border border-input bg-background"
+                    className="relative aspect-[16/9] w-full cursor-pointer overflow-hidden rounded-lg border border-input bg-background"
                     onClick={handleClick}
                 >
                     {preview ? (
