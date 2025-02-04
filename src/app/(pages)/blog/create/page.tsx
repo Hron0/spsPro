@@ -50,8 +50,11 @@ export default function Page() {
         formData.append("image", values.image)
 
         files.forEach((file: File) => formData.append("files", file, encodeURI(file.name)))
-
+        console.log("Сборка ФормДаты: ")
+        console.log(formData)
         startTransition(() => {
+            console.log("Транзишн: ")
+            console.log(formData)
             CreatePost(formData)
                 .then((data) => {
                     setError(data?.error)
