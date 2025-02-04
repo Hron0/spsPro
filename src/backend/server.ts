@@ -3,6 +3,7 @@ import {Hono} from "hono"
 import {db} from "./db"
 import {Expertise, Files, Posts} from "./db/schema"
 import {formatDate} from "@/lib/functions/data-format";
+import {del} from "@vercel/blob";
 
 // init app
 export const app = new Hono().basePath("/api")
@@ -67,4 +68,55 @@ app.get("blog/posts", async ({req, json}) => {
 
 
     return json(data)
+})
+
+app.get("/blog/get/:id", async ({req, json}) => {
+    const id = Number.parseInt(req.param("id"))
+    const post = await db.query.Posts.findFirst({
+        where: eq(Posts.id, id),
+        with: {
+            files: true,
+        },
+    })
+    return json(post)
+})
+
+app.delete("blog/delete/:id", async ({req, json}) => {
+    const id = Number(req.param("id"))
+
+    try {
+        const post = await db.query.Posts.findFirst({
+            where: eq(Posts.id, id),
+            with: {
+                files: true,
+            },
+        })
+
+        if (post?.imgUrl) {
+            await del(post.imgUrl)
+        }
+
+        if (post?.files) {
+            for (const file of post?.files) {
+                // @ts-ignore
+                await del(file.fileUrl)
+            }
+        }
+
+        await db.delete(Files).where(eq(Files.postId, id))
+        await db.delete(Posts).where(eq(Posts.id, id))
+
+        return json({success: true})
+    } catch (e) {
+        const currentTime = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
+        console.error(`ERROR DELETING POST AT ${currentTime} : `, e)
+        return json({error: "Что-то пошло не так..."}, 500)
+    }
+})
+
+app.put("blog/redact/:id", async ({req, json}) => {
+    const id = Number(req.param("id"))
+
+    const data = req.json()
+
 })

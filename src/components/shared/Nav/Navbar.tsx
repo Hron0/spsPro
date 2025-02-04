@@ -13,7 +13,7 @@ import {useUpdatedSession} from "@/lib/hooks/useUpdateSession";
 const rightLinks = [
     {name: "Экспертизы", href: "/expertises/"},
     {name: "Проф", href: "/community"},
-    {name: "Страница3", href: "#"},
+    {name: "Блог", href: "/blog"},
 ]
 
 export const Navbar = () => {

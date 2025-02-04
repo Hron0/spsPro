@@ -1,8 +1,11 @@
 import React from 'react';
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {Button} from "@/components/ui/button";
-import {FileText} from "lucide-react";
+import {FileText, MoreVertical} from "lucide-react";
 import Image from "next/image";
+import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
+import {useDeletePost} from "@/lib/hooks/useBlog";
+import Link from "next/link";
 
 interface Post {
     id: number
@@ -17,11 +20,39 @@ interface Post {
     }>
 }
 
-const MyComponent = ({data}: {data: Post}) => {
+const MyComponent = ({data}: { data: Post }) => {
+
+    const deleteMutation = useDeletePost(data.id)
+
+    const handleDelete = () => {
+        if (window.confirm(`Вы уверены что хоитите удалить запись: ${data.heading}`)) {
+            deleteMutation.mutate()
+        }
+    }
+
+
     return (
         <Card className="w-[98%] relative mx-2">
             <CardHeader>
-                <CardTitle className={'lg:text-2xl'}>{data.heading}</CardTitle>
+                <div className={'flex items-center justify-between'}>
+                    <CardTitle className={'lg:text-2xl'}>{data.heading}</CardTitle>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant="ghost" size="icon">
+                                <MoreVertical className="h-4 w-4"/>
+                                <span className="sr-only">Open menu</span>
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                            <DropdownMenuItem>
+                                <Link href={`/blog/edit/${data.id}`}>Редактировать запись</Link>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem className="text-destructive" onClick={handleDelete}>
+                                Удалить запись
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                </div>
             </CardHeader>
             <CardContent className="space-y-4">
                 {data.imgUrl && (
@@ -40,7 +71,7 @@ const MyComponent = ({data}: {data: Post}) => {
                         {data.files.map((file: any, index: number) => (
                             <Button key={index} variant="outline" className="w-full justify-start gap-2" asChild>
                                 <a href={file.fileUrl} target="_blank" rel="noopener noreferrer">
-                                    <FileText className="h-4 w-4"/>
+                                    <FileText className="h-5 w-5"/>
                                     {file.fileName}
                                 </a>
                             </Button>

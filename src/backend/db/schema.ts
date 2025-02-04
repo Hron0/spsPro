@@ -21,14 +21,6 @@ export const user = pgTable("user", {
     image: text("image"),
 })
 
-
-export const TodoTable = pgTable("todos", {
-    id: serial("id").primaryKey(),
-    text: text("text").notNull(),
-    done: boolean("done").default(false).notNull(),
-    createdAt: timestamp("createdAt").defaultNow(),
-})
-
 export const Expertise = pgTable('expertises', {
     id: serial('id').primaryKey(),
     title: text('title'),

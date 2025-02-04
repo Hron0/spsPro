@@ -14,7 +14,7 @@ import {HamburgerMenuIcon} from "@radix-ui/react-icons"
 const alwaysAvailableLinks = [
     {name: "Экспертизы", href: "/expertises/"},
     {name: "Проф", href: "/community"},
-    {name: "Страница3", href: "#"},
+    {name: "Блог", href: "/blog"},
 ]
 
 export function MobileDrawer() {

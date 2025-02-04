@@ -5,11 +5,12 @@ import { PlusCircle } from "lucide-react"
 
 export interface InteractiveImageInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type"> {
     onImageChange?: (file: File | null) => void
+    initialImage?: any
 }
 
 const InteractiveImageInput = React.forwardRef<HTMLInputElement, InteractiveImageInputProps>(
-    ({ className, onImageChange, ...props }, ref) => {
-        const [preview, setPreview] = React.useState<string | null>(null)
+    ({ className, onImageChange, initialImage, ...props }, ref) => {
+        const [preview, setPreview] = React.useState<string | null>(initialImage || null)
         const internalRef = React.useRef<HTMLInputElement>(null)
 
         React.useImperativeHandle(ref, () => internalRef.current as HTMLInputElement)
@@ -54,7 +55,7 @@ const InteractiveImageInput = React.forwardRef<HTMLInputElement, InteractiveImag
                     <div
                         className={`absolute inset-0 flex items-center justify-center bg-background/50 transition-opacity duration-300 ${preview ? "opacity-0 hover:opacity-100" : "opacity-100"}`}
                     >
-                        <PlusCircle className="h-12 w-12 text-muted-foreground" />
+                        {!preview && <PlusCircle className="h-12 w-12 text-muted-foreground" />}
                     </div>
                 </div>
                 <input
@@ -72,3 +73,4 @@ const InteractiveImageInput = React.forwardRef<HTMLInputElement, InteractiveImag
 InteractiveImageInput.displayName = "InteractiveImageInput"
 
 export { InteractiveImageInput }
+
