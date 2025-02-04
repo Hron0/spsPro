@@ -1,5 +1,5 @@
-import {useQuery} from "@tanstack/react-query";
-import {useState} from "react";
+import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
+import {toast} from "sonner";
 
 interface Post {
     id: number
@@ -18,12 +18,6 @@ const POSTS_PER_PAGE = 10
 
 //TODO Типизировать хуйню
 
-const fetchPosts = async (page: number): Promise<Post[]> => {
-    const res = await fetch(`/api/blog/posts?page=${page}`)
-    if (!res.ok) throw new Error("Failed to fetch posts")
-    return res.json()
-}
-
 export const useGetBlogs = (page: number) => {
     return useQuery<Post[]>({
         queryKey: ["Posts", page],
@@ -40,5 +34,33 @@ export const useGetBlogs = (page: number) => {
                 }))
             }))
         }
+    })
+}
+
+export const useGetPost = async (id: string) => {
+    const res = await fetch(`/api/blog/get/${id}`, {
+        method: "GET"
+    })
+    return res.json()
+}
+
+export const useDeletePost = (id: number) => {
+    const queryClient = useQueryClient()
+
+    return useMutation({
+        mutationFn: async () => {
+            const response = await fetch(`/api/blog/delete/${id}`, {
+                method: "DELETE",
+            })
+            if (!response.ok) throw new Error("Failed to delete post")
+            return response.json()
+        },
+        onSuccess: () => {
+            void queryClient.invalidateQueries({ queryKey: ["Posts", 1] })
+            toast.success("Запись удалена")
+        },
+        onError: () => {
+            toast.error("Что-то пошло не так...")
+        },
     })
 }
