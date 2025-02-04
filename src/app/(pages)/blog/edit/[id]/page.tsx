@@ -21,7 +21,7 @@ import {TextFieldArea} from "@/components/extras/text-area";
 import {toast} from "sonner";
 import {useRouter} from "next/navigation";
 import {InteractiveImageInput} from "@/app/(pages)/blog/create/InputWithPreview";
-import {useGetPost} from "@/lib/hooks/useBlog";
+import {getPost} from "@/lib/hooks/useBlog";
 
 export default function Page({params}: {params: any}) {
     const [error, setError] = useState<string | undefined>("")
@@ -45,7 +45,7 @@ export default function Page({params}: {params: any}) {
     useEffect(() => {
         const fetchPost = async () => {
             try {
-                const post = await useGetPost(postId)
+                const post = await getPost(postId)
                 if (post) {
                     form.reset({
                         heading: post.heading,

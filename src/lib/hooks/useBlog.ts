@@ -37,7 +37,7 @@ export const useGetBlogs = (page: number) => {
     })
 }
 
-export const useGetPost = async (id: string) => {
+export const getPost = async (id: string) => {
     const res = await fetch(`/api/blog/get/${id}`, {
         method: "GET"
     })

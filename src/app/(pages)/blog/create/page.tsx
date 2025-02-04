@@ -21,7 +21,7 @@ import {TextFieldArea} from "@/components/extras/text-area";
 import {toast} from "sonner";
 import {useRouter} from "next/navigation";
 import {InteractiveImageInput} from "@/app/(pages)/blog/create/InputWithPreview";
-import FileUpload from "@/app/(pages)/blog/create/FileUpload";
+import {FileUpload} from "@/app/(pages)/blog/create/FileUpload";
 
 export default function Page() {
     const [error, setError] = useState<string | undefined>("")
@@ -143,7 +143,7 @@ export default function Page() {
                                                     onChange={(e) => onChange(Array.from(e.target.files || []))}
                                                     {...field}
                                                 />*/}
-                                                <FileUpload files={files} setFiles={setFiles} />
+                                                <FileUpload files={files} setFiles={setFiles}/>
                                             </FormControl>
                                             <FormMessage/>
                                         </FormItem>
