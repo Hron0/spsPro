@@ -7,13 +7,16 @@ import {ExpertisesTableSkeleton} from "@/components/shared/skeletons/ExpertisesT
 
 
 export function ExpertisesTable() {
-    const {data, isLoading} = useExpertisesList()
+    const {data, isLoading, isError} = useExpertisesList()
 
     return (
         <div className="container h-full py-4 lg:py-10">
-            {isLoading
-                ? <ExpertisesTableSkeleton/>
-                : <DataTable columns={columns} data={data}/>
+            {isLoading ? (
+                <ExpertisesTableSkeleton/>)
+                : isError ? (
+                    <h1 className={'font-bold text-black text-lg text-center'}>Ошибка загрузки...</h1>
+                )
+                : (<DataTable columns={columns} data={data}/>)
             }
 
         </div>

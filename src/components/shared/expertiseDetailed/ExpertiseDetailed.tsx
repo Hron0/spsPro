@@ -11,8 +11,8 @@ type Props = {
 export const ExpertiseDetailed = ({expertise}: Props) => {
     return (
 
-        <section className={'container py-7 px-16 flex flex-row items-start gap-16 relative overflow-y-hidden'}>
-            <div className={'w-[452px] relative'}>
+        <section className={'container lg:py-7 py-3 ls:px-16 px-2 flex flex-col lg:flex-row items-center lg:items-start gap-16 relative'}>
+            <div className={'w-[90vw] lg:w-[452px] relative'}>
                 <AspectRatio ratio={9 / 16} className={""}>
                     <Skeleton className={'h-full w-full'}/>
                 </AspectRatio>
@@ -45,7 +45,9 @@ export const ExpertiseDetailed = ({expertise}: Props) => {
                     <div className={'flex flex-col w-full'}>
                         <h1 className={'text-xl font-black uppercase'}>Вопросы на экспертизу</h1>
                         <ul className={'text-base font-extralight'}>
-                            {/*                    {expertise?.questions.map((item, index) => (
+                            {/*                    {expertise?.questions.map((ite<div className={'absolute bottom-2 right-1/2'}>
+                    <span className={'text-base font-extralight text-blue-400 underline'}>Развернуть</span>
+                </div>m, index) => (
                         <li key={index} className={'list-decimal list-inside'}>
                             {item}
                         </li>
@@ -59,9 +61,9 @@ export const ExpertiseDetailed = ({expertise}: Props) => {
                     </div>
                 </div>
                 {/* Кнопка разворота */}
-                <div className={'absolute bottom-2 right-1/2'}>
-                    <span className={'text-base font-extralight text-blue-400 underline'}>Развернуть</span>
-                </div>
+                {/*<div className={'absolute bottom-2 right-1/2'}>*/}
+                {/*    <span className={'text-base font-extralight text-blue-400 underline'}>Развернуть</span>*/}
+                {/*</div>*/}
             </div>
         </section>
     );
