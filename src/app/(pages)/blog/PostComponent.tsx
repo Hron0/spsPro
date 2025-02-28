@@ -5,6 +5,7 @@ import {FileText, MoreVertical} from "lucide-react";
 import Image from "next/image";
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
 import {useDeletePost} from "@/lib/hooks/useBlog";
+import {useUpdatedSession} from "@/lib/hooks/useUpdateSession";
 import Link from "next/link";
 
 interface Post {
@@ -21,6 +22,7 @@ interface Post {
 }
 
 const MyComponent = ({data}: { data: Post }) => {
+    const {session} = useUpdatedSession()
 
     const deleteMutation = useDeletePost(data.id)
 
@@ -36,6 +38,7 @@ const MyComponent = ({data}: { data: Post }) => {
             <CardHeader>
                 <div className={'flex items-center justify-between'}>
                     <CardTitle className={'lg:text-2xl'}>{data.heading}</CardTitle>
+                    { session?.user?.role === "ADMIN" &&
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Button variant="ghost" size="icon">
@@ -43,7 +46,6 @@ const MyComponent = ({data}: { data: Post }) => {
                                 <span className="sr-only">Open menu</span>
                             </Button>
                         </DropdownMenuTrigger>
-                        // TODO: Аутентификация XD????
                         <DropdownMenuContent align="end">
                             <DropdownMenuItem>
                                 <Link href={`/blog/edit/${data.id}`}>Редактировать запись</Link>
@@ -53,6 +55,7 @@ const MyComponent = ({data}: { data: Post }) => {
                             </DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
+                    }
                 </div>
             </CardHeader>
             <CardContent className="space-y-4">
