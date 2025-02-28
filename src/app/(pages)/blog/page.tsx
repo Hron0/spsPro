@@ -76,7 +76,7 @@ export default function Page() {
 
             <div className="flex flex-col items-center gap-8 text-white w-full container mx-2 mb-6">
                 {isLoading ? (
-                    <p className="text-black text-center py-4">Загрузка...</p>
+                    <BlogSkeleton />
                 ) : isEmptyArray(allPosts) ? (
                     <p className="text-black text-center py-4">Нет результатов поиска.</p>
                 ) : (

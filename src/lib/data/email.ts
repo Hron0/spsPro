@@ -10,7 +10,7 @@ export const sendEmail = async (values: z.infer<typeof emailSchema>) => {
 
     if (validatedField.success) {
         const {name, email, message} = validatedField.data;
-        const resend = new Resend('re_S8WcAzb5_MhmAcXYNxyPeC4fEHGCNy2Uw')
+        const resend = new Resend(`${process.env.RESEND_KEY}`)
 
         const {data, error} = await resend.emails.send({
             from: "onboarding@resend.dev",
