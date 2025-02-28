@@ -7,13 +7,12 @@ import {useUpdatedSession} from "@/lib/hooks/useUpdateSession";
 import Link from "next/link";
 import {Plus} from "lucide-react";
 import {isEmptyArray} from "is-what";
+import {ScrollArea} from "@/components/ui/scroll-area";
 
 export default function Page() {
     const {data: posts, isLoading} = useGetBlogs(1)
     const [searchQuery, setSearchQuery] = useState("")
     const {session, status} = useUpdatedSession()
-
-    console.log(posts)
 
     const filteredPosts =
         posts?.filter(
@@ -60,6 +59,7 @@ export default function Page() {
             </div>
 
             <div className={"flex flex-col items-center gap-8 text-white w-full container mx-2 mb-6"}>
+                <ScrollArea className={"w-full h-[95vh]"}>
                 {isLoading ? (
                     <p className={"text-black"}>Загрузка...</p>
                 ) : isEmptyArray(filteredPosts) ? (
@@ -67,6 +67,7 @@ export default function Page() {
                 ) : (
                     filteredPosts.map((item: any, index: any) => <PostComponent data={item} key={index}/>)
                 )}
+                </ScrollArea>
             </div>
         </div>
     )

@@ -67,6 +67,17 @@ export const postSchema = z.object({
         .optional(),
 })
 
+export const emailSchema = z.object({
+    name: z.string().min(2, {
+        message: "Имя должно быть больше 2-х Символов",
+    }),
+    email: z.string().email({
+        message: "Указан неверный формат почты",
+    }).or(z.literal('')).optional(),
+    message: z.string().min(10, {
+        message: "Длина сообщения должна составлять минимум 10 букв.",
+    }),
+})
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"]

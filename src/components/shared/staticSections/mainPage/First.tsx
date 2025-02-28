@@ -4,6 +4,7 @@ import {Button} from "@/components/ui/button";
 import Image from "next/image";
 import {HoverCard, HoverCardContent, HoverCardTrigger} from "@/components/ui/hover-card";
 import {Separator} from "@/components/ui/separator";
+import EmailForm from "@/components/shared/staticSections/mainPage/EmailForm";
 
 export const First = async () => {
     return (
@@ -33,26 +34,27 @@ export const First = async () => {
                         судебных экспертиз и рецензированию судебных экспертиз.</h3>
                 </div>
 
-                <HoverCard>
-                    <HoverCardTrigger className={"justify-self-start self-start relative mt-10 flex"}>
-                        <Button
-                            className={"text-2xl z-10 font-light"}
-                            variant={"default"}
-                            size={"lg"}
-                        >
-                            Связаться с нами
-                        </Button>
-                    </HoverCardTrigger>
-                    <HoverCardContent className={""}>
-                        +7-991-037-43-17 - отдел финансово-экономической (бухгалтерской) экспертизы;
-                        <Separator className={"my-1 bg-black/25"}/>
-                        +7-905-481-20-82- отдел землеустройства, кадастра и мониторинга земель;
-                        <Separator className={"my-1 bg-black/25"}/>
-                        e-mail: anosudex-bestsolution@mail.ru;
-                        <Separator className={"my-1 bg-black/25"}/>
-                        тел. +7-926-388-80-70(общий);
-                    </HoverCardContent>
-                </HoverCard>
+                {/*<HoverCard>*/}
+                {/*    <HoverCardTrigger className={"justify-self-start self-start relative mt-10 flex"}>*/}
+                {/*        <Button*/}
+                {/*            className={"text-2xl z-10 font-light"}*/}
+                {/*            variant={"default"}*/}
+                {/*            size={"lg"}*/}
+                {/*        >*/}
+                {/*            Связаться с нами*/}
+                {/*        </Button>*/}
+                {/*    </HoverCardTrigger>*/}
+                {/*    <HoverCardContent className={""}>*/}
+                {/*        +7-991-037-43-17 - отдел финансово-экономической (бухгалтерской) экспертизы;*/}
+                {/*        <Separator className={"my-1 bg-black/25"}/>*/}
+                {/*        +7-905-481-20-82- отдел землеустройства, кадастра и мониторинга земель;*/}
+                {/*        <Separator className={"my-1 bg-black/25"}/>*/}
+                {/*        e-mail: anosudex-bestsolution@mail.ru;*/}
+                {/*        <Separator className={"my-1 bg-black/25"}/>*/}
+                {/*        тел. +7-926-388-80-70(общий);*/}
+                {/*    </HoverCardContent>*/}
+                {/*</HoverCard>*/}
+                <EmailForm />
 
 
             </div>
