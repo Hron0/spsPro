@@ -14,15 +14,21 @@ interface Post {
     }>
 }
 
-const POSTS_PER_PAGE = 10
 
-//TODO Типизировать хуйню
-
-export const useGetBlogs = (page: number) => {
+export const useGetBlogs = (page: number, filters?: { search?: string; startDate?: string; endDate?: string }) => {
     return useQuery<Post[]>({
-        queryKey: ["Posts", page],
+        queryKey: ["Posts", page, filters],
         queryFn: async () => {
-            const res = await fetch(`/api/blog/posts?page=${page}`)
+            const params = new URLSearchParams({
+                page: page.toString(),
+                ...(filters?.search && { search: filters.search }),
+                ...(filters?.startDate && { startDate: filters.startDate }),
+                ...(filters?.endDate && { endDate: filters.endDate }),
+            })
+            const res = await fetch(`/api/blog/posts?${params.toString()}`)
+            if (!res.ok) {
+                throw new Error("Network response was not ok")
+            }
             return res.json()
         },
         select: (data) => {
@@ -30,10 +36,10 @@ export const useGetBlogs = (page: number) => {
                 ...post,
                 files: post.files?.map((file) => ({
                     ...file,
-                    fileName: decodeURI(file.fileName)
-                }))
+                    fileName: decodeURI(file.fileName),
+                })),
             }))
-        }
+        },
     })
 }
 

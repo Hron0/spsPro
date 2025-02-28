@@ -1,11 +1,10 @@
-import {desc, eq, sql} from 'drizzle-orm';
+import { desc, eq, like, or, gte, lte } from "drizzle-orm"
 import {Hono} from "hono"
 import {db} from "./db"
 import {Expertise, Files, Posts} from "./db/schema"
 import {formatDate} from "@/lib/functions/data-format";
 import {del} from "@vercel/blob";
 
-// init app
 export const app = new Hono().basePath("/api")
 
 
@@ -27,7 +26,7 @@ app.get("/expertise/:id", async ({req, json}) => {
 })
 
 // Для навигации
-app.get("/expertises/short", async ({req, json}) => {
+app.get("/expertises/short", async ({json}) => {
     const data = await db.select({
         id: Expertise.id,
         title: Expertise.title,
@@ -43,7 +42,7 @@ app.get("/expertises/short", async ({req, json}) => {
 })
 
 // Для SSG генерации всех Экспертиз
-app.get("/expertises/all", async ({req, json}) => {
+app.get("/expertises/all", async ({json}) => {
     const data = await db.select({id: Expertise.id}).from(Expertise)
 
     return json(data)
@@ -52,22 +51,57 @@ app.get("/expertises/all", async ({req, json}) => {
 const POSTS_PER_PAGE = 10
 
 app.get("blog/posts", async ({req, json}) => {
-    const page = Number(req.query("page") || "0");
-    const limit = 10;
+    const page = Number(req.query("page") || "1")
+    const search = req.query("search")
+    const startDate = req.query("startDate")
+    const endDate = req.query("endDate")
+    const limit = POSTS_PER_PAGE
+    const offset = (page - 1) * limit
 
-    const offset = (page - 1) * limit;
+    let query = db.select().from(Posts).leftJoin(Files, eq(Posts.id, Files.postId))
 
-    const data = await db.query.Posts.findMany({
-        with: {
-            files: true,
-        },
-        orderBy: desc(Posts.createdAt),
-        limit: limit + 1,
-        offset: offset,
-    })
+    if (search) {
+        query = query.where(or(like(Posts.heading, `%${search}%`), like(Posts.text, `%${search}%`))) as typeof query
+    }
 
+    if (startDate) {
+        query = query.where(gte(Posts.createdAt, new Date(startDate))) as typeof query
+    }
 
-    return json(data)
+    if (endDate) {
+        query = query.where(lte(Posts.createdAt, new Date(endDate))) as typeof query
+    }
+
+    const data = await query.orderBy(desc(Posts.createdAt)).limit(limit).offset(offset)
+
+    interface GroupedData {
+        [key: number]: {
+            id: number
+            heading: string | null
+            text: string | null
+            imgUrl?: string | null
+            createdAt: Date | null
+            files: Array<{
+                id: number
+                postId: number | null
+                fileUrl: string | null
+                fileName: string | null
+            }>
+        }
+    }
+
+    const groupedData = data.reduce<GroupedData>((acc, row) => {
+        const postId = row.posts.id
+        if (!acc[postId]) {
+            acc[postId] = { ...row.posts, files: [] }
+        }
+        if (row.files) {
+            acc[postId].files.push(row.files)
+        }
+        return acc
+    }, {})
+
+    return json(Object.values(groupedData))
 })
 
 app.get("/blog/get/:id", async ({req, json}) => {
@@ -114,7 +148,7 @@ app.delete("blog/delete/:id", async ({req, json}) => {
     }
 })
 
-app.put("blog/redact/:id", async ({req, json}) => {
+app.put("blog/redact/:id", async ({req}) => {
     const id = Number(req.param("id"))
 
     const data = req.json()
