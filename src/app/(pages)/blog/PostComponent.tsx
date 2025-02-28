@@ -43,6 +43,7 @@ const MyComponent = ({data}: { data: Post }) => {
                                 <span className="sr-only">Open menu</span>
                             </Button>
                         </DropdownMenuTrigger>
+                        // TODO: Аутентификация XD????
                         <DropdownMenuContent align="end">
                             <DropdownMenuItem>
                                 <Link href={`/blog/edit/${data.id}`}>Редактировать запись</Link>
