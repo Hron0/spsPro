@@ -50,8 +50,8 @@ export default function Page() {
     }, [refetch])
 
     return (
-        <div className="w-full h-full flex flex-col gap-4 items-center justify-center lg:mt-64 mt-8 lg:mb-10 container">
-            <div className="relative flex flex-row items-center w-full justify-center gap-2 md:gap-3 lg:gap-6">
+        <div className="w-full h-full flex flex-col gap-4 items-center justify-center lg:mt-64 mt-10 lg:mb-10 container">
+            <div className="relative flex flex-row items-center w-full justify-center px-3 gap-2 md:gap-3 lg:gap-6">
                 <SearchBar
                     onSearch={handleFilterChange}
                     initialSearch={filters.search}
@@ -60,7 +60,7 @@ export default function Page() {
                 />
 
                 {session?.user?.role === "ADMIN" && (
-                    <Link href="/blog/create" className="self-end mr-4">
+                    <Link href="/blog/create" className="self-end">
                         <div
                             className="group relative overflow-hidden bg-white rounded-full border w-9 h-9 transition-all duration-300 hover:border-primary hover:shadow-md">
                             <div className="flex items-center justify-center w-full h-full">
