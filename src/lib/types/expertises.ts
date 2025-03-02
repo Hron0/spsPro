@@ -6,7 +6,7 @@ export interface ExpertiseType {
         case: string
         city: string
         address: string
-        questions: string[]
+        questions: string
         types: string
         img: string
 }

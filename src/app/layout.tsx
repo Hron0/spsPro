@@ -38,7 +38,7 @@ export default function RootLayout({children}: {
         <body className={cn("bg-background w-full flex flex-col items-center", Inter.className)}>
         <SessionProvider>
             <QueryProvider>
-                    <main className={"flex flex-col justify-between items-center w-full min-h-[130vh] overflow-x-hidden"}>
+                    <main className={"flex flex-col justify-between items-center w-full overflow-x-hidden"}>
                         <MobileDrawer />
                         <Navbar />
                         {children}

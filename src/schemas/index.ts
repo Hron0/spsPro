@@ -40,7 +40,6 @@ export const ExpertiseSchema = z.object({
     address: z.string().min(1, {
         message: "Введите Адрес"
     }),
-    // questions: z.array(z.string()),
     questions: z.string().min(1, {
         message: "Введите вопросы по экспертизе"
     }),

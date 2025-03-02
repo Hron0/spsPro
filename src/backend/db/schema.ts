@@ -29,7 +29,7 @@ export const Expertise = pgTable('expertises', {
     case: text('case'),
     city: text('city'),
     address: text('address'),
-    questions: jsonb('questions'),
+    questions: text('questions'),
     types: text('types'),
     date: date('date', {mode: "date"}).default(sql`now()`),
     img: text('img'),

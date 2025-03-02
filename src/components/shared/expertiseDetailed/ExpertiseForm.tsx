@@ -20,6 +20,7 @@ import {CreateExpertise} from "@/lib/data/expertises";
 import CardWrapper from "../cardWrapperComps/CardWrapper";
 import {useRouter} from 'next/navigation'
 import { toast } from "sonner"
+import {TextFieldArea} from "@/components/extras/text-area";
 
 export default function ExpertiseForm() {
     const [error, setError] = useState<string | undefined>("")
@@ -166,10 +167,9 @@ export default function ExpertiseForm() {
                                 <FormItem>
                                     <FormLabel>Вопросы на экспертизу</FormLabel>
                                     <FormControl>
-                                        <Input
+                                        <TextFieldArea
                                             {...field}
                                             placeholder="Вопрос1, текст текст. Вопрос2 текст."
-                                            type="text"
                                         />
                                     </FormControl>
                                     <FormMessage/>
@@ -182,10 +182,9 @@ export default function ExpertiseForm() {
                                 <FormItem>
                                     <FormLabel>Вид экспертизы</FormLabel>
                                     <FormControl>
-                                        <Input
+                                        <TextFieldArea
                                             {...field}
                                             placeholder="Вид1, вид2, ..."
-                                            type="text"
                                         />
                                     </FormControl>
                                     <FormMessage/>
