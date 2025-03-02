@@ -68,7 +68,7 @@ export const Third = () => {
                     src="/img/mainPage/bg22.png"
                     fill={true}
                     alt="Picture of the author"
-                    className={"opacity-80 z-0"}
+                    className={"opacity-80 z-0 object-cover"}
                 />
         </section>
     )
