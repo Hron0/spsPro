@@ -23,19 +23,6 @@ async function Page({params}: { params: { id: any } }) {
 
     const data = await response.json()
 
-    // const data: ExpertiseType = {
-    //     id: 1,
-    //     title: "Title",
-    //     name: "Name",
-    //     against: "Against",
-    //     case: "Case",
-    //     city: "City",
-    //     address: "Address",
-    //     questions: ["Quest1", "Quest2"],
-    //     types: "Types",
-    //     img: ""
-    // }
-
     return (
         <div className={"flex flex-col w-full relative overflow-hidden"}>
             <section className="mx-auto w-full bg-secondary relative">
