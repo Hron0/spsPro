@@ -1,6 +1,6 @@
 "use client"
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
-import {useEffect, useState, useTransition} from "react";
+import React, {useEffect, useState, useTransition} from "react";
 import {useForm} from "react-hook-form";
 import {z} from "zod";
 import {postSchema} from "@/schemas";
@@ -22,13 +22,16 @@ import {toast} from "sonner";
 import {useRouter} from "next/navigation";
 import {InteractiveImageInput} from "@/app/(pages)/blog/create/InputWithPreview";
 import {getPost} from "@/lib/hooks/useBlog";
+import {FileUpload} from "@/app/(pages)/blog/create/FileUpload";
+import {UpdatePost} from "@/app/(pages)/blog/edit/[id]/action";
 
-export default function Page({params}: {params: any}) {
+export default function Page({params}: { params: any }) {
     const [error, setError] = useState<string | undefined>("")
     const [isPending, startTransition] = useTransition()
     const [isLoading, setIsLoading] = useState(true)
+    const [files, setFiles] = useState<File[]>([])
 
-    const postId = params.id as string
+    const postId = params.id
     const router = useRouter()
 
     // @ts-ignore
@@ -51,9 +54,19 @@ export default function Page({params}: {params: any}) {
                         heading: post.heading,
                         image: post.imgUrl,
                         text: post.text,
-                        files: post.files,
                     })
-                    console.log(post.files)
+
+                    if (post.files && Array.isArray(post.files)) {
+                        const fetchedFiles = await Promise.all(
+                            post.files.map(async (file: any) => {
+                                const response = await fetch(file.fileUrl)
+                                const blob = await response.blob()
+                                return new File([blob], file.fileName, {type: blob.type})
+                            }),
+                        )
+                        setFiles(fetchedFiles)
+                    }
+
                 }
             } catch (error) {
                 toast.error("Failed to fetch post data")
@@ -61,7 +74,6 @@ export default function Page({params}: {params: any}) {
                 setIsLoading(false)
             }
         }
-
         void fetchPost()
     }, [postId, form])
 
@@ -73,19 +85,19 @@ export default function Page({params}: {params: any}) {
         formData.append("text", values.text)
         formData.append("image", values.image)
 
-        values.files.forEach((file: File) => formData.append("files", file, encodeURI(file.name)))
+        files.forEach((file: File) => formData.append("files", file, encodeURI(file.name)))
 
         startTransition(() => {
-            CreatePost(formData)
+            UpdatePost(postId, formData)
                 .then((data) => {
                     setError(data?.error)
-                    if (data.success) {
+                    if (data?.success) {
                         toast.success(data?.success)
                         setTimeout(() => {
                             router.push('/blog')
                         }, 1200)
                     }
-                    if (data.error) toast.error(data?.error)
+                    if (data?.error) toast.error(data?.error)
                 })
 
         })
@@ -96,7 +108,7 @@ export default function Page({params}: {params: any}) {
     }
 
     return (
-        <div className={"mt-11 mb-6 flex flex-col items-center gap-2 w-full"}>
+        <div className={"lg:mt-64 mt-9 mb-4 flex flex-col items-center gap-2 w-full"}>
             <Card className="w-[95%] lg:w-[600px] shadow-md p-1">
                 <CardHeader>
                     <CardTitle>
@@ -166,12 +178,7 @@ export default function Page({params}: {params: any}) {
                                         <FormItem>
                                             <FormLabel>Файлы</FormLabel>
                                             <FormControl>
-                                                <Input
-                                                    type="file"
-                                                    multiple
-                                                    onChange={(e) => onChange(Array.from(e.target.files || []))}
-                                                    {...field}
-                                                />
+                                                <FileUpload files={files} setFiles={setFiles}/>
                                             </FormControl>
                                             <FormMessage/>
                                         </FormItem>

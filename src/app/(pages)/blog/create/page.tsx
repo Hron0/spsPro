@@ -67,7 +67,7 @@ export default function Page() {
     }
 
     return (
-        <div className={"lg:mt-64 mt-9 mb-10 flex flex-col items-center gap-2 w-full"}>
+        <div className={"lg:mt-64 mt-9 mb-4 flex flex-col items-center gap-2 w-full"}>
             <Card className="w-[95%] lg:w-[600px] shadow-md p-1">
                 <CardHeader>
                     <CardTitle>
@@ -136,12 +136,6 @@ export default function Page() {
                                         <FormItem>
                                             <FormLabel>Файлы</FormLabel>
                                             <FormControl>
-                                                {/*<Input
-                                                    type="file"
-                                                    multiple
-                                                    onChange={(e) => onChange(Array.from(e.target.files || []))}
-                                                    {...field}
-                                                />*/}
                                                 <FileUpload files={files} setFiles={setFiles}/>
                                             </FormControl>
                                             <FormMessage/>
