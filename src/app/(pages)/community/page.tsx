@@ -5,6 +5,20 @@ import Fourth from "@/components/shared/staticSections/community/Fourth";
 import {Fifth} from "@/components/shared/staticSections/community/Fifth";
 import Sixth from "@/components/shared/staticSections/community/Sixth";
 import {Seventh} from "@/components/shared/staticSections/community/Seventh";
+import {Metadata} from "next";
+
+export const metadata: Metadata = {
+    title: "Сообщество",
+    description: "Присоединяйтесь к нашему сообществу профессионалов и экспертов",
+    keywords: ["сообщество", "профессионалы", "эксперты", "Лучшее решение"],
+    authors: [{ name: "АНО Лучшее Решение" }],
+    openGraph: {
+        title: "Сообщество",
+        description: "Присоединяйтесь к нашему сообществу профессионалов и экспертов",
+        type: "website",
+        locale: "ru_RU",
+    },
+}
 
 export default function Page() {
     return (

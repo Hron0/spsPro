@@ -1,8 +1,25 @@
 import React from 'react';
 import TitleHeader from "@/components/shared/TitleHeader";
 import {ExpertisesTable} from "@/components/shared/expertiseDetailed/ExpertisesTable";
+import {Metadata} from "next";
 
-export default function Layout({children}: { children: React.ReactNode}) {
+export const metadata: Metadata = {
+    title: {
+        default: "Экспертизы",
+        template: "%s - Экспертизы",
+    },
+    description: "Ознакомьтесь с нашими экспертизами и профессиональными оценками в различных областях",
+    keywords: ["экспертизы", "оценка", "профессиональная экспертиза", "Лучшее решение"],
+    authors: [{name: "АНО Лучшее Решение"}],
+    openGraph: {
+        title: "Экспертизы",
+        description: "Ознакомьтесь с нашими экспертизами и профессиональными оценками в различных областях",
+        type: "website",
+        locale: "ru_RU",
+    },
+}
+
+export default function Layout({children}: { children: React.ReactNode }) {
     return (
         <>
             {children}

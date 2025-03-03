@@ -3,8 +3,36 @@ import React from 'react';
 import TitleHeader from "@/components/shared/TitleHeader";
 import {ExpertiseDetailed} from "@/components/shared/expertiseDetailed/ExpertiseDetailed";
 import {notFound} from "next/navigation";
+import {Metadata} from "next";
 import {ExpertiseType} from "@/lib/types/expertises";
 
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{
+        id: string
+    }>
+}): Promise<Metadata> {
+    const {id} = await params
+    const item: any = await fetch(process.env["NEXT_PUBLIC_URL"] + `/api/expertise/${id}`, {method: "GET"})
+
+    if (!item) {
+        return {}
+    }
+
+    return {
+        title: `${item.title}`,
+        description: `Ознакомптесь с ифнормацией по делу №${item.case}`,
+        keywords: ["экспертизы", "оценка", "профессиональная экспертиза", "Лучшее решение", `${item.case}`],
+        authors: [{name: "АНО Лучшее Решение"}],
+        openGraph: {
+            title: `${item.title}`,
+            description: `Ознакомптесь с ифнормацией по делу №${item.case}`,
+            type: "website",
+            locale: "ru_RU",
+        },
+    }
+}
 
 export async function generateStaticParams() {
     const expertises = await fetch(process.env["NEXT_PUBLIC_URL"] + '/api/expertises/all', {method: "GET"}).then((res) => res.json())
