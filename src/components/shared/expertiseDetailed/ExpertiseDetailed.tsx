@@ -1,17 +1,19 @@
 "use client"
 
-import type { ExpertiseType } from "@/lib/types/expertises"
-import { AspectRatio } from "@/components/ui/aspect-ratio"
-import { useRef, useState, useEffect } from "react"
-import { Skeleton } from "@/components/ui/skeleton"
-import { Button } from "@/components/ui/button"
-import { ChevronDown, ChevronUp } from "lucide-react"
+import type {ExpertiseType} from "@/lib/types/expertises"
+import {AspectRatio} from "@/components/ui/aspect-ratio"
+import {useRef, useState, useEffect} from "react"
+import {Skeleton} from "@/components/ui/skeleton"
+import {Button} from "@/components/ui/button"
+import {ChevronDown, ChevronUp} from "lucide-react"
+import Link from "next/link";
+import {cn} from "@/lib/utils";
 
 type Props = {
     expertise?: ExpertiseType
 }
 
-export const ExpertiseDetailed = ({ expertise }: Props) => {
+export const ExpertiseDetailed = ({expertise}: Props) => {
     const contentRef = useRef<HTMLDivElement>(null)
     const [isOverflowing, setIsOverflowing] = useState(false)
     const [isExpanded, setIsExpanded] = useState(false)
@@ -37,7 +39,9 @@ export const ExpertiseDetailed = ({ expertise }: Props) => {
         <section className="container py-3 px-2 flex flex-col lg:flex-row items-start gap-16 relative">
             <div className="w-[90vw] lg:w-[452px] relative">
                 <AspectRatio ratio={9 / 16} className="">
-                    <Skeleton className="h-full w-full" />
+                    <Link href={`${expertise?.document.fileUrl}`} target="_blank">
+                        <Skeleton className={cn('w-full h-full', expertise?.document.fileUrl && 'border-2 border-blue-400/50 animate-pulse')}/>
+                    </Link>
                 </AspectRatio>
                 <h1 className="text-xl font-extralight text-center break-words absolute top-20 w-full px-5">
                     {expertise?.title}
@@ -91,12 +95,12 @@ export const ExpertiseDetailed = ({ expertise }: Props) => {
                         >
                             {isExpanded ? (
                                 <>
-                                    <ChevronUp className="mr-2 h-4 w-4" />
+                                    <ChevronUp className="mr-2 h-4 w-4"/>
                                     Свернуть
                                 </>
                             ) : (
                                 <>
-                                    <ChevronDown className="mr-2 h-4 w-4" />
+                                    <ChevronDown className="mr-2 h-4 w-4"/>
                                     Развернуть
                                 </>
                             )}

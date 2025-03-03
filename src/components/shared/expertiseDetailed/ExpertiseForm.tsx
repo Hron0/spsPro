@@ -19,12 +19,14 @@ import {Input} from "@/components/ui/input"
 import {CreateExpertise} from "@/lib/data/expertises";
 import CardWrapper from "../cardWrapperComps/CardWrapper";
 import {useRouter} from 'next/navigation'
-import { toast } from "sonner"
+import {toast} from "sonner"
 import {TextFieldArea} from "@/components/extras/text-area";
+import {FileUpload} from "@/app/(pages)/blog/create/FileUpload";
 
 export default function ExpertiseForm() {
     const [error, setError] = useState<string | undefined>("")
     const [isPending, startTransition] = useTransition()
+    const [file, setFile] = useState<File[]>([])
 
     const router = useRouter()
 
@@ -39,20 +41,36 @@ export default function ExpertiseForm() {
             address: "",
             questions: "",
             types: "",
+            file: [],
         }
     })
 
     const handleCreateExpertise = (values: z.infer<typeof ExpertiseSchema>) => {
         setError("")
 
+        const formData = new FormData()
+        formData.append("title", values.title)
+        formData.append("name", values.name)
+        formData.append("against", values.against)
+        formData.append("case", values.case)
+        formData.append("city", values.city)
+        formData.append("address", values.address)
+        formData.append("questions", values.questions)
+        formData.append("types", values.types)
+
+        file.forEach((file: File) => formData.append("file", file, encodeURI(file.name)))
+
         startTransition(() => {
-            CreateExpertise(values)
+            CreateExpertise(formData)
                 .then((data) => {
                     setError(data?.error)
-                    toast.success(data?.success)
-                    setTimeout(() => {
-                        router.push('/expertises')
-                    }, 1200)
+                    if (data.success) {
+                        toast.success(data?.success)
+                        setTimeout(() => {
+                            router.push('/expertises')
+                        }, 1200)
+                    }
+                    if (data.error) toast.error(data?.error)
                 })
 
         })
@@ -186,6 +204,18 @@ export default function ExpertiseForm() {
                                             {...field}
                                             placeholder="Вид1, вид2, ..."
                                         />
+                                    </FormControl>
+                                    <FormMessage/>
+                                </FormItem>
+                            )}/>
+                        <FormField
+                            name={"file"}
+                            control={form.control}
+                            render={({field: {value, onChange, ...field}}) => (
+                                <FormItem>
+                                    <FormLabel>Документ</FormLabel>
+                                    <FormControl>
+                                        <FileUpload files={file} setFiles={setFile} single />
                                     </FormControl>
                                     <FormMessage/>
                                 </FormItem>

@@ -16,7 +16,8 @@ export async function generateStaticParams() {
 
 async function Page({params}: { params: { id: any } }) {
     const id = params.id
-    const response = await fetch(process.env["NEXT_PUBLIC_URL"] + `/api/expertise/${id}`, {method: "GET"})
+    const response = await fetch(`http://localhost:3000/api/expertise/${id}`, {method: "GET"})
+    // const response = await fetch(process.env["NEXT_PUBLIC_URL"] + `/api/expertise/${id}`, {method: "GET"})
     if (!response.ok) {
         notFound()
     }
