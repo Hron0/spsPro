@@ -46,6 +46,10 @@ export const ExpertiseSchema = z.object({
     types: z.string().min(1, {
         message: "Введите вид(ы) экспертизы."
     }),
+    file: z
+        .array(z.instanceof(File))
+        .refine((files) => files.every((file) => file.size <= MAX_FILE_SIZE), `Максимальный размер одного файла - 5МБ.`)
+        .optional(),
 })
 
 export const postSchema = z.object({
@@ -80,4 +84,3 @@ export const emailSchema = z.object({
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"]
-// const ACCEPTED_IMAGE_TYPES = ["jpeg", "jpg", "png", "webp"];

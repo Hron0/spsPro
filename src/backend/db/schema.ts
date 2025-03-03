@@ -21,7 +21,7 @@ export const user = pgTable("user", {
     image: text("image"),
 })
 
-export const Expertise = pgTable('expertises', {
+export const Expertises = pgTable('expertises', {
     id: serial('id').primaryKey(),
     title: text('title'),
     name: text('name'),
@@ -58,5 +58,26 @@ export const filesRelations = relations(Files, ({ one }) => ({
     post: one(Posts, {
         fields: [Files.postId],
         references: [Posts.id],
+    }),
+}))
+
+export const ExpertiseDoc = pgTable("expertiseDocs", {
+    id: serial("id").primaryKey(),
+    expertiseId: integer("expertiseId").references(() => Expertises.id),
+    fileUrl: text("file_url"),
+    fileName: text("file_name"),
+})
+
+export const expertiseRelations = relations(Expertises, ({ one }) => ({
+    document: one(ExpertiseDoc, {
+        fields: [Expertises.id],
+        references: [ExpertiseDoc.expertiseId],
+    }),
+}))
+
+export const expertiseDocsRelations = relations(ExpertiseDoc, ({ one }) => ({
+    expertise: one(Expertises, {
+        fields: [ExpertiseDoc.expertiseId],
+        references: [Expertises.id],
     }),
 }))

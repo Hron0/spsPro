@@ -1,7 +1,7 @@
 import { desc, eq, like, or, gte, lte } from "drizzle-orm"
 import {Hono} from "hono"
 import {db} from "./db"
-import {Expertise, Files, Posts} from "./db/schema"
+import {Expertises, Files, Posts} from "./db/schema"
 import {formatDate} from "@/lib/functions/data-format";
 import {del} from "@vercel/blob";
 
@@ -11,8 +11,11 @@ export const app = new Hono().basePath("/api")
 app.get("/expertise/:id", async ({req, json}) => {
     const id = parseInt(req.param('id'))
 
-    const expertise = await db.query.Expertise.findFirst({
-        where: eq(Expertise.id, id)
+    const expertise = await db.query.Expertises.findFirst({
+        where: eq(Expertises.id, id),
+        with: {
+            document: true,
+        },
     })
 
     if (!expertise) {
@@ -28,10 +31,10 @@ app.get("/expertise/:id", async ({req, json}) => {
 // Для навигации
 app.get("/expertises/short", async ({json}) => {
     const data = await db.select({
-        id: Expertise.id,
-        title: Expertise.title,
-        date: Expertise.date,
-    }).from(Expertise)
+        id: Expertises.id,
+        title: Expertises.title,
+        date: Expertises.date,
+    }).from(Expertises)
 
     const formattedExpertises = data.map(expertise => ({
         ...expertise,
@@ -43,7 +46,7 @@ app.get("/expertises/short", async ({json}) => {
 
 // Для SSG генерации всех Экспертиз
 app.get("/expertises/all", async ({json}) => {
-    const data = await db.select({id: Expertise.id}).from(Expertise)
+    const data = await db.select({id: Expertises.id}).from(Expertises)
 
     return json(data)
 })

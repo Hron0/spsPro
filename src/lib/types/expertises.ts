@@ -9,4 +9,10 @@ export interface ExpertiseType {
         questions: string
         types: string
         img: string
+        document: {
+                id: number
+                expertiseId: number
+                fileUrl: string
+                fileName: string
+        }
 }
