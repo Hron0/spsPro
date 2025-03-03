@@ -8,8 +8,8 @@ export interface ExpertiseType {
         address: string
         questions: string
         types: string
-        img: string
-        document: {
+        img?: string
+        document?: {
                 id: number
                 expertiseId: number
                 fileUrl: string

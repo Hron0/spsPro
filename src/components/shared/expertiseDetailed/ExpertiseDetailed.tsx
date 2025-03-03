@@ -2,7 +2,7 @@
 
 import type {ExpertiseType} from "@/lib/types/expertises"
 import {AspectRatio} from "@/components/ui/aspect-ratio"
-import {useRef, useState, useEffect} from "react"
+import React, {useRef, useState, useEffect} from "react"
 import {Skeleton} from "@/components/ui/skeleton"
 import {Button} from "@/components/ui/button"
 import {ChevronDown, ChevronUp} from "lucide-react"
@@ -13,7 +13,7 @@ type Props = {
     expertise?: ExpertiseType
 }
 
-export const ExpertiseDetailed = ({expertise}: Props) => {
+export const ExpertiseDetailed: React.FC<Props> = ({expertise}) => {
     const contentRef = useRef<HTMLDivElement>(null)
     const [isOverflowing, setIsOverflowing] = useState(false)
     const [isExpanded, setIsExpanded] = useState(false)
@@ -35,13 +35,23 @@ export const ExpertiseDetailed = ({expertise}: Props) => {
         setIsExpanded(!isExpanded)
     }
 
+
     return (
         <section className="container py-3 px-2 flex flex-col lg:flex-row items-start gap-16 relative">
             <div className="w-[90vw] lg:w-[452px] relative">
                 <AspectRatio ratio={9 / 16} className="">
-                    <Link href={`${expertise?.document.fileUrl}`} target="_blank">
-                        <Skeleton className={cn('w-full h-full', expertise?.document.fileUrl && 'border-2 border-blue-400/50 animate-pulse')}/>
-                    </Link>
+
+                    {expertise?.document ? (
+                        <Link href={`${expertise?.document.fileUrl}`} target="_blank">
+                            <Skeleton
+                                className={cn('w-full h-full', expertise?.document.fileUrl && 'border-2 border-blue-400/50 animate-pulse')}/>
+                        </Link>
+                    ) : (
+                        <Skeleton
+                            className={'w-full h-full'}/>
+                    )}
+
+
                 </AspectRatio>
                 <h1 className="text-xl font-extralight text-center break-words absolute top-20 w-full px-5">
                     {expertise?.title}
