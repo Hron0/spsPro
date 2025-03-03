@@ -4,7 +4,7 @@ import TitleHeader from "@/components/shared/TitleHeader";
 import {ExpertiseDetailed} from "@/components/shared/expertiseDetailed/ExpertiseDetailed";
 import {notFound} from "next/navigation";
 import {Metadata} from "next";
-import {ExpertiseType} from "@/lib/types/expertises";
+import {getItem} from "@/app/(pages)/expertises/(expDeatils)/[id]/getItem";
 
 export async function generateMetadata({
     params,
@@ -14,20 +14,20 @@ export async function generateMetadata({
     }>
 }): Promise<Metadata> {
     const {id} = await params
-    const item: any = await fetch(process.env["NEXT_PUBLIC_URL"] + `/api/expertise/${id}`, {method: "GET"})
+    const item: any = await getItem(id)
 
     if (!item) {
         return {}
     }
 
     return {
-        title: `${item.title}`,
-        description: `Ознакомптесь с ифнормацией по делу №${item.case}`,
-        keywords: ["экспертизы", "оценка", "профессиональная экспертиза", "Лучшее решение", `${item.case}`],
+        title: `${item[0].title}`,
+        description: `Ознакомптесь с ифнормацией по делу №${item[0].case}`,
+        keywords: ["экспертизы", "оценка", "профессиональная экспертиза", "Лучшее решение", `${item[0].case}`],
         authors: [{name: "АНО Лучшее Решение"}],
         openGraph: {
-            title: `${item.title}`,
-            description: `Ознакомптесь с ифнормацией по делу №${item.case}`,
+            title: `${item[0].title}`,
+            description: `Ознакомптесь с ифнормацией по делу №${item[0].case}`,
             type: "website",
             locale: "ru_RU",
         },
