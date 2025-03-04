@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { PlusCircle } from "lucide-react"
+import Image from "next/image";
 
 export interface InteractiveImageInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type"> {
     onImageChange?: (file: File | null) => void
@@ -42,7 +43,7 @@ const InteractiveImageInput = React.forwardRef<HTMLInputElement, InteractiveImag
                     onClick={handleClick}
                 >
                     {preview ? (
-                        <img
+                        <Image
                             src={preview || "/placeholder.svg"}
                             alt="Preview"
                             className="h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-50"

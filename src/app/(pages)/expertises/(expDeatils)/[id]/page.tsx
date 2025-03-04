@@ -5,10 +5,11 @@ import {ExpertiseDetailed} from "@/components/shared/expertiseDetailed/Expertise
 import {notFound} from "next/navigation";
 import {Metadata} from "next";
 import {getItem} from "@/app/(pages)/expertises/(expDeatils)/[id]/getItem";
+import {isEmptyArray} from "is-what";
 
 export async function generateMetadata({
-    params,
-}: {
+                                           params,
+                                       }: {
     params: Promise<{
         id: string
     }>
@@ -16,7 +17,7 @@ export async function generateMetadata({
     const {id} = await params
     const item: any = await getItem(id)
 
-    if (!item) {
+    if (isEmptyArray(item)) {
         return {}
     }
 
