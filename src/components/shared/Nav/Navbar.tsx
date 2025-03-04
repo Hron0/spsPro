@@ -10,18 +10,29 @@ import {
 import Image from 'next/image'
 import {cn} from "@/lib/utils";
 import {useUpdatedSession} from "@/lib/hooks/useUpdateSession";
+import {signOut} from "next-auth/react";
+import {Button} from "@/components/ui/button";
+
 const rightLinks = [
     {name: "Экспертизы", href: "/expertises/"},
     {name: "Проф", href: "/community"},
     {name: "Блог", href: "/blog"},
 ]
 
+
 export const Navbar = () => {
-    const {session, status} = useUpdatedSession()
+    const {session} = useUpdatedSession()
+
+    const signOutPrompt = () => {
+        if(window.confirm('Вы уверены что хотите выйти из аккаунта?')) {
+            void signOut()
+        }
+    }
+
     return (
         <NavigationMenu
             className={"hidden lg:flex bg-background drop-shadow rounded-sm absolute top-0 h-20 flex-row items-center justify-between mt-4 px-10 container w-full z-10"}>
-            <div className={"flex flex-row items-center gap-4 w-[40%] list-none"}>
+            <div className={"flex flex-row justify-between items-center gap-4 w-[40%] list-none"}>
                 <NavigationMenuItem>
                     <Link href={"/"} legacyBehavior passHref>
                         <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "text-xl font-light")}>
@@ -32,11 +43,9 @@ export const Navbar = () => {
 
                 {session &&
                     <NavigationMenuItem>
-                        <Link href={"/profile"} legacyBehavior passHref>
-                            <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "text-xl font-light")}>
-                                Профиль
-                            </NavigationMenuLink>
-                        </Link>
+                        <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "text-xl font-light")}>
+                            <Button variant="secondary" onClick={() => signOutPrompt()}>Выйти из аккаунта</Button>
+                        </NavigationMenuLink>
                     </NavigationMenuItem>
                 }
             </div>
@@ -53,7 +62,7 @@ export const Navbar = () => {
                     <h3 className={"text-center text-base font-extralight"}>Центр независимых исследований.</h3>
                 </div>
             </div>
-            <div className={"flex flex-row items-center justify-between gap-2 w-[40%] list-none"}>
+            <div className={"flex flex-row items-center justify-around gap-2 w-[40%] list-none"}>
                 {rightLinks.map((link, index) => (
                     <NavigationMenuItem key={index}>
                         <Link href={link.href} legacyBehavior passHref>
@@ -64,16 +73,6 @@ export const Navbar = () => {
                         </Link>
                     </NavigationMenuItem>
                 ))}
-                {!session
-                    &&
-                    <NavigationMenuItem>
-                        <Link href={"/auth"} legacyBehavior passHref>
-                            <NavigationMenuLink
-                                className={cn(navigationMenuTriggerStyle(), "text-xl font-light px-0.5  text-nowrap")}>
-                                Авторизация
-                            </NavigationMenuLink>
-                        </Link>
-                    </NavigationMenuItem>}
             </div>
         </NavigationMenu>
     );

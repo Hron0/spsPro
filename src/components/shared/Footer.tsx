@@ -1,5 +1,6 @@
 import React from 'react';
 import {Separator} from "@/components/ui/separator";
+import {MobileLink} from "@/components/shared/Nav/MobileDrawer";
 
 function Footer() {
     return (
@@ -11,6 +12,10 @@ function Footer() {
                     141508,Московская область, г. Солнечногорск, мкр. Рекинцо-2, д.3 п.54
                     <Separator className={"my-2 bg-white/25"}/>
                     197101, г.Санкт-Петербург, ул.Чапаева, д.15 БЦ «Сенатор», 4 этаж, пом.423
+                    <Separator className={"my-2 bg-white/25"}/>
+                    <MobileLink href={"/auth"}>
+                        Авторизация
+                    </MobileLink>
                 </h2>
 
                 <h2 className={"text-start md:text-center text-base font-extralight break-words w-full md:w-1/3"}>

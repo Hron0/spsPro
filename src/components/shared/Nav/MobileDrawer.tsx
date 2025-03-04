@@ -10,6 +10,8 @@ import {Separator} from "@/components/ui/separator";
 import {useRouter} from "next/navigation";
 import {cn} from "@/lib/utils";
 import {HamburgerMenuIcon} from "@radix-ui/react-icons"
+import {Button} from "@/components/ui/button";
+import {signOut} from "next-auth/react";
 
 const alwaysAvailableLinks = [
     {name: "Экспертизы", href: "/expertises/"},
@@ -18,8 +20,14 @@ const alwaysAvailableLinks = [
 ]
 
 export function MobileDrawer() {
-    const {session, status} = useUpdatedSession()
+    const {session} = useUpdatedSession()
     const [open, setOpen] = useState<boolean>(false)
+
+    const signOutPrompt = () => {
+        if(window.confirm('Вы уверены что хотите выйти из аккаунта?')) {
+            void signOut()
+        }
+    }
 
     // @ts-ignore
     return (
@@ -41,15 +49,8 @@ export function MobileDrawer() {
                             </MobileLink>
                         ))}
                         <Separator/>
-                        {!session
-                            ?
-                            <MobileLink href={"/auth"} onOpenChange={setOpen}>
-                                Авторизация
-                            </MobileLink>
-                            :
-                            <MobileLink href={"/profile"} onOpenChange={setOpen}>
-                                Профиль
-                            </MobileLink>
+                        {session &&
+                            <Button variant="secondary" onClick={() => signOutPrompt()}>Выйти из аккаунта</Button>
                         }
                     </div>
                 </ScrollArea>
@@ -64,7 +65,7 @@ interface MobileLinkProps extends LinkProps {
     className?: string
 }
 
-function MobileLink({
+export function MobileLink({
                         href,
                         onOpenChange,
                         className,
