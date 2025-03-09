@@ -15,7 +15,7 @@ import {Button} from "@/components/ui/button";
 
 const rightLinks = [
     {name: "Экспертизы", href: "/expertises/"},
-    {name: "Проф", href: "/community"},
+    {name: "Сообщество", href: "/community"},
     {name: "Блог", href: "/blog"},
 ]
 
@@ -24,7 +24,7 @@ export const Navbar = () => {
     const {session} = useUpdatedSession()
 
     const signOutPrompt = () => {
-        if(window.confirm('Вы уверены что хотите выйти из аккаунта?')) {
+        if (window.confirm('Вы уверены что хотите выйти из аккаунта?')) {
             void signOut()
         }
     }
@@ -51,12 +51,14 @@ export const Navbar = () => {
             </div>
             <div
                 className={"relative top-12 w-[208px] bg-background aspect-square rounded-md flex flex-col items-center justify-between shadow-xl"}>
-                <Image
-                    src={'/img/logo.png'}
-                    width={115}
-                    height={100}
-                    alt={"Логотип"}
-                />
+                <div className={"relative w-[115px] h-[100px] mt-2"}>
+                    <Image
+                        src={'/img/logo.svg'}
+                        fill
+                        alt={"Логотип"}
+                    />
+                </div>
+
                 <div className={"flex flex-col items-center pb-3"}>
                     <h1 className={"font-timesnew text-xl"}>ЛУЧШЕЕ РЕШЕНИЕ</h1>
                     <h3 className={"text-center text-base font-extralight"}>Центр независимых исследований.</h3>

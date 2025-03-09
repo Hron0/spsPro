@@ -52,15 +52,15 @@ export default function EmailForm() {
     }
 
     return (
-        <div className="justify-self-start self-start relative mt-10 flex">
+        <div className="justify-self-start self-start relative lg:mt-10 flex">
             <AlertDialog open={open}>
                 <AlertDialogTrigger asChild className={"justify-self-start self-start relative mt-10 flex"}>
                     <Button
-                        className={"text-2xl z-10 font-light gap-3"}
+                        className={"text-[16px] lg:text-2xl z-10 font-light gap-2 lg:gap-3"}
                         variant={"default"}
                         size={"lg"}
                     >
-                        <Mail className={'h-7 w-7'}/>
+                        <Mail className={'h-5 lg:h-7 w-5 lg:w-7'}/>
                         Связаться с нами
                     </Button>
                 </AlertDialogTrigger>

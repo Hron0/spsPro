@@ -7,7 +7,7 @@ export const Fifth = async () => {
         <section
             className={'mx-auto w-full bg-secondary relative'}>
             <div
-                className={"container px-6 lg:px-16 py-4 lg:py-8 text-white h-min aspect-video flex flex-col items-start gap-6 md:gap-32 relative w-full"}>
+                className={"container px-2 md:px-6 lg:px-16 py-4 lg:py-8 text-white h-min aspect-video flex flex-col items-start gap-6 md:gap-32 relative w-full"}>
                 <TitleHeader title={'Повышение личной компетенции и уровня профессиональной деятельности'}
                              color={'orange'} cClass={'md:w-[700px]'} isHidden/>
 

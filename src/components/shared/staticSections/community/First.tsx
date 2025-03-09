@@ -11,14 +11,15 @@ export const First = async () => {
 
                 <div className={"aspect-square w-1/3 relative z-40 bg-background rounded-full lg:hidden mb-2 md:mb-6"}>
                     <Image
-                        src={'/img/logo.png'}
+                        src={'/img/logo.svg'}
                         fill={true}
                         alt={"Логотип"}
+                        className={'p-2'}
                     />
                 </div>
 
                 <div className={"flex flex-col gap-2 lg:gap-16 lg:row-span-3 lg:self-end px-0 lg:px-32"}>
-                    <h1 className={"text-2xl lg:text-4xl font-bold uppercase z-10 text-center"}>Система добровольной сертификации
+                    <h1 className={"text-xl lg:text-4xl font-bold uppercase z-10 text-center"}>Система добровольной сертификации
                     "профессионал"</h1>
                     <h3 className={"text-lg md:text-xl lg:text-2xl text-center font-extralight z-10 whitespace-pre-line break-words self-center"}>
                         Приглашает вас присоединиться к новому

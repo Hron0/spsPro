@@ -15,7 +15,7 @@ import {signOut} from "next-auth/react";
 
 const alwaysAvailableLinks = [
     {name: "Экспертизы", href: "/expertises/"},
-    {name: "Проф", href: "/community"},
+    {name: "Сообщество", href: "/community"},
     {name: "Блог", href: "/blog"},
 ]
 
