@@ -14,8 +14,8 @@ RUN npm ci
 # Rebuild the source code only when needed
 FROM base AS builder
 WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+COPY --from=deps /app/node_modules ./node_modules
 
 # Set environment variables for build time (NEXT_PUBLIC_* variables)
 ARG DATABASE_URL
@@ -28,18 +28,12 @@ RUN npm run build
 FROM base AS runner
 WORKDIR /app
 
-ENV NODE_ENV production
-
-# Create a non-root user to run the app
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+ENV NODE_ENV=production
 
 COPY --from=builder /app/public ./public
-
-# Copy necessary files from builder
-#COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-#COPY --from=builder --chown=nextjs:nodejs /app/public ./public
-#COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/node_modules ./node_modules
 
 # Set the correct permissions
 RUN chown -R nextjs:nodejs /app
@@ -49,3 +43,5 @@ USER nextjs
 
 # Expose the port the app runs on
 EXPOSE 8080
+
+CMD ["npm", "start"]
