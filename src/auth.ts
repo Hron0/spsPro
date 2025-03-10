@@ -6,9 +6,9 @@ import authConfig from "./auth.config"
 export const {
   handlers: { GET, POST }, auth, signIn, signOut
 } = NextAuth({
+  trustHost: true,
   adapter: DrizzleAdapter(db),
   session: { strategy: "jwt" },
-  trustHost: true,
   secret: process.env.NEXTAUTH_SECRET,
   ...authConfig,
 })
