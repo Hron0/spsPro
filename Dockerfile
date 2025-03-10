@@ -48,9 +48,5 @@ USER nextjs
 # Expose the port the app runs on
 EXPOSE 8080
 
-# Set environment variables for runtime
-ENV PORT 8080
-ENV HOSTNAME "0.0.0.0"
-
 # Start the application
 CMD ["node", "server.js"]
